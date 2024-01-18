@@ -1,8 +1,10 @@
 [package]
-name = "modular_audio_docs"
+name = "yaml_to_json"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+regex = "1.10.2"
+yaml-validator = "0.2.0"
