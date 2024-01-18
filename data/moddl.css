@@ -2,3 +2,14 @@ h1 {
 	color: white;
 	background-color: red;
 }
+
+.caution:before {
+	content: "⚠注意";
+	display: block;
+	background-color: #404000;
+	color: #ffffff;
+}
+.caution {
+	background-color: #ffff80;
+	border: 1px double #606000;
+}
