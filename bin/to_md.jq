@@ -16,31 +16,35 @@ def heading(level): [
 
 def blocks: if type == "object" then
 	if has("caution") then
-		.caution | ["<div class=\"caution\">"]
-		+ blocks
-		+ ["</div>"] | flatten
+		.caution | (
+			"<div class=\"caution\">",
+			blocks,
+			"</div>"
+		)
 	elif has("tips") then
-		.tips | ["<div class=\"tips\">"]
-		+ blocks
-		+ ["</div>"] | flatten
+		.tips | (
+			"<div class=\"tips\">",
+			blocks,
+			"</div>"
+		)
 	elif has("sample") then
-		.sample | [
+		.sample | (
 			"<div class=\"sample\">",
-			"```"
-		]
-		+ (.code | blocks)
-		+ ["```"]
-		+ (.desc | blocks)
-		+ ["</div>"] | flatten
+			"```",
+			(.code | blocks),
+			["```"],
+			(.desc | blocks),
+			"</div>"
+		)
 	else
-		["?"]
+		"?"
 	end
 elif type == "string" then
-	[.]
+	.
 elif type == "array" then
-	. | map(blocks) | flatten
+	map(blocks)
 else
-	["*"]
+	"*"
 end;
 
 def tableRow: "|" + (map(" " + . + " |") | join(""));
@@ -70,7 +74,7 @@ def params:
 	);
 
 
-def transformNodeFactory: [
+def transformNodeFactory: (
 	(.name | heading(1)), # この括弧は必須らしい…ないと次の式が通らなくなる。コンテキストノード？に影響を与えるのか？
 	(.desc),
 	("入力" | heading(2)),
@@ -84,6 +88,6 @@ def transformNodeFactory: [
 	("詳細" | heading(2)),
 	(.details | blocks),
 	""
-];
+);
 
-.nodeFactory | transformNodeFactory | flatten | join("\n")
+.nodeFactory | transformNodeFactory | [.] | flatten | join("\n")
