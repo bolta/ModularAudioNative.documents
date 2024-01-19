@@ -72,12 +72,12 @@ def params:
 
 
 def transformNodeFactory: (
-	(.name | heading(1)), # この括弧は必須らしい…ないと次の式が通らなくなる。コンテキストノード？に影響を与えるのか？
+	(.name | heading(1)),
 	(.desc),
 	("入力" | heading(2)),
 	(.input),
 	("パラメータ" | heading(2)),
-	(.params | params), # この行頭からの括弧がないと期待した出力が出ない。なんなの？？？？？？？？
+	(.params | params),
 	("イベント" | heading(2)),
 	("blah blah\n" | blocks), # 改行で終わってない場合に構造が崩れるので改行を補う必要がある
 	("出力" | heading(2)),
