@@ -1,40 +1,37 @@
 #!/usr/bin/jq -rf
 
-def elem(name; attrs; content):
-	"<" + name
+def open(name; attrs): "<" + name
 	+ (attrs as $attrs | $attrs | keys | map(" " + . + "=\"" + ($attrs[.] | @html) + "\"") | join(""))
 	+ ">"
-	+ (content | @html)
-	+ "</" + name + ">"
 	;
+def close(name): "</" + name + ">";
 
 def heading(level): [
 	("#" * level) + " " + .,
 	""
-	
 ];
 
 def blocks: if type == "object" then
 	if has("caution") then
 		.caution | (
-			"<div class=\"caution\">",
+			open("div"; { class: "caution" }),
 			blocks,
-			"</div>"
+			close("div")
 		)
 	elif has("tips") then
 		.tips | (
-			"<div class=\"tips\">",
+			open("div"; { class: "tips" }),
 			blocks,
-			"</div>"
+			close("div")
 		)
 	elif has("sample") then
 		.sample | (
-			"<div class=\"sample\">",
+			open("div"; { class: "sample" }),
 			"```",
 			(.code | blocks),
 			["```"],
 			(.desc | blocks),
-			"</div>"
+			close("div")
 		)
 	else
 		"?"
