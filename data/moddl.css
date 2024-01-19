@@ -1,15 +1,67 @@
 h1 {
 	color: white;
-	background-color: red;
+	background-color: #000080;
+	padding: 0.125em;
+}
+h2 {
+	color: white;
+	background-color: #4040c0;
+	padding: 0.125em;
+}
+h3 {
+	color: white;
+	background-color: #8080ff;
+	padding: 0.125em;
+}
+
+.title-type {
+	/*color: red;*/
+	font-size: 50%;
+	color: #c0c0ff;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+
+table, th, td {
+	border-style: solid;
+	border-width: 1px;
 }
 
 .caution:before {
 	content: "⚠注意";
 	display: block;
-	background-color: #404000;
+	background-color: #808000;
 	color: #ffffff;
 }
 .caution {
 	background-color: #ffff80;
-	border: 1px double #606000;
+	border: #c0c000;
+}
+
+/*
+.sample:before {
+	content: "📃サンプル";
+	display: block;
+	background-color: #404060;
+	color: #ffffff;
+}
+*/
+.sample {
+	background-color: #e0e0ff;
+	border: #202040;
+}
+.sample .code {
+	background-color: #d0d0f0;
+	border: 1px solid #8080c0;
+	padding: 0.125em;
+}
+.sample .desc {
+	padding: 0.125em;
+}
+
+.caution, .sample, .tips, .important {
+	margin: 0.5em;
+	padding: 0.5em;
+	border-style: double;
+	border-width: 0.25em;
 }
