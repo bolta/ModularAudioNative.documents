@@ -10,6 +10,7 @@ pub fn yaml_to_json(yaml: &Yaml) -> String {
 fn escape(str: &String) -> String {
 	// 参照： https://www.crockford.com/mckeeman.html
 
+	let str = Regex::new(r#"["\\/]"#).unwrap().replace_all(&str, r"\$0").to_string();
 	// \b は単語境界に反応するらしく、思ってたのと違った。
 	// Backspace が含まれることもないと考え、これ以上追わない
 	// let str = Regex::new(r"\b").unwrap().replace_all(str, r"\b").to_string();
@@ -17,7 +18,6 @@ fn escape(str: &String) -> String {
 	let str = Regex::new(r"\n").unwrap().replace_all(&str, r"\n").to_string();
 	let str = Regex::new(r"\r").unwrap().replace_all(&str, r"\r").to_string();
 	let str = Regex::new(r"\t").unwrap().replace_all(&str, r"\t").to_string();
-	let str = Regex::new(r#""\/"#).unwrap().replace_all(&str, r"\$0").to_string();
 	// \uxxxx には対応しない
 	
 	str
