@@ -42,6 +42,31 @@ def blocks: if type == "object" then
 			close("div"),
 			close("div")
 		)
+	elif has("table") then
+		.table | (
+			open("table"; { }),
+			if has("head") then
+				open("tr"; { }),
+				(.head | map(
+					open("th"; { }),
+					blocks,
+					close("th")
+				)[]),
+				close("tr")
+			else empty end,
+			if has("body") then
+				(.body | map(
+					open("tr"; { }),
+					map(
+						open("td"; { }),
+						blocks,
+						close("td")
+					)[],
+					close("tr")
+				)[])
+			else empty end,
+			close("table")
+		)
 	else
 		"?"
 	end
@@ -101,4 +126,18 @@ def transformNodeFactory: (
 	""
 );
 
-.nodeFactory | transformNodeFactory | [.] | flatten | join("\n")
+def transformArticle: (
+	(.title | heading(1)),
+	(.content | blocks),
+	""
+);
+
+if .nodeFactory then
+	.nodeFactory | transformNodeFactory
+elif .article then
+	.article | transformArticle
+else
+	error("unknown document format: " + keys[0])
+end
+| [.] | flatten | join("\n")
+
