@@ -6,6 +6,11 @@ def open(name; attrs): "<" + name
 	;
 def close(name): "</" + name + ">";
 
+def trim: sub("^\\s+"; "") | sub("\\s+$"; "");
+
+# 入れ子にしてはいけない
+def elem(name; attrs; content): open(name; attrs) + content + close(name);
+
 def heading(level): [
 	("#" * level) + " " + .,
 	""
@@ -27,10 +32,14 @@ def blocks: if type == "object" then
 	elif has("sample") then
 		.sample | (
 			open("div"; { class: "sample" }),
+			open("div"; { class: "code" }),
 			"```",
 			(.code | blocks),
 			["```"],
+			close("div"),
+			open("div"; { class: "desc" }),
 			(.desc | blocks),
+			close("div"),
 			close("div")
 		)
 	else
@@ -41,7 +50,7 @@ elif type == "string" then
 elif type == "array" then
 	map(blocks)
 else
-	"*"
+	empty
 end;
 
 def tableRow: "|" + (map(" " + . + " |") | join(""));
@@ -70,18 +79,23 @@ def params:
 		] | tableRow)
 	);
 
+def events:
+	map("* " + . + "\n");
 
 def transformNodeFactory: (
-	(.name | heading(1)),
+	(elem("span"; { class: "title-type" }; "node factory ") + .name | heading(1)),
 	(.desc),
 	("入力" | heading(2)),
-	(.input),
+	(.input | if . | trim == "%noInput" then "入力はありません。\n" else . end | blocks),
 	("パラメータ" | heading(2)),
 	(.params | params),
 	("イベント" | heading(2)),
-	("blah blah\n" | blocks), # 改行で終わってない場合に構造が崩れるので改行を補う必要がある
+	(.events | events),
 	("出力" | heading(2)),
-	(.output.desc | blocks),
+	(.output | (
+		(.desc | blocks),
+		(.range | if . then ("範囲" | heading(3)), blocks else empty end)
+	)),
 	("詳細" | heading(2)),
 	(.details | blocks),
 	""

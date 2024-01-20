@@ -34,24 +34,22 @@ table, th, td {
 	color: #ffffff;
 }
 .caution {
-	background-color: #ffff80;
+	background-color: #ffffc0;
 	border: #c0c000;
 }
 
-/*
 .sample:before {
 	content: "📃サンプル";
 	display: block;
 	background-color: #404060;
 	color: #ffffff;
 }
-*/
 .sample {
-	background-color: #e0e0ff;
-	border: #202040;
+	background-color: #f0f0ff;
+	border: #6060c0;
 }
 .sample .code {
-	background-color: #d0d0f0;
+	background-color: #e0e0ff;
 	border: 1px solid #8080c0;
 	padding: 0.125em;
 }
