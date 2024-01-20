@@ -80,25 +80,30 @@ end;
 
 def tableRow: "|" + (map(" " + . + " |") | join(""));
 
+# パラメータ（params 配列の要素）を渡す
+def requirement: 
+	(if .required and (has("default") | not) then
+		"**必須**"
+	elif (.required | not) and has("default") then
+		.default | if has("value") and has("behavior") | not then
+			"デフォルト値 " + (.value | tostring)
+		elif has("behavior") and has("value") | not then
+			.behavior
+		else
+			"???????!!!"
+		end
+	else
+		"????????"
+	end);
+
+# TODO table で書き直す
 def params:
 	(["名前", "必須/省略時", "説明"] | tableRow),
 	(["----", "----", "----"] | tableRow),
 	map(
 		([
 			.name,
-			(if .required and (has("default") | not) then
-				"**必須**"
-			elif (.required | not) and has("default") then
-				.default | if has("value") and has("behavior") | not then
-					"デフォルト値 " + (.value | tostring)
-				elif has("behavior") and has("value") | not then
-					.behavior
-				else
-					"???????!!!"
-				end
-			else
-				"????????"
-			end),
+			requirement,
 			# TODO この手のテキスト処理は全てのテキストにかける
 			.desc // "" | sub("\n+$"; "") | gsub("\n"; "<br>")
 		] | tableRow)
@@ -106,6 +111,19 @@ def params:
 
 def events:
 	map("* " + . + "\n");
+
+def table:
+	# テーブルの生成を blocks から切り出したいが、テーブル生成中に blocks へ再帰しているのでうまくいかない
+	# （jq では相互再帰を書けないよう？）
+	# そこでテーブルの生成処理は blocks の中に置き、そこで処理させるために table キーをつけて渡すようにする
+	{ table: . } | blocks;
+
+def directiveParams:
+	{
+		head: ["名前", "型", "必須/省略時", "説明"],
+		body: map([.name, .type, requirement, .desc])
+	} | table;
+
 
 def transformNodeFactory: (
 	(elem("span"; { class: "title-type" }; "node factory ") + .name | heading(1)),
@@ -126,6 +144,16 @@ def transformNodeFactory: (
 	""
 );
 
+def transformDirective: (
+	(elem("span"; { class: "title-type" }; "directive ") + .name | heading(1)),
+	(.desc),
+	("パラメータ" | heading(2)),
+	(.params | directiveParams),
+	("詳細" | heading(2)),
+	(.details | blocks),
+	""
+);
+
 def transformArticle: (
 	(.title | heading(1)),
 	(.content | blocks),
@@ -134,6 +162,8 @@ def transformArticle: (
 
 if .nodeFactory then
 	.nodeFactory | transformNodeFactory
+elif .directive then
+	.directive | transformDirective
 elif .article then
 	.article | transformArticle
 else

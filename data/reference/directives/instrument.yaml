@@ -1,0 +1,35 @@
+directive:
+  name: instrument
+  desc: |
+    インストゥルメントトラックを定義します。
+  params:
+    -
+      name: |
+        `tracks`
+      type: TrackSet
+      required: true
+      # default:
+      #   value:
+      #   behavior:
+      desc: |
+        定義する対象のトラックを指定します。
+        
+        複数トラックを指定した場合、各々のトラックに対して同じ構成のインストゥルメントが生成されます。
+    -
+      name: |
+        `instrument`
+      type: NodeStructure
+      required: true
+      # default:
+      #   value:
+      #   behavior:
+      desc: |
+        トラックに割り当てるインストゥルメントを定義します。
+
+  details:
+    -
+      sample:
+        code: |
+          @instrument ^ab, pulseOsc { duty: 0.25 } | lpf { 3000 }* adsrEnv { initial: 0.5, attack: 0.1, decay: 1, sustain: 0.3, release: 0.3 }
+        desc: |
+          トラック a, b に、`pulseOsc`, `lpf`, `adsrEnv` で構成されるインストゥルメントを設定します。
