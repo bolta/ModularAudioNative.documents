@@ -60,7 +60,7 @@ for file in $files; do
 
 			"$YAML_TO_JSON" "$inPath" \
 			| "$JSON_TO_MD" \
-			| pandoc -f markdown -t html -s -c "$cssDir"/"$CSS_FILENAME" --metadata title="$title" \
+			| pandoc -f markdown -t html -s -c "$cssDir"/"$CSS_FILENAME" -F mermaid-filter --metadata title="$title" \
 			> "$outPath"
 		;;
 		*)
