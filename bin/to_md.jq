@@ -29,6 +29,12 @@ def blocks: if type == "object" then
 			blocks,
 			close("div")
 		)
+	elif has("note") then
+		.note | (
+			open("div"; { class: "note" }),
+			blocks,
+			close("div")
+		)
 	elif has("sample") then
 		.sample | (
 			open("div"; { class: "sample" }),
