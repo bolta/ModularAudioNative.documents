@@ -3,6 +3,7 @@
 cd "$(dirname "$0")"
 
 SRC_DIR=../data
+INTERM_DIR=../_interm
 DEST_DIR=../target_doc
 
 CARGO_DIR=..
@@ -54,12 +55,11 @@ function transform {
 
 	for file in $files; do
 		echo "$file"
-		# inPath="$inDir/$file"
 		$callback "$inDir" "$file" "$outDir"
 	done
 }
 
-function yamlToHtmlCallback {
+function yamlToJsonCallback {
 	local inDir="$1"
 	local file="$2"
 	local outDir="$3"
@@ -68,6 +68,32 @@ function yamlToHtmlCallback {
 	ext="${file##*.}"
 	case "$ext" in
 		yaml | yml)
+			outPath="$outDir/${file%.*}.json"
+			if [ ! "$inPath" -nt "$outPath" ]; then return; fi
+
+			"$YAML_TO_JSON" "$inPath" > "$outPath"
+
+			echo -n $'\a'
+		;;
+		*)
+			outPath="$outDir/$file"
+			# TODO なぜか機能しない
+			# if [ ! "$inPath" -nt "$outPath" ]; then echo skip; continue; fi
+
+			cp -p "$inPath" "$outPath"
+		;;
+	esac
+}
+
+function jsonToHtmlCallback {
+	local inDir="$1"
+	local file="$2"
+	local outDir="$3"
+
+	inPath="$inDir/$file"
+	ext="${file##*.}"
+	case "$ext" in
+		json)
 			outPath="$outDir/${file%.*}.html"
 			if [ ! "$inPath" -nt "$outPath" ]; then return; fi
 
@@ -77,8 +103,7 @@ function yamlToHtmlCallback {
 			# title="${file##*/}"
 			title=
 
-			"$YAML_TO_JSON" "$inPath" \
-			| "$JSON_TO_MD" \
+			"$JSON_TO_MD" "$inPath" \
 			| pandoc -f markdown -t html -s -c "$cssDir"/"$CSS_FILENAME" -F mermaid-filter --metadata title="$title" \
 			> "$outPath"
 
@@ -94,4 +119,5 @@ function yamlToHtmlCallback {
 	esac
 }
 
-transform "$SRC_DIR" "$DEST_DIR" yamlToHtmlCallback
+transform "$SRC_DIR" "$INTERM_DIR" yamlToJsonCallback
+transform "$INTERM_DIR" "$DEST_DIR" jsonToHtmlCallback
