@@ -24,40 +24,55 @@ pushd "$CARGO_DIR" > /dev/null
 	cargo build --release
 popd > /dev/null
 
-# 出力先をクリア
-# 差分ビルドのためクリアしない
-# if [ -d "$DEST_DIR" ]; then
-# 	rm -rf "$DEST_DIR"
-# fi
-mkdir -p "$DEST_DIR"
+function transform {
+	local inDir="$1"
+	local outDir="$2"
+	local callback="$3"
 
-# ディレクトリを作る
-pushd "$SRC_DIR" > /dev/null
-	dirs="$(find . -type d)"
-popd > /dev/null
-pushd "$DEST_DIR" > /dev/null
-	for dir in $dirs; do
-		mkdir -p "$dir"
+	# 出力先をクリア
+	# 差分ビルドのためクリアしない
+	# if [ -d "$outDir" ]; then
+	# 	rm -rf "$outDir"
+	# fi
+	mkdir -p "$outDir"
+
+	# ディレクトリを作る
+	pushd "$inDir" > /dev/null
+		dirs="$(find . -type d)"
+	popd > /dev/null
+	pushd "$outDir" > /dev/null
+		for dir in $dirs; do
+			mkdir -p "$dir"
+		done
+	popd > /dev/null
+
+	# ファイルを変換して出力
+
+	pushd "$inDir" > /dev/null
+		files="$(find . -type f | sed 's|^\./||')"
+	popd > /dev/null
+
+	for file in $files; do
+		echo "$file"
+		# inPath="$inDir/$file"
+		$callback "$inDir" "$file" "$outDir"
 	done
-popd > /dev/null
+}
 
-# ファイルを変換して出力
+function yamlToHtmlCallback {
+	local inDir="$1"
+	local file="$2"
+	local outDir="$3"
 
-pushd "$SRC_DIR" > /dev/null
-	files="$(find . -type f | sed 's|^\./||')"
-popd > /dev/null
-
-for file in $files; do
-	echo "$file"
-	inPath="$SRC_DIR/$file"
+	inPath="$inDir/$file"
 	ext="${file##*.}"
 	case "$ext" in
 		yaml | yml)
-			outPath="$DEST_DIR/${file%.*}.html"
-			if [ ! "$inPath" -nt "$outPath" ]; then continue; fi
+			outPath="$outDir/${file%.*}.html"
+			if [ ! "$inPath" -nt "$outPath" ]; then return; fi
 
 			# CSS のある場所の相対パスをがんばって求める
-			cssDir="$(dirname "$(echo ${inPath#$SRC_DIR/})" | sed 's|[^/]*|..|g')"
+			cssDir="$(dirname "$(echo ${inPath#$inDir/})" | sed 's|[^/]*|..|g')"
 			# TODO タイトルをつけないと警告が出るが、つけると h1 が 2 重になってしまう。どうしたものか
 			# title="${file##*/}"
 			title=
@@ -70,11 +85,13 @@ for file in $files; do
 			echo -n $'\a'
 		;;
 		*)
-			outPath="$DEST_DIR/$file"
+			outPath="$outDir/$file"
 			# TODO なぜか機能しない
 			# if [ ! "$inPath" -nt "$outPath" ]; then echo skip; continue; fi
 
 			cp -p "$inPath" "$outPath"
 		;;
 	esac
-done
+}
+
+transform "$SRC_DIR" "$DEST_DIR" yamlToHtmlCallback
