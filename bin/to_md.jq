@@ -25,7 +25,7 @@ end;
 
 
 def text: .
-	# 内部リンクを処理（--argjson TITLES "{ [absPath]: title }" が与えられている必要がある）
+	# 内部リンクを処理（コマンドライン引数で --argjson TITLES '{ "/abs/path/to/json": "title" }' が与えられている必要がある）
 	| gsub("%link\\((?<path>[^)]*)\\)"; "[\($TITLES[.path | toAbsPath + ".json"])](\(.path).html)")
 	;
 	
