@@ -25,9 +25,10 @@ pushd "$CARGO_DIR" > /dev/null
 popd > /dev/null
 
 # 出力先をクリア
-if [ -d "$DEST_DIR" ]; then
-	rm -rf "$DEST_DIR"
-fi
+# 差分ビルドのためクリアしない
+# if [ -d "$DEST_DIR" ]; then
+# 	rm -rf "$DEST_DIR"
+# fi
 mkdir -p "$DEST_DIR"
 
 # ディレクトリを作る
@@ -47,13 +48,16 @@ pushd "$SRC_DIR" > /dev/null
 popd > /dev/null
 
 for file in $files; do
+	echo "$file"
 	inPath="$SRC_DIR/$file"
 	ext="${file##*.}"
 	case "$ext" in
 		yaml | yml)
+			outPath="$DEST_DIR/${file%.*}.html"
+			if [ ! "$inPath" -nt "$outPath" ]; then continue; fi
+
 			# CSS のある場所の相対パスをがんばって求める
 			cssDir="$(dirname "$(echo ${inPath#$SRC_DIR/})" | sed 's|[^/]*|..|g')"
-			outPath="$DEST_DIR/${file%.*}.html"
 			# TODO タイトルをつけないと警告が出るが、つけると h1 が 2 重になってしまう。どうしたものか
 			# title="${file##*/}"
 			title=
@@ -62,9 +66,14 @@ for file in $files; do
 			| "$JSON_TO_MD" \
 			| pandoc -f markdown -t html -s -c "$cssDir"/"$CSS_FILENAME" -F mermaid-filter --metadata title="$title" \
 			> "$outPath"
+
+			echo -n $'\a'
 		;;
 		*)
 			outPath="$DEST_DIR/$file"
+			# TODO なぜか機能しない
+			# if [ ! "$inPath" -nt "$outPath" ]; then echo skip; continue; fi
+
 			cp -p "$inPath" "$outPath"
 		;;
 	esac
