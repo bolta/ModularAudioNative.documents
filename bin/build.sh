@@ -84,6 +84,9 @@ function yamlToJsonCallback {
 		;;
 	esac
 }
+transform "$SRC_DIR" "$INTERM_DIR" yamlToJsonCallback
+
+titles=$(./collect_titles.sh "$INTERM_DIR")
 
 function jsonToHtmlCallback {
 	local inDir="$1"
@@ -103,7 +106,8 @@ function jsonToHtmlCallback {
 			# title="${file##*/}"
 			title=
 
-			"$JSON_TO_MD" "$inPath" \
+			# $titles が絶対パスに基づくので、$inPath も絶対パスにする
+			"$JSON_TO_MD" "$(readlink -f "$inPath")" --argjson TITLES "$titles" \
 			| pandoc -f markdown -t html -s -c "$cssDir"/"$CSS_FILENAME" -F mermaid-filter --metadata title="$title" \
 			> "$outPath"
 
@@ -118,6 +122,4 @@ function jsonToHtmlCallback {
 		;;
 	esac
 }
-
-transform "$SRC_DIR" "$INTERM_DIR" yamlToJsonCallback
 transform "$INTERM_DIR" "$DEST_DIR" jsonToHtmlCallback

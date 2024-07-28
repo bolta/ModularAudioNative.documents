@@ -8,6 +8,28 @@ def close(name): "</" + name + ">";
 
 def trim: sub("^\\s+"; "") | sub("\\s+$"; "");
 
+# foo/bar/baz/../../qux なども扱えるよう再帰で処理
+def removeDots_: if test("[^/]+/\\.\\./") then
+	gsub("[^/]+/\\.\\./"; "") | removeDots_
+else
+	.
+end;
+def removeDots: gsub("/(\\./)+"; "/") | removeDots_;
+
+def dirname: sub("/+$"; "") | sub("/+[^/]+$"; "");
+def toAbsPath: if startswith("/") then
+	.
+else
+	(input_filename | dirname) + "/" + . | removeDots
+end;
+
+
+def text: .
+	# 内部リンクを処理（--argjson TITLES "{ [absPath]: title }" が与えられている必要がある）
+	| gsub("%link\\((?<path>[^)]*)\\)"; "[\($TITLES[.path | toAbsPath + ".json"])](\(.path).html)")
+	;
+	
+
 # 入れ子にしてはいけない
 def elem(name; attrs; content): open(name; attrs) + content + close(name);
 
@@ -77,7 +99,7 @@ def blocks: if type == "object" then
 		"?"
 	end
 elif type == "string" then
-	.
+	. | text
 elif type == "array" then
 	map(blocks)
 else
