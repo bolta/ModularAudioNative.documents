@@ -64,6 +64,17 @@ table, th, td {
 	padding: 0.125em;
 }
 
+.tips:before {
+	content: "🛈Tips";
+	display: block;
+	background-color: #60c060;
+	color: #ffffff;
+}
+.tips {
+	background-color: #c0ffc0;
+	border: #40c040;
+}
+
 .caution {
 	background-color: #ffffc0;
 	border: #c0c000;
