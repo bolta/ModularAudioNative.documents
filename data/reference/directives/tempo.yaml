@@ -1,0 +1,21 @@
+directive:
+  name: tempo
+  desc: |
+    曲の初期テンポを設定します。
+
+  params:
+    -
+      name: |
+        `tempo`
+      type: Number
+      required: true
+      desc: |
+        テンポを bpm 単位で指定します。
+
+  details:
+    - |
+      `tempo` 文は全てのトラックに作用します。
+
+      `tempo` 文がない場合、テンポは 120 bpm となります。
+
+      テンポを曲の途中で変更する場合は、MML の `t` コマンドを使います。

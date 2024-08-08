@@ -1,0 +1,54 @@
+directive:
+  name: effect
+  desc: |
+    エフェクトトラックを定義します。
+
+  params:
+    -
+      name: |
+        `tracks`
+      type: TrackSet
+      required: true
+      desc: |
+        定義する対象のトラックを指定します。
+        
+        複数トラックを指定した場合、その各々のトラックに対して同じ構成のインストゥルメントが生成されます。
+
+    -
+      name: |
+        `sources`
+      type: TrackSet
+      required: true
+      desc: |
+        入力となるトラックを指定します。
+
+    -
+      name: |
+        `effect`
+      type: NodeStructure
+      required: true
+      desc: |
+        `sources` のトラック群に適用するエフェクトを定義します。
+
+  details:
+    - |
+      `sources` には 1 つ以上の任意の数のトラックを指定できます。ただし 1 つであれば `effect` 文を使う必要はない（`instrument` 文で表現できる）ため、通常は複数のトラックを指定します。
+
+      `effect` の定義では、`sources` で指定した各トラックの名前を使って、対応するトラックの出力を参照することができます。
+
+    - sample:
+        code: |
+          @instrument ^abcd, ...
+          abcd ...
+
+          @let :dist, =x=> (x * 10@boost) | limit { min: -1, max: 1 }
+          @effect ^A, ^abcd, (a + b + c + d) | dist / 4
+
+          A r1 yboost,30 r1
+
+        desc: |
+          エフェクトトラック `A` として、トラック `a`, `b`, `c`, `d` の出力を足し合わせた上で歪ませるエフェクトを定義します。
+
+          エフェクトのパラメータをトラック `A` の MML で操作することができます。
+
+

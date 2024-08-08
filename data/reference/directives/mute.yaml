@@ -1,0 +1,38 @@
+directive:
+  name: mute
+  desc: |
+    ミュートするトラックを指定します。
+
+  params:
+    -
+      name: |
+        `tracks`
+      type: TrackSet
+      required: true
+      desc: |
+        ミュートするトラックを指定します。
+
+  details:
+    - |
+      指定したトラックの音が鳴らなくなります。ファイル内のどこに記述するかに依らず、演奏全体に対して有効です。
+
+      `mute` 文と `solo` 文は互いに排他的であり、一方だけが有効です。また複数の `mute`/`solo` 文がある場合、最後の 1 つだけが有効です。
+
+      メインファイル以外では無視されます。
+
+    - sample:
+        code: |
+          @instrument ^abcde, ...
+          a ...
+          b ...
+          c ...
+          d ...
+          e ...
+
+          @mute ^abc
+
+        desc:
+          トラック `d`, `e` だけが演奏されます。
+
+
+
