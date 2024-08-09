@@ -2,6 +2,7 @@ directive:
   name: instrument
   desc: |
     インストゥルメントトラックを定義します。
+
   params:
     -
       name: |
