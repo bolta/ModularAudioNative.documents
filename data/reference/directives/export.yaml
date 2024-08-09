@@ -1,0 +1,27 @@
+directive:
+  name: export
+  desc: |
+    値を他の ModDL ファイルに公開します。
+
+  params:
+    -
+      name: |
+        `value`
+      type: any
+      required: true
+      desc: |
+        公開する値を指定します。
+
+  details:
+    - |
+      公開した値は、他の ModDL ファイルから `import` 関数または `import` 文で取り込むことができます。
+
+      メインファイルでは無視されます。
+
+    - sample:
+        code: |
+          // TODO 何か面白い例を考える
+          // lib.moddl
+          @export
+
+          // main.moddl

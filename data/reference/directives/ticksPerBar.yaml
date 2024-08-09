@@ -1,0 +1,28 @@
+directive:
+  name: ticksPerBar
+  desc: |
+    1 小節（4 拍）あたりの tick 数を指定します。
+
+  params:
+    -
+      name: |
+        `ticks`
+      type: Number
+      required: true
+      desc: |
+        1 小節（4 拍）あたりの tick 数を指定します。
+
+  details:
+    - |
+      <!-- TODO もうちょっと詳しく説明 -->
+
+      `ticksPerBar` 文がない場合、1 小節（4 拍）あたり 384 ticks となります。
+
+    - sample:
+        code: |
+          @ticksPerBar 20
+          @instrument ^a, ...
+          a c4 // OK
+          a c5 // OK
+          a c8 // エラー
+          a c4. // エラー（c4^8 と等しいため）

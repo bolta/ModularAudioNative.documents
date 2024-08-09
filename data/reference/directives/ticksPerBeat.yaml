@@ -1,0 +1,17 @@
+directive:
+  name: ticksPerBeat
+  desc: |
+    1 拍あたりの tick 数を指定します。
+
+  params:
+    -
+      name: |
+        `ticks`
+      type: Number
+      required: true
+      desc: |
+        1 拍あたりの tick 数を指定します。
+
+  details:
+    - |
+      この文は `ticksPerBar` 文の糖衣構文であり、`@ticksPerBeat ticks` は `@ticksPerBar 4 * ticks` と等価です。
