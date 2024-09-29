@@ -1,0 +1,25 @@
+directive:
+  name: letAll
+  desc: |
+    連想配列を用いてトップレベル変数を一括で定義します。
+
+  params:
+    -
+      name: |
+        `vars`
+      type: Assoc
+      required: true
+      desc: |
+        定義する変数の名前と値を記述した連想配列を指定します。
+
+  details:
+    - |
+      `vars` に指定した連想配列の全てのキーと値が、トップレベルの変数名と値として設定されます。
+
+      `let` 文と同じく、`letAll` 文で定義した変数は、同じ ModDL ファイル内の、定義個所より後の全ての式から参照することができます。
+
+    - sample:
+        code: |
+          @letAll import("./path/to/lib.moddl")
+        desc: |
+          `./path/to/lib.moddl` でエクスポートされた連想配列の全てのエントリを、トップレベル変数として定義します。

@@ -1,0 +1,43 @@
+directive:
+  name: groove
+  desc: |
+    グルーヴトラックを定義します。
+
+  params:
+    -
+      name: |
+        `controlTrack`
+      type: TrackSet
+      required: true
+      desc: |
+        定義する対象のトラックを指定します。
+
+        ここで指定するトラックは 1 つでなければなりません。
+    -
+      name: |
+        `targetTracks`
+      type: TrackSet
+      required: true
+      # default:
+      #   value:
+      #   behavior:
+      desc: |
+        グルーヴを適用する対象のトラックを指定します。
+    -
+      name: |
+        `body`
+      type: Function
+      required: true
+      # default:
+      #   value:
+      #   behavior:
+      desc: |
+        グルーヴを適用する対象のトラックを指定します。
+
+
+
+  details:
+    - |
+      このトラックは、グルーヴをコントロールする役割を持ちます。
+        
+
