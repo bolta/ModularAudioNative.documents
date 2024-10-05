@@ -1,4 +1,4 @@
-directive:
+construction:
   name: ticksPerBeat
   desc: |
     1 拍あたりの tick 数を指定します。

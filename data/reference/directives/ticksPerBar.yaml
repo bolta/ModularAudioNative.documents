@@ -1,4 +1,4 @@
-directive:
+construction:
   name: ticksPerBar
   desc: |
     1 小節（4 拍）あたりの tick 数を指定します。

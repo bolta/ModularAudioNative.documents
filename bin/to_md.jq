@@ -146,7 +146,7 @@ def table:
 	# そこでテーブルの生成処理は blocks の中に置き、そこで処理させるために table キーをつけて渡すようにする
 	{ table: . } | blocks;
 
-def directiveParams:
+def constructionParams:
 	{
 		head: ["名前", "型", "必須/省略時", "説明"],
 		body: map([.name, .type, requirement, .desc])
@@ -172,11 +172,11 @@ def transformNodeFactory: (
 	""
 );
 
-def transformDirective: (
-	(elem("span"; { class: "title-type" }; "directive ") + .name | heading(1)),
+def transformConstruction: (
+	(elem("span"; { class: "title-type" }; "construction ") + .name | heading(1)),
 	(.desc),
 	("パラメータ" | heading(2)),
-	(.params | directiveParams),
+	(.params | constructionParams),
 	("詳細" | heading(2)),
 	(.details | blocks),
 	""
@@ -190,8 +190,8 @@ def transformArticle: (
 
 if .nodeFactory then
 	.nodeFactory | transformNodeFactory
-elif .directive then
-	.directive | transformDirective
+elif .construction then
+	.construction | transformConstruction
 elif .article then
 	.article | transformArticle
 else

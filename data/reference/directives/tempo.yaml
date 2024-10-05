@@ -1,4 +1,4 @@
-directive:
+construction:
   name: tempo
   desc: |
     曲の初期テンポを設定します。

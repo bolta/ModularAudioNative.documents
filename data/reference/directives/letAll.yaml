@@ -1,4 +1,4 @@
-directive:
+construction:
   name: letAll
   desc: |
     連想配列を用いてトップレベル変数を一括で定義します。
