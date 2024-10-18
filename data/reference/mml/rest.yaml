@@ -1,0 +1,18 @@
+mmlCommand:
+  name: |
+    `r`
+  desc: |
+    休符を記述します。
+  format: |
+    `r`[length]
+  # params:
+  #   -
+  #     name: length
+  #     type: Length
+  #     default:
+  #       behavior: |
+  #         `l` コマンドで設定した音長が使われます。
+  #     desc: 音長を表します。
+
+  details: |
+    length は休符の長さを表します。省略すると `l` コマンドで設定した値が使われます。

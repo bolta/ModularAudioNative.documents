@@ -113,9 +113,9 @@ def requirement:
 	(if .required and (has("default") | not) then
 		"**必須**"
 	elif (.required | not) and has("default") then
-		.default | if has("value") and has("behavior") | not then
+		.default | if has("value") and (has("behavior") | not) then
 			"デフォルト値 " + (.value | tostring)
-		elif has("behavior") and has("value") | not then
+		elif has("behavior") and (has("value") | not) then
 			.behavior
 		else
 			"???????!!!"
@@ -188,12 +188,36 @@ def transformArticle: (
 	""
 );
 
+def mmlCommandParams:
+	{
+		head: ["名前", "型", "必須/省略時", "説明"],
+		body: map([.name, .type, requirement, .desc])
+	} | table;
+
+def transformMmlCommand: (
+	(elem("span"; { class: "title-type" }; "mml command ") + .name | heading(1)),
+	(.desc),
+	("書式" | heading(2)),
+	(.format | blocks),
+	if .params then
+		("パラメータ" | heading(2)),
+		(.params | mmlCommandParams)
+	else
+		empty
+	end,
+	("詳細" | heading(2)),
+	(.details | blocks),
+	""
+);
+
 if .nodeFactory then
 	.nodeFactory | transformNodeFactory
 elif .construction then
 	.construction | transformConstruction
 elif .article then
 	.article | transformArticle
+elif .mmlCommand then
+	.mmlCommand | transformMmlCommand
 else
 	error("unknown document format: " + keys[0])
 end

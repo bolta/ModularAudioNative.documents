@@ -1,0 +1,22 @@
+mmlCommand:
+  name: |
+    `q`
+  desc: |
+    音長比（gate rate）を設定します。
+  format: |
+    `q`\<value>
+  params:
+    -
+      name: value
+      type: Number
+      required: true
+      desc: 音長比を指定します。
+
+  details: |
+    「音符の音長」に対する「実際に発音する音長」の比率を設定します。
+
+    value の最小は `0`、最大は `8` で、実際に発音する音長は音符の音長の value/8 倍になります。
+
+    音長は tick 単位で計算され、端数は切り捨てられます。
+
+    `q` コマンドを一度も使っていない状態では、`q8` が指定されているものと見なされます。

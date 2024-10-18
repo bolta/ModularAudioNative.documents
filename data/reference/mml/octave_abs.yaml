@@ -1,0 +1,21 @@
+mmlCommand:
+  name: |
+    `o`
+  desc: |
+    オクターブを設定します。
+  format: |
+    `o`\<value>
+
+  params:
+    -
+      name: value
+      type: Number
+      required: true
+      desc: オクターブを指定します。
+
+  details: |
+    `o4` がピアノの中央のオクターブを表します。
+
+    `o` コマンドを一度も使っていない状態では、`o4` が指定されているものと見なされます。
+
+    <!-- value には小数も指定できます。たとえば `o4.5` を記述すると、`o4` から上に 6 半音移調した状態になります。 -->

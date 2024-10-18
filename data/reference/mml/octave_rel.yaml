@@ -1,0 +1,18 @@
+mmlCommand:
+  name: |
+    `<`, `>`
+  desc: |
+    オクターブを 1 つ増減します。
+  format: |
+    `<`|`>`
+  # params:
+  #   -
+  #     name: 
+  #     type: 
+  #     default:
+  #       behavior: |
+  #         
+  #     desc: 
+
+  details: |
+    現在のオクターブから 1 つ下または上へ移動します。`<` で下、`>` で上へそれぞれ移動します。
