@@ -1,0 +1,25 @@
+mmlCommand:
+  name: |
+    `{` ... `}`
+  desc: |
+    スタックを push/pop します。
+  format: |
+    `{`\<commands>`}`
+  params:
+    -
+      name: commands
+      type: Commands
+      required: true
+      desc: |
+        スタックを push した状態で実行するコマンド列を指定します。
+
+  details: |
+    スタックをプッシュした状態で commands を実行し、スタックを pop します。このため、commands の終了時には音長やオクターブ、ならびにレジスタの状態が復元されます。
+
+    ```
+    @instrument ^a, pulseOsc { duty: 0.25@d } * adsrEnv
+
+    a o4l8
+    // } の位置で状態が復元される。cde l16 cde yduty,0.5 cde l8 yduty,0.25 cde と等価
+    a cde { l16 cde yduty,0.5 cde } cde
+    ```

@@ -1,0 +1,32 @@
+mmlCommand:
+  name: |
+    `[` ... `]`
+  desc: |
+    繰り返し演奏を行います。
+  format: |
+    `[`[times]\<commands1>[`:`\<commands2>]`]`
+  params:
+    -
+      name: times
+      type: Number
+      default:
+        value: 2
+      desc: 繰り返す回数を指定します。0 を指定すると無限ループになります。
+    -
+      name: commands1, commands2
+      type: Commands
+      required: true
+      desc: |
+        繰り返すコマンド列を指定します。
+
+        途中に `:` を記述すると、繰り返しの最後の回のみ `:` 以降がスキップされます。
+
+        times が 0 の場合は `:` を記述できません。
+
+  details: |
+    ループの 1 周ごとにスタックが push/pop されます。このため、ループの復帰時と脱出後には音長やオクターブ、ならびにレジスタの状態が復元されます。
+
+    ```
+    a o5l16
+    a [4 ceg>c] // ceg>c< ceg>c< ceg>c< ceg>c< と等しくなる（ループの末尾に < は不要）
+    ```
