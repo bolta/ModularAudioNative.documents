@@ -1,0 +1,16 @@
+mmlCommand:
+  name: |
+    `V`
+  desc: |
+    ボリュームを設定します。
+  format: |
+    `V`\<value>
+  params:
+    -
+      name: value
+      type: Number
+      required: true
+      desc: ボリュームを指定します。
+
+  details: |
+    

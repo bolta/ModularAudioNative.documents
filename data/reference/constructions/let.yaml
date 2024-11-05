@@ -1,4 +1,4 @@
-directive:
+construction:
   name: let
   desc: |
     トップレベル変数を定義します。

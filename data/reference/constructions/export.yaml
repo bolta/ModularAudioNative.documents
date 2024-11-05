@@ -1,4 +1,4 @@
-directive:
+construction:
   name: export
   desc: |
     値を他の ModDL ファイルに公開します。

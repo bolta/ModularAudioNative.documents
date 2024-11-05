@@ -1,4 +1,4 @@
-directive:
+construction:
   name: groove
   desc: |
     グルーヴトラックを定義します。
