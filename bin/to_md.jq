@@ -197,7 +197,7 @@ def mmlCommandParams:
 	} | table;
 
 def transformMmlCommand: (
-	(elem("span"; { class: "title-type" }; "mml command ") + .name | heading(1)),
+	(elem("span"; { class: "title-type" }; "MML command ") + .name | heading(1)),
 	(.desc),
 	("書式" | heading(2)),
 	(.format | blocks),
