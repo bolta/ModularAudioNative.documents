@@ -100,6 +100,8 @@ def blocks: if type == "object" then
 	end
 elif type == "string" then
 	. | text
+elif type == "number" then
+	. | tostring | text
 elif type == "array" then
 	map(blocks)
 else
