@@ -14,7 +14,7 @@ construction:
 
   details:
     - |
-      公開した値は、他の ModDL ファイルから `import` 関数または `import` 文で取り込むことができます。
+      公開した値は、他の ModDL ファイルから `import` 関数で取り込むことができます。
 
       メインファイルでは無視されます。
 
