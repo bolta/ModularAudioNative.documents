@@ -1,5 +1,5 @@
 article:
-  title: groove について
+  title: グルーヴについて
   content:
     - |
       ここでは groove 機構について解説します。
@@ -33,7 +33,7 @@ article:
 
       <img src="./modulated_tick_timer.png" width=50%>
 
-      groove は、tick タイマーの値に対する関数として動作することから、変調を行う groove の定義を **groove 関数** とも呼びます（ModDL の言語仕様上の「関数」とは異なるのでご注意ください）。
+      groove は、tick タイマーの値に対する関数として動作することから、変調を行う groove の定義を **groove 関数**とも呼びます（ModDL の言語仕様上の「関数」とは異なるのでご注意ください）。
 
       なお、tick タイマーは一定の値に達すると 0 にリセットされます。この一定の値を grooveCycle といい、文字通り groove の周期となります。
 
