@@ -1,0 +1,87 @@
+mmlCommand:
+  name: |
+    `y`
+  desc: |
+    トラックで定義されたレジスタに値を設定します。
+  format: |
+    `y`\<register path>[`:`\<key>]`,`\<value>
+  params:
+    -
+      name: register path
+      type: Path
+      required: true
+      desc: 設定する対象のレジスタのパスを指定します。
+    -
+      name: key
+      type: Number
+      default:
+        behavior: ノードの種別によって固有のデフォルトキーが使われます。
+      desc: サブレジスタのキーを指定します。
+    -
+      name: value
+      type: Number
+      required: true
+      desc: 設定する値を指定します。
+
+  details:
+    - |
+      トラック定義中で `@` 演算子でラベルを付与した値は**レジスタ**となり、演奏中に `y` コマンドで値を設定できるようになります。
+
+      以下の例では ADSR エンベロープのアタックタイムに `a` というラベルを付与し、演奏中に値を変更しています：
+
+      ```
+      @instrument ^a, pulseOsc * adsrEnv { attack: 0@a }
+
+      a cder
+      a ya,0.25 // アタックタイムを 0.25 秒に設定
+      a cder
+      ```
+
+      ラベルは、プレフィックスを付与して衝突を回避することができます。
+
+      プレフィックスを付与するには `@@` 演算子を使います。
+
+      プレフィックスのついたラベルを指定するには、プレフィックスとラベルを `.` で区切ります。プレフィックスを多重につけることもできます。
+
+      ```
+      @let :env, adsrEnv { attack: 0@a }
+
+      @instrument ^a, (pulseOsc * env@@e1 + sawOsc * env@@e2) / 2
+
+      a cder
+      a ye1.a,0.25 // パルス波のアタックタイムを 0.25 秒に設定
+      a cder
+      a ye1.a,0 // パルス波のアタックタイムを 0 秒に設定
+      a ye2.a,0.25 // のこぎり波のアタックタイムを 0.25 秒に設定
+      a cder
+      ```
+
+      レジスタにするノードの種類によっては、複数の**サブレジスタ**を持ち、それぞれに値を設定できる場合があります。それらを区別するには、プレフィックスとラベルの後にサブレジスタのキーを指定します。キーを省略すると、ノードの種類ごとに定義されたデフォルトキーが使われます。
+
+    - caution:
+      - |
+        これ以降の `waveformPlayer` に関する記述はまだ実装されていません。ver. 0.1 時点では `waveformPlayer` のサブレジスタは `waveform` のみです。説明の都合上、未実装の仕様に言及しています。
+
+        この仕様は変わる可能性があります。
+
+    - |
+      たとえば、`waveformPlayer` には `waveform`, `currentOffset`, `startOffset`, `endOffset`, `loopOffset` のキーを持つ 5 つのサブレジスタがあり、デフォルトキーは `waveform` です。
+
+      ```
+      @waveform :w1, "./path/to/some_waveform.wav"
+      @waveform :w2, "./path/to/another_waveform.wav"
+      @instrument ^a, waveformPlayer(w1)@wp * adsrEnv
+
+      a cder
+      a ywp,=w2; // w2 が指す波形に切り替える。ywp:waveform,=w2; と同じ
+      a cder
+      a ywp:startOffset,100 // 発音を開始するオフセットを 100 サンプルに設定する
+      a cder
+      ```
+
+      一方、数値についてはデフォルトキーは `value` であり、前出の `ya,0.25` は `ya:value,0.25` と同じ意味になります。ただし数値には `value` 以外のキーはないので、キーを明示する必要はありません。
+    
+      TODO 「レジスタ」「サブレジスタ」「ラベル」「キー」の用語を整理
+
+      TODO `y` コマンドの仕様として記述するよりも、レジスタの説明として別文書にすべきかも
+

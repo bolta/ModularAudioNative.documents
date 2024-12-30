@@ -66,3 +66,21 @@ nodeFactory:
           エンベロープは「入力にエンベロープを適用するエフェクト」ではなく、「エンベロープを出力するジェネレータ」であり、入力を取りません。
           エンベロープをエフェクトのように接続すると、オシレータの出力は無視され、結果として出力は単なるエンベロープの値になってしまいます（音としては聞こえません）。
           エンベロープを適用するには `*` を使ってください。
+
+          ↓この mermaid を毎回手書きするのはかなんな…より高レベルな記法が必要
+
+          ~~~mermaid
+          block-beta
+            columns 5
+            space:2 duty space:2
+            space:5
+
+            freq:0 space pulseOsc space out
+            freq--"freq"-->pulseOsc
+            duty--"duty"-->pulseOsc
+            pulseOsc--"out"-->out
+
+            classDef value opacity:0,width:0,height:0;
+            class freq,duty,out value
+          ~~~
+

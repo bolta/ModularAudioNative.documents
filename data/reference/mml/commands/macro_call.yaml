@@ -1,0 +1,28 @@
+mmlCommand:
+  name: |
+    `$`
+  desc: |
+    トラック内で定義済みのマクロを呼び出します。
+  format: |
+    `$`\<name>
+  params:
+    -
+      name: name
+      type: Identifier
+      required: true
+      desc: 呼び出すマクロの名前を指定します。
+
+  details: |
+    `@$` コマンドで定義されたマクロを呼び出します。
+
+    呼び出したマクロの演奏前後ではスタックが push/pop されます。このため、マクロの演奏が終了して呼び出し元に復帰する際は音長やオクターブ、ならびにレジスタの状態が復元されます。
+
+    ```
+    @instrument ^a, sawOsc | lpf { freq: 3000@f } * adsrEnv
+
+    a @$ m1 [
+      a d yf,10000 efgf // レジスタの値を変更するが、復元しない
+    a ]
+
+    a cde $m1 edc // レジスタが復元され、cded yf,10000 efgf yf,3000 edc と等価になる
+    ```
