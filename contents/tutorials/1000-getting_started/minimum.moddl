@@ -1,4 +1,0 @@
-@tempo 120
-@instrument ^a, sineOsc * adsrEnv
-
-a o4l4 cdefgab>c2
