@@ -19,7 +19,7 @@ jobs:
     - name: Build
       run: |
         pwd
-        ls
+        ls -l
         bin/build.sh
       # run: cargo build --verbose
     # - name: Run tests
