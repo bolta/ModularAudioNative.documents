@@ -108,7 +108,7 @@ function jsonToHtmlCallback {
 
 			# $titles が絶対パスに基づくので、$inPath も絶対パスにする
 			"$JSON_TO_MD" "$(readlink -f "$inPath")" --argjson TITLES "$titles" \
-			| pandoc -f markdown --mathml -t html -s -c "$cssDir"/"$CSS_FILENAME" -F mermaid-filter --metadata title="$title" \
+			| pandoc -f markdown --mathml -t html -s -c "$cssDir"/"$CSS_FILENAME" --metadata title="$title" \
 			> "$outPath"
 
 			echo -n $'\a'
