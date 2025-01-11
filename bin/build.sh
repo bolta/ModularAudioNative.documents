@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")"
 
-SRC_DIR=../data
+SRC_DIR=../contents
 INTERM_DIR=../_interm
 DEST_DIR=../target_doc
 
