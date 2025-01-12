@@ -1,0 +1,19 @@
+toc:
+  title: |
+    MML コマンド
+  items:
+    - detune
+    - gate_rate
+    - length
+    - loop
+    - macro_call
+    - macro_def
+    - octave_abs
+    - octave_rel
+    - register
+    - rest
+    - stack
+    - tempo
+    - tone
+    - velocity
+    - volume

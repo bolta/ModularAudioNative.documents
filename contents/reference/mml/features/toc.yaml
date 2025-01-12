@@ -1,0 +1,7 @@
+toc:
+  title: |
+    MML 言語機能
+  items:
+    - basics
+    - registers
+    - stack

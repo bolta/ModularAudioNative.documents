@@ -26,7 +26,7 @@ end;
 
 def text: .
 	# 内部リンクを処理（コマンドライン引数で --argjson TITLES '{ "/abs/path/to/json": "title" }' が与えられている必要がある）
-	| gsub("%link\\((?<path>[^)]*)\\)"; "[\($TITLES[.path | toAbsPath + ".json"])](\(.path).html)")
+	| gsub("%link\\((?<path>[^)]*)\\)"; "[\($TITLES[.path | toAbsPath + ".json"].title)](\(.path).html)")
 	;
 	
 
@@ -154,6 +154,37 @@ def constructionParams:
 		body: map([.name, .type, requirement, .desc])
 	} | table;
 
+def toLink: ("%link(" + . + ")") | text;
+
+def transformTocItems(depth; baseDir): (
+	open("ul"; { }),
+	map(
+		(if type == "object" then . else { item: . } end) as $entry
+		| (baseDir + $entry.item) as $key # rel_dir/filename_without_ext
+		| ($key | toAbsPath + ".json") as $fullPath # リンク先 json のフルパス
+		| ($TITLES[$fullPath].toc) as $toc # リンク先が toc の場合、その内容
+
+		| (
+			open("li"; { }),
+			($key | toLink),
+			if $toc then
+				# リンク先 toc の内容をここに展開する。
+				# リンク先の items のキーを現在の $key のディレクトリで修飾してやる
+				$toc.items | transformTocItems(depth + 1; $key | debug | sub("/[^/]*$"; "/") | debug)
+			else
+				empty
+			end,
+			close("li")
+		)
+	),
+	close("ul")
+);
+
+def transformToc: (
+	(.title | heading(1)),
+	(.items | transformTocItems(0; "")),
+	""
+);
 
 def transformNodeFactory: (
 	(elem("span"; { class: "title-type" }; "node factory ") + .name | heading(1)),
@@ -212,7 +243,9 @@ def transformMmlCommand: (
 	""
 );
 
-if .nodeFactory then
+if .toc then
+	.toc | transformToc
+elif .nodeFactory then
 	.nodeFactory | transformNodeFactory
 elif .construction then
 	.construction | transformConstruction
