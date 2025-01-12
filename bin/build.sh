@@ -123,3 +123,27 @@ function jsonToHtmlCallback {
 	esac
 }
 transform "$INTERM_DIR" "$DEST_DIR" jsonToHtmlCallback
+
+# 目次が過不足ないことを検証
+diff=$(diff <(
+	# 目次にある全ての文書
+	{
+		grep -o 'a href="[^"]*"' "$DEST_DIR"/toc.html | sed 's/^a href="//; s/"$//'
+		echo toc.html
+	} | sort
+) <(
+	# 実在する全ての文書
+	{
+		pushd "$DEST_DIR" > /dev/null
+			find . -name \*.html | sed 's|^\./||' | sort
+		popd > /dev/null
+	}
+) || :) # diff の結果がエラー扱いされてスクリプトが終了してしまわないように
+
+if [ "$diff" != "" ]; then
+	echo '目次不整合：以下の文書のうち、'
+	echo '* "<" が付与されたものは、目次に記載されているのに実在しません。'
+	echo '* ">" が付与されたものは、存在するのに目次に記載されていません。'
+
+	echo "$diff"
+fi
