@@ -170,7 +170,7 @@ def transformTocItems(depth; baseDir): (
 			if $toc then
 				# リンク先 toc の内容をここに展開する。
 				# リンク先の items のキーを現在の $key のディレクトリで修飾してやる
-				$toc.items | transformTocItems(depth + 1; $key | debug | sub("/[^/]*$"; "/") | debug)
+				$toc.items | transformTocItems(depth + 1; $key | sub("/[^/]*$"; "/"))
 			else
 				empty
 			end,

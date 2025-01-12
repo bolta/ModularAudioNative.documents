@@ -54,7 +54,7 @@ function transform {
 	popd > /dev/null
 
 	for file in $files; do
-		echo "$file"
+		# echo "$file"
 		$callback "$inDir" "$file" "$outDir"
 	done
 }
