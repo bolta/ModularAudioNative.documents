@@ -19,7 +19,7 @@ construction:
     -
       name: |
         `instrument`
-      type: NodeStructure
+      type: ModuleDef
       required: true
       # default:
       #   value:

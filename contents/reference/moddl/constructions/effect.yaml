@@ -25,7 +25,7 @@ construction:
     -
       name: |
         `effect`
-      type: NodeStructure
+      type: ModuleDef
       required: true
       desc: |
         `sources` のトラック群に適用するエフェクトを定義します。
