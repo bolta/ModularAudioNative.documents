@@ -113,8 +113,11 @@ pre {
 	padding: 0.25em;
 }
 
-.toc li {
-	list-style: inside;
+.toc li, .toc summary {
+	list-style-position: outside;
+}
+.toc summary {
+	cursor: pointer;
 }
 .toc li:has(details) {
 	list-style: none;
