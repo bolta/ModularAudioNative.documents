@@ -101,7 +101,10 @@ function jsonToHtmlCallback {
 			if [ ! "$inPath" -nt "$outPath" ]; then return; fi
 
 			# CSS のある場所の相対パスをがんばって求める
-			cssDir="$(dirname "$(echo ${inPath#$inDir/})" | sed '/\//s|[^/]*|..|g')"
+			cssDir="$(
+				dirname "$(echo ${inPath#$inDir/})" \
+				| awk '$0 != "." { gsub(/[^\/]*/, "..") } 1'
+			)"
 			# TODO タイトルをつけないと警告が出るが、つけると h1 が 2 重になってしまう。どうしたものか
 			# title="${file##*/}"
 			title=
