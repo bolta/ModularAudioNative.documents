@@ -1,6 +1,7 @@
 toc:
   title: |
-    ModDL/MML 0.1 ドキュメント
+    ModDL/MML 0.1.0 ドキュメント
   items:
     - reference/toc
+    - versioning_policy
     - known_issues

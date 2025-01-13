@@ -1,6 +1,7 @@
 toc:
   title: |
-    言語リファレンス
+    リファレンス
   items:
+    - command_line
     - moddl/toc
     - mml/toc
