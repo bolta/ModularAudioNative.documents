@@ -1,0 +1,19 @@
+nodeFactory:
+  name: sineOsc
+  desc: |
+    正弦波を出力するオシレータです。
+
+  input: |
+    周波数を受け取ります。
+
+  params:
+
+  events:
+
+  output:
+    range: |
+      [-1, 1]
+    desc: |
+      正弦波を出力します。
+
+  details:

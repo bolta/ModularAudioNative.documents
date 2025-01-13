@@ -1,0 +1,20 @@
+nodeFactory:
+  name: uniformNoise
+  desc: |
+    一様乱数に基づくノイズを出力するノイズジェネレータです。
+
+  input: |
+    %noInput
+
+  params:
+
+  events:
+
+  output:
+    range: |
+      [-1, 1)
+    desc: |
+      ノイズを出力します。
+
+  details: |
+    全てのサンプルで（疑似）一様乱数を出力します。

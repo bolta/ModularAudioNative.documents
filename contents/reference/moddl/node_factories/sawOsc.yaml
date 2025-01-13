@@ -1,0 +1,21 @@
+nodeFactory:
+  name: sawOsc
+  desc: |
+    のこぎり波を出力するオシレータです。
+
+    波形の向きは右上がり（///）です。
+
+  input: |
+    周波数を受け取ります。
+
+  params:
+
+  events:
+
+  output:
+    range: |
+      [-1, 1]
+    desc: |
+      のこぎり波を出力します。
+
+  details:

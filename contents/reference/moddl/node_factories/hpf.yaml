@@ -1,0 +1,25 @@
+nodeFactory:
+  name: hpf
+  desc: |
+    [Audio EQ Cookbook](https://www.w3.org/TR/audio-eq-cookbook/){target="_blank"}（以下 Cookbook）に基づいて実装されたハイパスフィルタです。
+
+  input: |
+    フィルタを適用する対象の信号を受け取ります。
+
+  params:
+    -
+      name: freq
+      required: true
+      desc: |
+        Cookbook における $f_0$ を指定します。
+    -
+      name: q
+      required: true
+      desc: |
+        Cookbook における $Q$ を指定します。
+
+  events:
+
+  output:
+    desc: |
+      フィルタが適用された信号を出力します。

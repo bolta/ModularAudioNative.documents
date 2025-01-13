@@ -1,0 +1,19 @@
+nodeFactory:
+  name: triangleOsc
+  desc: |
+    三角波を出力するオシレータです。
+
+  input: |
+    周波数を受け取ります。
+
+  params:
+
+  events:
+
+  output:
+    range: |
+      [-1, 1]
+    desc: |
+      三角波を出力します。
+
+  details:

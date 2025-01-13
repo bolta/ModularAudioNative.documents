@@ -1,0 +1,28 @@
+nodeFactory:
+  name: pulseOsc
+  desc: |
+    パルス波・矩形波を出力するオシレータです。
+
+  input: |
+    周波数を受け取ります。
+
+  params:
+    -
+      name: duty
+      default:
+        value: 0.5
+      desc: |
+        デューティ比を指定します。
+
+  events:
+
+  output:
+    range: |
+      [-1, 1]
+    desc: |
+      パルス波・矩形波を出力します。
+
+  details: |
+    このオシレータは、1 周期を `duty` : 1 - `duty` に分割し、前者の区間で `1` を、後者の区間で `-1` を、それぞれ出力します。
+
+    `duty` = `0.5` のとき、出力は矩形波になります。

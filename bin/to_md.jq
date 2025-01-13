@@ -34,7 +34,12 @@ def text: .
 def elem(name; attrs; content): open(name; attrs) + content + close(name);
 
 def heading(level): [
-	("#" * level) + " " + .,
+	("#" * level) + " " + (. | text),
+	""
+];
+
+def paragraph: [
+	(. | text),
 	""
 ];
 
@@ -116,7 +121,7 @@ def requirement:
 		"**必須**"
 	elif (.required | not) and has("default") then
 		.default | if has("value") and (has("behavior") | not) then
-			"デフォルト値 " + (.value | tostring)
+			"`" + (.value | tostring) + "`"
 		elif has("behavior") and (has("value") | not) then
 			.behavior
 		else
@@ -128,19 +133,27 @@ def requirement:
 
 # TODO table で書き直す
 def params:
-	(["名前", "必須/省略時", "説明"] | tableRow),
-	(["----", "----", "----"] | tableRow),
-	map(
-		([
-			.name,
-			requirement,
-			# TODO この手のテキスト処理は全てのテキストにかける
-			.desc // "" | sub("\n+$"; "") | gsub("\n"; "<br>")
-		] | tableRow)
-	);
+	if . then
+		(["名前", "必須/省略時", "説明"] | tableRow),
+		(["----", "----", "----"] | tableRow),
+		map(
+			([
+				"`" + .name + "`",
+				requirement,
+				# TODO この手のテキスト処理は全てのテキストにかける
+				.desc // "" | sub("\n+$"; "") | gsub("\n"; "<br>")
+			] | tableRow)
+		)
+	else
+		"入力はありません。" | paragraph
+	end;
 
 def events:
-	map("* " + . + "\n");
+	if . then
+		map("* " + (. | text) + "\n")
+	else
+		"イベントを受け取りません。" | paragraph
+	end;
 
 def table:
 	# テーブルの生成を blocks から切り出したいが、テーブル生成中に blocks へ再帰しているのでうまくいかない
@@ -173,8 +186,11 @@ def transformTocItems(depth; baseDir): (
 				close("summary"),
 				# リンク先 toc の内容をここに展開する。
 				# リンク先の items のキーを現在の $key のディレクトリで修飾してやる
-				($toc.items | transformTocItems(depth + 1; $key | sub("/[^/]*$"; "/")))
-				, close("details")
+				($toc.items | transformTocItems(depth + 1; $key | sub("/[^/]*$"; "/"))),
+				close("details")
+			elif $entry.section then
+				($entry.section | text),
+				($entry.items | transformTocItems(depth + 1; baseDir))
 			else
 				($key | toLink)
 			end,
@@ -191,11 +207,11 @@ def transformToc: (
 );
 
 def transformNodeFactory: (
-	(elem("span"; { class: "title-type" }; "node factory ") + .name | heading(1)),
+	(elem("span"; { class: "title-type" }; "node def ") + .name | heading(1)),
 	(.desc),
-	("入力" | heading(2)),
+	("主入力" | heading(2)),
 	(.input | if . | trim == "%noInput" then "入力はありません。\n" else . end | blocks),
-	("パラメータ" | heading(2)),
+	("パラメータ入力" | heading(2)),
 	(.params | params),
 	("イベント" | heading(2)),
 	(.events | events),
@@ -204,8 +220,12 @@ def transformNodeFactory: (
 		(.desc | blocks),
 		(.range | if . then ("範囲" | heading(3)), blocks else empty end)
 	)),
-	("詳細" | heading(2)),
-	(.details | blocks),
+	if .details then
+		("詳細" | heading(2)),
+		(.details | blocks)
+	else
+		empty
+	end,
 	""
 );
 
