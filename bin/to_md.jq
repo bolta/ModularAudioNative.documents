@@ -157,7 +157,7 @@ def constructionParams:
 def toLink: ("%link(" + . + ")") | text;
 
 def transformTocItems(depth; baseDir): (
-	open("ul"; { }),
+	open("ul"; { class: "toc" }),
 	map(
 		(if type == "object" then . else { item: . } end) as $entry
 		| (baseDir + $entry.item) as $key # rel_dir/filename_without_ext
@@ -166,13 +166,17 @@ def transformTocItems(depth; baseDir): (
 
 		| (
 			open("li"; { }),
-			($key | toLink),
 			if $toc then
+				open("details"; { }),
+				open("summary"; { }),
+				($key | toLink),
+				close("summary"),
 				# リンク先 toc の内容をここに展開する。
 				# リンク先の items のキーを現在の $key のディレクトリで修飾してやる
-				$toc.items | transformTocItems(depth + 1; $key | sub("/[^/]*$"; "/"))
+				($toc.items | transformTocItems(depth + 1; $key | sub("/[^/]*$"; "/")))
+				, close("details")
 			else
-				empty
+				($key | toLink)
 			end,
 			close("li")
 		)

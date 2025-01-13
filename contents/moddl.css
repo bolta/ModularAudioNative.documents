@@ -112,3 +112,10 @@ pre {
 	/* border: 0.06125em solid #8080c0; */
 	padding: 0.25em;
 }
+
+.toc li {
+	list-style: inside;
+}
+.toc li:has(details) {
+	list-style: none;
+}
