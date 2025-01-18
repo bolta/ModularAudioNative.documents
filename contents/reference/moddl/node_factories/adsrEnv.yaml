@@ -64,6 +64,8 @@ nodeFactory:
 
       ノートオフを受け取ると、その瞬間から `release` 秒をかけて出力は線形に減少し、その後 0 になります。
 
+      <img src="./adsrEnv.png" width=50%>
+
     -
       sample:
         code: |
