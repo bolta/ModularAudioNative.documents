@@ -4,3 +4,6 @@ toc:
   items:
     - 'true'
     - 'false'
+    - 'pi'
+    - 'tau'
+    - 'e'
