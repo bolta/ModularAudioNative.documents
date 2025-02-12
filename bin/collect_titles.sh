@@ -17,6 +17,9 @@ find -name \*.json \
 				elif has("nodeFactory") then
 					# "node factory: " + .nodeFactory.name
 					.nodeFactory.name
+				elif has("constant") then
+					# "constant: " + .nodeFactory.name
+					.constant.name
 				elif has("construction") then
 					# "construction: " + .construction.name
 					.construction.name

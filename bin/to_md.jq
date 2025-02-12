@@ -104,9 +104,9 @@ def blocks: if type == "object" then
 		"?"
 	end
 elif type == "string" then
-	. | text
+	(. + "\n") | text
 elif type == "number" then
-	. | tostring | text
+	(. | tostring + "\n") | text
 elif type == "array" then
 	map(blocks)
 else
@@ -180,7 +180,7 @@ def transformTocItems(depth; baseDir): (
 		| (
 			open("li"; { }),
 			if $toc then
-				open("details"; { }),
+				open("details"; { open: "open" }),
 				open("summary"; { }),
 				($key | toLink),
 				close("summary"),
@@ -220,6 +220,27 @@ def transformNodeFactory: (
 		(.desc | blocks),
 		(.range | if . then ("範囲" | heading(3)), blocks else empty end)
 	)),
+	if .details then
+		("詳細" | heading(2)),
+		(.details | blocks)
+	else
+		empty
+	end,
+	""
+);
+
+def transformConstant: (
+	# TODO constant true: Number = 1 のように 1 行にまとめた方が見やすいか
+	(elem("span"; { class: "title-type" }; "constant ") + .name | heading(1)),
+	(.desc),
+	("型" | heading(2)),
+	(.type | blocks),
+	if .value then
+		("値" | heading(2)),
+		(.value | blocks)
+	else
+		empty
+	end,
 	if .details then
 		("詳細" | heading(2)),
 		(.details | blocks)
@@ -269,8 +290,10 @@ def transformMmlCommand: (
 
 if .toc then
 	.toc | transformToc
-elif .nodeFactory then
+elif .nodeFactory then # TODO nodeDef に変える
 	.nodeFactory | transformNodeFactory
+elif .constant then
+	.constant | transformConstant
 elif .construction then
 	.construction | transformConstruction
 elif .article then
