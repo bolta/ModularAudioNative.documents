@@ -1,0 +1,35 @@
+function:
+  name: log10
+  desc: |
+    常用対数（10 を底とする対数）を求めます。
+
+  typeParams:
+    -
+      name: Value
+      type: Number | ModuleDef
+
+  params:
+    -
+      name: '`arg`'
+      type: Value
+      required: true
+      # default:
+      #   value: 0
+      desc: |
+        真数です。
+
+  constraints: |
+    ```
+    arg > 0
+    ```
+
+  value:
+    type: Value
+    desc: |
+      `arg` の常用対数です。
+
+  details:
+    - |
+      この関数は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+
+      TODO リンクを正しく張る

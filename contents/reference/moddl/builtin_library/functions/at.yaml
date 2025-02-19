@@ -1,0 +1,37 @@
+function:
+  name: at
+  desc: |
+    配列の添字に対応する要素を得ます。
+
+  typeParams:
+    -
+      name: Element
+      type: Any
+
+  params:
+    -
+      name: '`source`'
+      type: '`[index: Element]`'
+      required: true
+      # default:
+      #   value: 0
+      desc: |
+        任意の配列。
+    -
+      name: '`index`'
+      type: Number
+      required: true
+      # default:
+      #   value: 0
+      desc: |
+        配列の添字。先頭要素を 0 とします。
+
+  value:
+    type: Element
+    desc: |
+      `index` に対応する `source` の要素。
+
+  details:
+    - |
+      `index` が [0, `source~count()`) に収まらない場合、`IndexOutOfBounds` エラーが発生します。
+

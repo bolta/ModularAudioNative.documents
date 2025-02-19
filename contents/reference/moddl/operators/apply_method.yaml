@@ -1,0 +1,52 @@
+function:
+  name: '~ ( )'
+  desc: |
+    メソッド風の記法を用いて、関数を引数のリストに適用します。
+
+  operatorNotation: |
+    `arg1~func(arg2, ...)`
+
+  typeParams:
+    # -
+    #   name: Func
+    #   type: (Arg0, Arg1, ...) -> Result
+    -
+      name: Arg1
+      type: \*
+    -
+      name: Arg2
+      type: \*
+    -
+      name: Result
+      type: \*
+
+  params:
+    -
+      name: '`arg1`'
+      type: Arg1
+      required: true
+      desc: |
+        第 1 引数。
+    -
+      name: '`func`'
+      type: '(Arg1, Arg2, ...) -> Result'
+      required: true
+      desc: |
+        関数。
+    -
+      name: '`arg2`'
+      type: Arg2
+      required: true
+      desc: |
+        第 2 引数。
+
+  value:
+    type: Result
+    desc: |
+      関数の評価結果。
+
+  details:
+    - |
+      関数適用の糖衣構文であり、`arg1~func(arg2, ...)` は `func(arg1, arg2, ...)` と等価です。
+
+      関数・メソッドを適用する際の `( )` は、式をグループ化する `( )` とは別のものです。

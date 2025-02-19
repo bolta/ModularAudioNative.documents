@@ -1,0 +1,30 @@
+function:
+  name: abs
+  desc: |
+    絶対値を求めます。
+
+  typeParams:
+    -
+      name: Value
+      type: Number | ModuleDef
+
+  params:
+    -
+      name: '`arg`'
+      type: Value
+      required: true
+      # default:
+      #   value: 0
+      desc: |
+        任意の数値です。
+
+  value:
+    type: Value
+    desc: |
+      `arg` の絶対値です。
+
+  details:
+    - |
+      この関数は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+
+      TODO リンクを正しく張る

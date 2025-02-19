@@ -1,0 +1,39 @@
+function:
+  name: map
+  desc: |
+    配列の各要素に関数を適用して変換し、新たな配列を得ます。
+
+  typeParams:
+    -
+      name: SrcElem
+      type: \*
+    -
+      name: DestElem
+      type: \*
+
+  params:
+    -
+      name: '`source`'
+      type: Array\<SrcElem>
+      required: true
+      desc: |
+        変換元の配列です。
+    -
+      name: '`mapper`'
+      type: SrcElem -> DestElem
+      required: true
+      desc: |
+        `source` の各要素に適用し、結果の配列の各要素を得るための関数です。
+
+  value:
+    type: Array\<DestElem>
+    desc: |
+      結果の配列です。
+
+  details:
+    - |
+      ここに記載した引数と値の型は、この関数の典型的な使用法を示したものであり、実際の使用上の制約ではありません。したがって次のような使い方をしてもかまいません：
+
+      * `mapper` が `source` の全ての要素を処理できる限りは、`source` が heterogeneous（異なる型の値が混在する）でもかまいません。
+      * `mapper` は一貫した型の値を返す必要はありません。さらには同じ型の値に対して異なる型の値を返してもかまいません（たとえば数値の 1 に対しては文字列を返し、2 に対しては配列を返すというように）。
+      * 結果も heterogeneous になってもかまいません。

@@ -1,0 +1,27 @@
+function:
+  name: count
+  desc: |
+    配列の要素数または連想のエントリ数を求めます。
+
+  # typeParams:
+  #   -
+  #     name: Value
+  #     type: Number | ModuleDef
+
+  params:
+    -
+      name: '`coll`'
+      type: Array | Assoc
+      required: true
+      # default:
+      #   value: 0
+      desc: |
+        任意の配列または連想です。
+
+  value:
+    type: Number
+    desc: |
+      `coll` が配列の場合その要素数、連想の場合そのエントリ数です。
+
+  # details:
+  #   - |

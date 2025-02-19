@@ -1,0 +1,32 @@
+function:
+  name: round
+  desc: |
+    与えられた数値に最も近い整数を求めます。
+
+  typeParams:
+    -
+      name: Value
+      type: Number | ModuleDef
+
+  params:
+    -
+      name: '`arg`'
+      type: Value
+      required: true
+      # default:
+      #   value: 0
+      desc: |
+        任意の数値です。
+
+  value:
+    type: Value
+    desc: |
+      `arg` に最も近い整数です。
+
+      `arg` の小数部がちょうど 0.5 の場合、0 から遠い側の整数となります。
+
+  details:
+    - |
+      この関数は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+
+      TODO リンクを正しく張る

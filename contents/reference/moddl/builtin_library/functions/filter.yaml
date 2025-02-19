@@ -1,0 +1,35 @@
+function:
+  name: filter
+  desc: |
+    配列の各要素のうち、関数で表された条件を満たすものだけを含む新たな配列を得ます。
+
+  typeParams:
+    -
+      name: Elem
+      type: \*
+
+  params:
+    -
+      name: '`source`'
+      type: Array\<Elem>
+      required: true
+      desc: |
+        変換元の配列です。
+    -
+      name: '`predicate`'
+      type: Elem -> Number
+      required: true
+      desc: |
+        `source` の各要素に適用する関数です。要素を結果に含める場合は truthy な値を、含めない場合は falsy な値を返します。
+
+  value:
+    type: Array\<Elem>
+    desc: |
+      結果の配列です。
+
+  details:
+    - |
+      ここに記載した引数と値の型は、この関数の典型的な使用法を示したものであり、実際の使用上の制約ではありません。したがって次のような使い方をしてもかまいません：
+
+      * `predicate` が `source` の全ての要素を処理できる限りは、`source` が heterogeneous（異なる型の値が混在する）でもかまいません。
+      * 結果も heterogeneous になってもかまいません。

@@ -1,0 +1,30 @@
+function:
+  name: atan
+  desc: |
+    逆正接を求めます。
+
+  typeParams:
+    -
+      name: Value
+      type: Number | ModuleDef
+
+  params:
+    -
+      name: '`arg`'
+      type: Value
+      required: true
+      # default:
+      #   value: 0
+      desc: |
+        正接の値です。
+
+  value:
+    type: Value
+    desc: |
+      正接が `arg` となり、`-tau / 4 <= angle && angle <= tau / 4` を満たす角度 `angle` です。
+
+  details:
+    - |
+      この関数は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+
+      TODO リンクを正しく張る

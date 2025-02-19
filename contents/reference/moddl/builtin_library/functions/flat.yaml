@@ -1,0 +1,29 @@
+function:
+  name: flat
+  desc: |
+    2 次元の配列（配列の配列）を、内側の配列を全て連結した 1 次元の配列に変換します。
+
+  typeParams:
+    -
+      name: Elem
+      type: \*
+
+  params:
+    -
+      name: '`arrays`'
+      type: Elem[][]
+      required: true
+      desc: |
+        配列の配列です。
+
+  value:
+    type: Elem[]
+    desc: |
+      `arrays` に含まれる全ての配列を連結した配列です。
+
+  details:
+    - |
+      この関数は配列の入れ子を 1 段階解消しますが、それ以上は解消しません。
+
+      たとえば `[[0, 1], [2, [3, 4], 5], [6, 7]]~flatten()` の結果は `[0, 1, 2, [3, 4], 5, 6, 7]` であり、`[0, 1, 2, 3, 4, 5, 6, 7]` ではありません。
+

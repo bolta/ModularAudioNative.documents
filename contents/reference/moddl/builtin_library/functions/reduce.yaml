@@ -1,0 +1,41 @@
+function:
+  name: reduce
+  desc: |
+    配列の各要素に対して関数による集計を行い、集計結果の値を得ます。
+
+  typeParams:
+    -
+      name: Elem
+      type: \*
+    -
+      name: Result
+      type: \*
+
+  params:
+    -
+      name: '`source`'
+      type: Array\<Elem>
+      required: true
+      desc: |
+        集計元の配列です。
+    -
+      name: '`initial`'
+      type: Result
+      required: true
+      desc: |
+        集計結果の初期値です。
+
+    -
+      name: '`reducer`'
+      type: (Result, Elem) -> Result
+      required: true
+      desc: |
+        集計を行う関数です。現時点までの結果と新しい要素を受け取り、新しい結果を返します。
+
+  value:
+    type: Result
+    desc: |
+      集計結果の値です。
+
+  # details:
+  #   - |

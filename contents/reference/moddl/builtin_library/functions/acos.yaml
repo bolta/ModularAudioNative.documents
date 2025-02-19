@@ -1,0 +1,35 @@
+function:
+  name: acos
+  desc: |
+    逆余弦を求めます。
+
+  typeParams:
+    -
+      name: Value
+      type: Number | ModuleDef
+
+  params:
+    -
+      name: '`arg`'
+      type: Value
+      required: true
+      # default:
+      #   value: 0
+      desc: |
+        余弦の値です。
+
+  constraints: |
+    ```
+    -1 <=arg && arg <= 1
+    ```
+
+  value:
+    type: Value
+    desc: |
+      余弦が `arg` となり、`0 <= angle && angle <= tau / 2` を満たす角度 `angle` です。
+
+  details:
+    - |
+      この関数は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+
+      TODO リンクを正しく張る
