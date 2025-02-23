@@ -2,7 +2,7 @@ constant:
   name: 'true'
   desc: |
     真偽値の「真」を代表する数値です。
-  type: Number
+  type: Boolean
   value: 1
   details: |
     「真」を表現する値として、他の値を使う理由が特になければ、この値を使うことが推奨されます。

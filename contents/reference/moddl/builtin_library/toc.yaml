@@ -2,6 +2,6 @@ toc:
   title: |
     組み込みライブラリ
   items:
-    - node_defs/toc
     - constants/toc
     - functions/toc
+    - node_defs/toc
