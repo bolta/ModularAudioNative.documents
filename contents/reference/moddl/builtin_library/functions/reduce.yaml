@@ -14,28 +14,37 @@ function:
   params:
     -
       name: '`source`'
-      type: Array\<Elem>
+      type: Elem[]
       required: true
       desc: |
-        集計元の配列です。
+        集計元の配列。
     -
       name: '`initial`'
       type: Result
       required: true
       desc: |
-        集計結果の初期値です。
+        集計結果の初期値。
 
     -
       name: '`reducer`'
       type: (Result, Elem) -> Result
       required: true
       desc: |
-        集計を行う関数です。現時点までの結果と新しい要素を受け取り、新しい結果を返します。
+        集計を行う関数。
+        
+        現時点までの結果と新しい要素を受け取り、新しい結果を返します。
 
   value:
     type: Result
     desc: |
-      集計結果の値です。
+      集計結果の値。
 
-  # details:
-  #   - |
+  examples:
+    - |
+      ```
+      // 数値の配列から、絶対値が最大の数値を求める（空の配列では 0）
+      let maxByAbs = array -> array~reduce(0,
+          (maxSoFar, elem) -> if abs(elem) > abs(maxSoFar) then elem else maxSoFar);
+      [-10, 0, 5, 99, -800, 42]~maxByAbs()
+      // ==> -800
+      ```

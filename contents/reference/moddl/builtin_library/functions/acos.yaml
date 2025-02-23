@@ -16,7 +16,7 @@ function:
       # default:
       #   value: 0
       desc: |
-        余弦の値です。
+        余弦の値。
 
   constraints: |
     ```
@@ -26,7 +26,7 @@ function:
   value:
     type: Value
     desc: |
-      余弦が `arg` となり、`0 <= angle && angle <= tau / 2` を満たす角度 `angle` です。
+      [`0`, `tau / 2`] の範囲内で、余弦が `arg` となる角度（ラジアン単位）。
 
   details:
     - |

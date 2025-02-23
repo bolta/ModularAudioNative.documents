@@ -1,0 +1,66 @@
+function:
+  name: '\@@'
+  desc: |
+    モジュール定義に含まれるレジスタ定義にプレフィックスを付与します。
+
+  operatorNotation: |
+    `moduleDef@@prefix`
+
+  # typeParams:
+  #   -
+  #     name: Arg
+  #     type: \*
+
+  params:
+    -
+      name: '`moduleDef`'
+      type: 'ModuleDef | Number'
+      required: true
+      desc: |
+        モジュール定義。
+    -
+      name: '`prefix`'
+      type: (Prefix)
+      required: true
+      desc: |
+        レジスタ定義に付与するプレフィックス（式ではありません）。
+
+        プレフィックスには識別子か、2 つ以上の識別子を `.` でつないだもの（たとえば `foo123.bar456.baz789`）を使うことができます。
+
+  value:
+    type: ModuleDef
+    desc: |
+      `moduleDef` に含まれるレジスタ定義にプレフィックスを付与した新たなモジュール定義。
+
+      付与したプレフィックスと、元のレジスタ名との間は `.` で区切られます。
+
+
+  examples:
+    - |
+      ```
+      // レジスタ c, d, q が定義されている
+      @let :mod1, pulseOsc { duty: 0.5@d } | lpf { freq: 10000@c, q: 10@q }
+      // レジスタ a, d が定義されている
+      @let :mod2, adsrEnv { attack: 0@a, decay: 0@d }
+
+      // 両方をそのまま使うと d が衝突してしまう
+      @let :synth, mod1 * mod2
+
+      // 衝突回避の例 1：mod1 にプレフィックスを付与する。
+      // レジスタ m1.c, m1.d, m1.q, a, d が定義される
+      @let :synth, mod1@@m1 * mod2
+
+      // 衝突回避の例 2：mod1, mod2 両方にプレフィックスを付与する。
+      // レジスタ m1.c, m1.d, m1.q, m2.a, m2.d が定義される
+      @let :synth, mod1@@m1 * mod2@@m2
+
+      // プレフィックスは多重に付与することもできる。
+      // この例ではレジスタ m.m1.c, m.m1.d, m.m1.q, m.m2.a, m.m2.d が定義される
+      @let :synth, (mod1@@m1 * mod2@@m2)@@m
+      ```
+
+  # details:
+  #   - |
+  #     付与するプレフィックスと、元のレジスタ名との間は `.` で区切られます。
+
+  #     プレフィックスは多重に付与することもできます。たとえば `1@r@@p2@@p1` の結果は `1@p1.p2.r` に等しくなります。

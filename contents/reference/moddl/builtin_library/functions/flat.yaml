@@ -14,12 +14,19 @@ function:
       type: Elem[][]
       required: true
       desc: |
-        配列の配列です。
+        配列の配列。
 
   value:
     type: Elem[]
     desc: |
-      `arrays` に含まれる全ての配列を連結した配列です。
+      `arrays` に含まれる全ての配列を連結した配列。
+
+  examples:
+    - |
+      ```
+      [[0, 1], [2, 3, 4], [5, 6, 7]]~flat()
+      // ==> [0, 1, 2, 3, 4, 5, 6, 7]
+      ```
 
   details:
     - |

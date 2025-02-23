@@ -9,7 +9,7 @@ function:
   typeParams:
     -
       name: (Lhs, Rhs, Result)
-      type: (String, \*, String)<br>| (\*, String, String)<br>| (Array, Array, Array)<br>| (Assoc, Assoc, Assoc)<br>| (Number, Number, Number)<br>| (ModuleDef, (Number | ModuleDef), ModuleDef)<br>| ((Number | ModuleDef), ModuleDef, ModuleDef)
+      type: (Number, Number, Number)<br>| (Number, ModuleDef, ModuleDef)<br>| (ModuleDef, (Number | ModuleDef), ModuleDef)<br>| (String, \*, String)<br>| (\*, String, String)<br>| (Array, Array, Array)<br>| (Assoc, Assoc, Assoc)
 
   params:
     -

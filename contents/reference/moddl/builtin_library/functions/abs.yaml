@@ -16,12 +16,12 @@ function:
       # default:
       #   value: 0
       desc: |
-        任意の数値です。
+        任意の数値。
 
   value:
     type: Value
     desc: |
-      `arg` の絶対値です。
+      `arg` の絶対値。
 
   details:
     - |

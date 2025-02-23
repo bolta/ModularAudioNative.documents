@@ -16,12 +16,12 @@ function:
       # default:
       #   value: 0
       desc: |
-        立方の値です。
+        立方の値。
 
   value:
     type: Value
     desc: |
-      `arg` の立方根です。
+      `arg` の立方根。
 
   details:
     - |

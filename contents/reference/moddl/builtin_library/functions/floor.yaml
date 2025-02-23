@@ -16,12 +16,12 @@ function:
       # default:
       #   value: 0
       desc: |
-        任意の数値です。
+        任意の数値。
 
   value:
     type: Value
     desc: |
-      `arg` を上回らない最大の整数です。
+      `arg` を上回らない最大の整数。
 
   details:
     - |

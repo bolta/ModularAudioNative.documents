@@ -1,28 +1,28 @@
 function:
   name: '!'
   desc: |
-    数値を真偽値として解釈した上で、その真偽を反転し、結果の真偽値を表す代表的な数値を返します。
+    数値を真偽値として解釈した上で、その真偽を反転し、Boolean として返します。
 
   operatorNotation: |
     `! arg`
 
   typeParams:
     -
-      name: Value
-      type: Number | ModuleDef
+      name: (Arg, Result)
+      type: (Number, Boolean)<br>| (ModuleDef, ModuleDef)
 
   params:
     -
       name: '`arg`'
-      type: Value
+      type: Arg
       required: true
       desc: |
         項。
 
   value:
-    type: Value
+    type: Result
     desc: |
-      式の値。必ず `true`（= 1）か `false`（= -1）のいずれかになります。
+      式の値。
 
   examples:
     - |
@@ -30,6 +30,7 @@ function:
       [2, 1, 0, -1, -2]~map(x -> ! x)
       // ==> [-1, -1, 1, 1, 1]
 
+      // Number から真偽値が等しい Boolean への変換
       [2, 1, 0, -1, -2]~map(x -> !! x)
       // ==> [1, 1, -1, -1, -1]
       ```

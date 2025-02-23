@@ -16,7 +16,7 @@ function:
       # default:
       #   value: 0
       desc: |
-        平方の値です。
+        平方の値。
 
   constraints: |
     ```
@@ -26,7 +26,7 @@ function:
   value:
     type: Value
     desc: |
-      `arg` の正の平方根です。
+      `arg` の正の平方根。
 
   details:
     - |

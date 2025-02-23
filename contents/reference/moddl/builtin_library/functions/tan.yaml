@@ -16,12 +16,12 @@ function:
       # default:
       #   value: 0
       desc: |
-        角度です。単位はラジアンです。
+        角度（ラジアン単位）。
 
   value:
     type: Value
     desc: |
-      角度 `arg` に対する正接です。
+      `arg` に対する正接。
 
   details:
     - |

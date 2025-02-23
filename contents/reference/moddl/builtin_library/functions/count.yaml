@@ -16,12 +16,12 @@ function:
       # default:
       #   value: 0
       desc: |
-        任意の配列または連想です。
+        任意の配列または連想。
 
   value:
     type: Number
     desc: |
-      `coll` が配列の場合その要素数、連想の場合そのエントリ数です。
+      `coll` が配列の場合はその要素数、連想の場合はそのエントリ数。
 
   # details:
   #   - |

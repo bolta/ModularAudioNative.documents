@@ -3,6 +3,8 @@ function:
   desc: |
     数値の符号を反転します。
 
+    二項演算子の `-` とは別のものです。
+
   operatorNotation: |
     `- arg`
 

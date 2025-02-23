@@ -1,10 +1,10 @@
 function:
-  name: '-'
+  name: /
   desc: |
-    減算を行います。
+    除算を行います。
 
   operatorNotation: |
-    `lhs - rhs`
+    `lhs / rhs`
 
   typeParams:
     -

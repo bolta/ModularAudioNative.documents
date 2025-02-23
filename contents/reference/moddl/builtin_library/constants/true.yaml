@@ -15,7 +15,7 @@ constant:
     if value == true then "true" else "false"
     ```
 
-    このような条件の文脈においては、`value` は自動的に真偽値として解釈されるので、比較の必要はありません：
+    このような「条件」の文脈においては、`value` は自動的に真偽値として解釈されるので、比較の必要はありません：
 
     ```
     if value then "true" else "false"

@@ -16,12 +16,12 @@ function:
       # default:
       #   value: 0
       desc: |
-        正接の値です。
+        正接の値。
 
   value:
     type: Value
     desc: |
-      正接が `arg` となり、`-tau / 4 <= angle && angle <= tau / 4` を満たす角度 `angle` です。
+      [`-tau / 4`, `tau / 4`] の範囲内で、正接が `arg` となる角度（ラジアン単位）。
 
   details:
     - |

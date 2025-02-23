@@ -1,0 +1,57 @@
+function:
+  name: '.'
+  desc: |
+    連想のキーに対応する値を取得します。
+
+  operatorNotation: |
+    `assoc.key`
+
+  typeParams:
+    -
+      name: Value
+      type: \*
+
+  params:
+    -
+      name: '`assoc`'
+      type: '{ [key]: Value }'
+      required: true
+      desc: |
+        連想の値。
+    -
+      name: '`key`'
+      type: (Identifier)
+      required: true
+      desc: |
+        キーの名前（式ではありません）。
+
+  value:
+    type: Value
+    desc: |
+      キーに対応する値。
+
+  examples:
+    - |
+      ```
+      @let :assoc, {
+        foo: 42,
+        bar: {
+          baz: [0, 10, 20, 30],
+        } \
+      }
+
+      assoc.foo
+      // ==> 42
+
+      assoc.bar.baz~at(2)
+      // ==> 20
+
+      assoc.qux
+      // error: EntryNotFound
+      ```
+
+  details:
+    - |
+      `key` は識別子でなければなりません（任意の文字列を指定することはできません）。
+
+      また、`key` は `assoc` に存在するものでなければなりません。存在しない場合 `EntryNotFound` エラーが発生します。

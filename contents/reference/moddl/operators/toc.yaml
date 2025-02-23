@@ -15,7 +15,7 @@ toc:
             - apply_function
             - apply_method
             - access_entry
-            - map_registers
+            - transform_registers
             - prefix_register
         -
           section: 前置
@@ -34,10 +34,10 @@ toc:
             - add
             - subtract
             - less_than
-            - less_or_equal_to
+            - less_than_or_equal_to
             - equal_to
             - not_equal_to
-            - greater_or_equal_to
+            - greater_than_or_equal_to
             - greater_than
             - and
             - or

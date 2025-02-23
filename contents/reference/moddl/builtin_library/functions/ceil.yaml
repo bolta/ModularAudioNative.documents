@@ -16,12 +16,12 @@ function:
       # default:
       #   value: 0
       desc: |
-        任意の数値です。
+        任意の数値。
 
   value:
     type: Value
     desc: |
-      `arg` を下回らない最小の整数です。
+      `arg` を下回らない最小の整数。
 
   details:
     - |

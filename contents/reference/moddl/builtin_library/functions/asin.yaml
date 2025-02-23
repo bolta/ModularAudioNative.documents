@@ -16,7 +16,7 @@ function:
       # default:
       #   value: 0
       desc: |
-        正弦の値です。
+        正弦の値。
 
   constraints: |
     ```
@@ -26,7 +26,7 @@ function:
   value:
     type: Value
     desc: |
-      正弦が `arg` となり、`-tau / 4 <= angle && angle <= tau / 4` を満たす角度 `angle` です。
+      [`-tau / 4`, `tau / 4`] の範囲内で、正弦が `arg` となる角度（ラジアン単位）。
 
   details:
     - |

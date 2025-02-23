@@ -1,15 +1,15 @@
 function:
-  name: '-'
+  name: '>'
   desc: |
-    減算を行います。
+    大なり比較を行います。
 
   operatorNotation: |
-    `lhs - rhs`
+    `lhs > rhs`
 
   typeParams:
     -
       name: (Lhs, Rhs, Result)
-      type: (Number, Number, Number)<br>| (Number, ModuleDef, ModuleDef)<br>| (ModuleDef, (Number | ModuleDef), ModuleDef)
+      type: (Number, Number, Boolean)<br>| (Number, ModuleDef, ModuleDef)<br>| (ModuleDef, (Number | ModuleDef), ModuleDef)
 
   params:
     -
@@ -29,7 +29,7 @@ function:
   value:
     type: Result
     desc: |
-      演算の結果。
+      `lhs` が `rhs` より大きいかどうか。
 
   details:
     - |

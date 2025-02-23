@@ -16,14 +16,14 @@ function:
       # default:
       #   value: 0
       desc: |
-        任意の数値です。
+        任意の数値。
 
   value:
     type: Value
     desc: |
-      `arg` に最も近い整数です。
+      `arg` に最も近い整数。
 
-      `arg` の小数部がちょうど 0.5 の場合、0 から遠い側の整数となります。
+      `arg` の小数部がちょうど 0.5 の場合は、0 から遠い側の整数となります。
 
   details:
     - |

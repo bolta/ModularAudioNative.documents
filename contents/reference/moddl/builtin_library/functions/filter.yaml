@@ -11,25 +11,27 @@ function:
   params:
     -
       name: '`source`'
-      type: Array\<Elem>
+      type: Elem[]
       required: true
       desc: |
-        変換元の配列です。
+        変換元の配列。
     -
       name: '`predicate`'
       type: Elem -> Number
       required: true
       desc: |
-        `source` の各要素に適用する関数です。要素を結果に含める場合は truthy な値を、含めない場合は falsy な値を返します。
+        `source` の各要素に適用する関数。
+        
+        要素を結果に含める場合は truthy な値を、含めない場合は falsy な値を返します。
 
   value:
-    type: Array\<Elem>
+    type: Elem[]
     desc: |
-      結果の配列です。
+      結果の配列。
 
-  details:
+  examples:
     - |
-      ここに記載した引数と値の型は、この関数の典型的な使用法を示したものであり、実際の使用上の制約ではありません。したがって次のような使い方をしてもかまいません：
-
-      * `predicate` が `source` の全ての要素を処理できる限りは、`source` が heterogeneous（異なる型の値が混在する）でもかまいません。
-      * 結果も heterogeneous になってもかまいません。
+      ```
+      [0, 1, 2, 3, 4]~filter(x -> x % 2 == 0)
+      // ==> [0, 2, 4]
+      ```

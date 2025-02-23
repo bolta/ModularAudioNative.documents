@@ -1,0 +1,98 @@
+function:
+  name: '#( )'
+  desc: |
+    モジュール定義に含まれるレジスタ定義を取捨選択・名称変更します。
+
+  operatorNotation: |
+    `moduleDef#(rule1, rule2, ...)`
+
+  # typeParams:
+  #   -
+  #     name: Arg
+  #     type: \*
+
+  params:
+    -
+      name: '`moduleDef`'
+      type: 'ModuleDef | Number'
+      required: true
+      desc: |
+        モジュール定義。
+    -
+      name: '`rule1`, `rule2`, ...'
+      type: (Rule)
+      required: true
+      desc: |
+        レジスタ定義を取捨選択・名称変更するルール（式ではありません）。
+
+        ルールの書式は「詳細」を参照してください。
+
+  value:
+    type: ModuleDef
+    desc: |
+      `moduleDef` に含まれるレジスタ定義を変換した新たなモジュール定義。
+
+  examples:
+    - |
+      ```
+      // レジスタ c, d, q が定義されている
+      @let :mod1, pulseOsc { duty: 0.5@d } | lpf { freq: 10000@c, q: 10@q }
+      // レジスタ a, d が定義されている
+      @let :mod2, adsrEnv { attack: 0@a, decay: 0@d }
+
+      // 両方をそのまま使うと d が衝突してしまう
+      @let :synth, mod1 * mod2
+
+      // 衝突回避の例 1：mod1 の d を使わない。
+      // レジスタ a, c, d, q が定義され、d は adsrEnv の decay に対応する
+      @let :synth, mod1#(! d) * mod2
+
+      // 衝突回避の例 2：mod1 については c と q を使う。
+      // 結果は上と同じ
+      @let :synth, mod1#(c, q) * mod2
+
+      // 衝突回避の例 3：mod2 の d を名称変更する。
+      // レジスタ a, c, d, de, q が定義され、d は pulseOsc の duty に、de は adsrEnv の decay に対応する
+      @let :synth, mod1 * mod2#(d -> de)
+      ```
+
+  details:
+    - |
+      `rule1`, `rule2`, ... には以下のルールを記述することができます。
+
+      以下で reg, reg1, reg2 はレジスタ名を表します。レジスタ名には識別子か、2 つ以上の識別子を `.` でつないだもの（たとえば `foo123.bar456.baz789`）を使うことができます。
+
+    -
+      table:
+        head:
+          - 書式
+          - ルール名
+          - 意味
+        body:
+          -
+            - '`*`'
+            - AllowAll
+            - |
+              全てのレジスタを採用します。
+          -
+            - 'reg'
+            - Allow
+            - |
+              レジスタ reg を採用します。
+          -
+            - 'reg1 `->` reg2'
+            - Rename
+            - |
+              レジスタ reg1 を、名称を reg2 に変更しつつ採用します。
+          -
+            - '`!` reg'
+            - Deny
+            - |
+              レジスタ reg を除外します。
+
+    - |
+      ルールは 1 つ以上の任意の数だけ `,` 区切りで列挙することができます。ただし、以下の条件に該当すると `LabelTransformerInconsistent` エラーとなります：
+
+      * AllowAll が複数回存在する
+      * AllowAll, Allow, Deny のうち複数種類が混在する
+      * レジスタ名（Allow, Deny における reg、Rename における reg1）に重複が存在する
