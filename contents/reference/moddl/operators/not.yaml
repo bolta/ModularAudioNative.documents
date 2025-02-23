@@ -1,0 +1,41 @@
+function:
+  name: '!'
+  desc: |
+    数値を真偽値として解釈した上で、その真偽を反転し、結果の真偽値を表す代表的な数値を返します。
+
+  operatorNotation: |
+    `! arg`
+
+  typeParams:
+    -
+      name: Value
+      type: Number | ModuleDef
+
+  params:
+    -
+      name: '`arg`'
+      type: Value
+      required: true
+      desc: |
+        項。
+
+  value:
+    type: Value
+    desc: |
+      式の値。必ず `true`（= 1）か `false`（= -1）のいずれかになります。
+
+  examples:
+    - |
+      ```
+      [2, 1, 0, -1, -2]~map(x -> ! x)
+      // ==> [-1, -1, 1, 1, 1]
+
+      [2, 1, 0, -1, -2]~map(x -> !! x)
+      // ==> [1, 1, -1, -1, -1]
+      ```
+
+  details:
+    - |
+      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+
+      TODO リンクを正しく張る

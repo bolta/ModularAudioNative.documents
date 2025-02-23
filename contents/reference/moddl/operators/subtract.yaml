@@ -8,8 +8,8 @@ function:
 
   typeParams:
     -
-      name: （Lhs, Rhs, Result)
-      type: (Number, Number, Number) | (ModuleDef, (Number | ModuleDef), ModuleDef) | ((Number | ModuleDef), ModuleDef, ModuleDef)
+      name: (Lhs, Rhs, Result)
+      type: (Number, Number, Number)<br>| (ModuleDef, (Number | ModuleDef), ModuleDef)<br>| ((Number | ModuleDef), ModuleDef, ModuleDef)
 
   params:
     -

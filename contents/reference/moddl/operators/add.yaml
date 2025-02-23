@@ -1,15 +1,15 @@
 function:
   name: +
   desc: |
-    加算とそれに類する演算を行います。
+    加算またはそれに類する演算を行います。
 
   operatorNotation: |
     `lhs + rhs`
 
   typeParams:
     -
-      name: （Lhs, Rhs, Result)
-      type: (String, \*, String) | (\*, String, String) | (Array, Array, Array) | (Assoc, Assoc, Assoc) | (Number, Number, Number) | (ModuleDef, (Number | ModuleDef), ModuleDef) | ((Number | ModuleDef), ModuleDef, ModuleDef)
+      name: (Lhs, Rhs, Result)
+      type: (String, \*, String)<br>| (\*, String, String)<br>| (Array, Array, Array)<br>| (Assoc, Assoc, Assoc)<br>| (Number, Number, Number)<br>| (ModuleDef, (Number | ModuleDef), ModuleDef)<br>| ((Number | ModuleDef), ModuleDef, ModuleDef)
 
   params:
     -

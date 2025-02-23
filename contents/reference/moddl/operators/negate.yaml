@@ -1,0 +1,62 @@
+function:
+  name: '-'
+  desc: |
+    数値の符号を反転します。
+
+  operatorNotation: |
+    `- arg`
+
+  typeParams:
+    -
+      name: Value
+      type: Number | ModuleDef
+
+  params:
+    -
+      name: '`arg`'
+      type: Value
+      required: true
+      desc: |
+        項。
+
+  value:
+    type: Value
+    desc: |
+      式の値。
+
+  details:
+    - |
+      この演算子を論理否定のために使わないでください。0 に対しては適切な結果になりません。論理否定演算子 `!` を使ってください。
+
+    - table:
+        head:
+          - '`x`'
+          - '`- x`'
+          - '`! x`'
+        body:
+          -
+            - '2 (truthy)'
+            - '-2 (falsy) ✅'
+            - '-1 (falsy) ✅'
+          -
+            - '1 (truthy)'
+            - '-1 (falsy) ✅'
+            - '-1 (falsy) ✅'
+          -
+            - '0 (falsy)'
+            - '0 (falsy) ❌'
+            - '1 (truthy) ✅'
+          -
+            - '-1 (falsy)'
+            - '1 (truthy) ✅'
+            - '1 (truthy) ✅'
+          -
+            - '-2 (falsy)'
+            - '2 (truthy) ✅'
+            - '1 (truthy) ✅'
+
+
+    - |
+      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+
+      TODO リンクを正しく張る
