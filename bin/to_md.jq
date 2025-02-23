@@ -298,6 +298,12 @@ def transformFunction: (
 	end,
 	("値" | heading(2)),
 	(.value | functionValue),
+	if .examples then
+		("例" | heading(2)),
+		(.examples | blocks)
+	else
+		empty
+	end,
 	if .details then
 		("詳細" | heading(2)),
 		(.details | blocks)
