@@ -1,0 +1,52 @@
+function:
+  name: print
+  desc: |
+    コンソールに文字列を出力します。
+
+  typeParams:
+    -
+      name: Value
+      type: \*
+    -
+      name: Text
+      type: \*
+
+  params:
+    -
+      name: '`value`'
+      type: Value
+      required: true
+      desc: |
+        任意の値。
+    -
+      name: '`text`'
+      type: Text
+      default:
+        value: '`value`'
+      desc: |
+        出力する値。
+
+  value:
+    type: Value
+    desc: |
+      `value` の値。
+  
+  examples:
+    - |
+      ```
+        print(42)
+        // console output: 42
+        // ==> 42
+
+        print(42, "the answer")
+        // console output: the answer
+        // ==> 42
+      ```
+
+  details:
+    - |
+      この関数の適用時、コンソールに文字列が出力されます。
+
+      出力される内容は、`text` を指定した場合は `text` の文字列表現、省略した場合は `value` の文字列表現です。文字列表現は `toString` 関数で得られるものと同じです。
+
+      ModDL では式の評価に伴う副作用はありませんが、この関数が行うコンソール出力はその例外です。

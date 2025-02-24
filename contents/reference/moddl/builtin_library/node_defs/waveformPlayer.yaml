@@ -1,0 +1,42 @@
+nodeFactory:
+  name: waveformPlayer
+  desc: |
+    波形を再生するノードを提供します。
+
+  functionParams:
+    -
+      name: '`waveform`'
+      type: Waveform
+      required: true
+      desc: |
+        初期状態で再生する波形。
+
+  input: |
+    周波数を受け取ります。
+
+  events:
+    -
+      type: Note
+      # key:
+      desc: ノートオンで波形を `startOffset` から再生します。ノートオフは無視します。
+    -
+      type: Set
+      key: waveform
+      desc: 値を Waveform 型の値として解釈し、再生する波形を指定された波形に切り替えます。
+
+  output:
+    desc: |
+      波形を再生します。
+
+  examples:
+    - |
+      ```
+      @waveform :wave1, "./path/to/wave1.wav"
+
+      @instrument ^a, waveformPlayer(wave1) * adsrEnv
+      ```
+
+  details:
+    - |
+      `waveformPlayer` はノード定義を提供する関数であり、それ自体はノード定義ではありません。ノード定義を利用するには関数適用の `()` 演算子が必要です。
+

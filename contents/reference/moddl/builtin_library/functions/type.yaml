@@ -1,0 +1,65 @@
+function:
+  name: type
+  desc: |
+    値が属する型の文字列表現を得ます。
+
+  params:
+    -
+      name: '`value`'
+      type: \*
+      required: true
+      desc: |
+        任意の値。
+
+  value:
+    type: String
+    desc: |
+      `value` の型の文字列表現。
+  
+  examples:
+    - |
+      ```
+        "foo"~type()
+        // ==> "String"
+      ```
+
+  details:
+    - |
+      型の文字列表現は以下の通りです：
+
+    -
+      table:
+        head:
+          - 型
+          - 文字列表現
+        body:
+          -
+            - 数値
+            - '`"Number"`'
+          -
+            - 波形
+            - '`"Waveform"`'
+          -
+            - トラックセット
+            - '`"TrackSet"`'
+          -
+            - 識別子の引用形式
+            - '`"QuotedIdentifier"`'
+          -
+            - 文字列
+            - '`"String"`'
+          -
+            - 配列
+            - '`"Array"`'
+          -
+            - 連想
+            - '`"Assoc"`'
+          -
+            - モジュール定義
+            - '`"ModuleDef"`'
+          -
+            - ノード定義
+            - '`"NodeDef"`'
+          -
+            - 関数
+            - '`"Function"`'

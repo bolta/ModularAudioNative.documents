@@ -40,6 +40,7 @@ toc:
       section: 連想
       items:
         - keys
+        - containsKey
     -
       section: 波形
       items:

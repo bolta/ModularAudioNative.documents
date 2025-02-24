@@ -1,0 +1,33 @@
+function:
+  name: toString
+  desc: |
+    値を文字列化します。
+
+  params:
+    -
+      name: '`value`'
+      type: \*
+      required: true
+      desc: |
+        任意の値。
+
+  value:
+    type: String
+    desc: |
+      `value` の文字列表現。
+  
+  examples:
+    - |
+      ```
+        "foo"~toString()
+        // ==> "foo"
+
+        ["foo", "bar"]~toString()
+        // ==> "[foo, bar]"
+
+        { foo: 42, bar: 33 }~toString()
+        // ==> "{ foo: 42, bar: 33 }"
+      ```
+
+  # details:
+  #   - |

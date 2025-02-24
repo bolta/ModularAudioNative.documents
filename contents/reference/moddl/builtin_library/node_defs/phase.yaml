@@ -1,0 +1,52 @@
+nodeFactory:
+  name: phase
+  desc: |
+    自作オシレータのための位相を提供します。
+
+  functionParams:
+    -
+      name: '`initial`'
+      type: Number
+      default:
+        value: 0
+      desc: |
+        初期位相。
+
+  input: |
+    周波数を受け取ります。
+
+  params:
+    -
+      name: reset
+      default:
+        value: 0
+      desc: |
+        リセット信号を接続できます。
+        この値が truthy であるとき、位相が 0 にリセットされます。
+
+  # events:
+
+  output:
+    range: |
+      [0, τ)
+    desc: |
+      位相を出力します。
+
+  examples:
+    - |
+      ```
+      // sineOsc を自作する
+      phase() | =ph=> sin(ph)
+      ```
+
+  details:
+    - |
+      `phase` はノード定義を提供する関数であり、それ自体はノード定義ではありません。ノード定義を利用するには関数適用の `()` 演算子が必要です。
+
+      生成されるノードは、入力される周波数に応じた速度で [0, τ) の範囲で一様に増加を繰り返す値を出力します。
+
+      出力に `sin` などの変換を適用することで、オシレータを実装することができます。
+
+    - note:
+      - |
+        組み込みのオシレータである `pulseOsc`, `sawOsc`, `sineOsc`, `triangleOsc` は内部で位相を管理しているため、`phase` を使う必要はありません。
