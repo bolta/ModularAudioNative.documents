@@ -15,7 +15,7 @@ toc:
         - asin
         - acos
         - atan
-        - atan2
+        # - atan2
         - abs
         - signum
         - floor

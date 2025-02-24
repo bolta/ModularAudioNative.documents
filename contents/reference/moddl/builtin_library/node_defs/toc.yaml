@@ -23,10 +23,10 @@ toc:
       items:
         - adsrEnv
         - expEnv
-    -
-      section: ステレオ
-      items:
-        - pan
+    # -
+    #   section: ステレオ
+    #   items:
+    #     - pan
     -
       section: 遷移
       items:
@@ -34,14 +34,14 @@ toc:
     -
       section: エフェクト
       items:
-        -
-          section: 空間
-          items:
-            - delay
-        -
-          section: 歪み
-          items:
-            - limit
+      #   -
+      #     section: 空間
+      #     items:
+      #       - delay
+      #   -
+      #     section: 歪み
+      #     items:
+      #       - limit
 
         -
           section: Lo-Fi
