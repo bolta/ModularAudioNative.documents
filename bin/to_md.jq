@@ -232,8 +232,21 @@ def transformToc: (
 );
 
 def transformNodeFactory: (
-	(elem("span"; { class: "title-type" }; "node def ") + .name | heading(1)),
+	(if .functionParams then "()" else "" end) as $paren
+	| (elem("span"; { class: "title-type" }; "node def ") + .name + $paren | heading(1)),
 	(.desc),
+	if .functionTypeParams then
+		("関数の型定義" | heading(2)),
+		(.functionTypeParams | functionTypeParams)
+	else
+		empty
+	end,
+	if .functionParams then
+		("関数の引数" | heading(2)),
+		(.functionParams | functionParams)
+	else
+		empty
+	end,
 	("主入力" | heading(2)),
 	(.input | if . | trim == "%noInput" then "入力はありません。\n" else . end | blocks),
 	("パラメータ入力" | heading(2)),
@@ -245,6 +258,12 @@ def transformNodeFactory: (
 		(.desc | blocks),
 		(.range | if . then ("範囲" | heading(3)), blocks else empty end)
 	)),
+	if .examples then
+		("使用例" | heading(2)),
+		(.examples | blocks)
+	else
+		empty
+	end,
 	if .details then
 		("詳細" | heading(2)),
 		(.details | blocks)
@@ -286,7 +305,7 @@ def transformFunction: (
 		empty
 	end,
 	if .typeParams then
-		("型引数" | heading(2)),
+		("型定義" | heading(2)),
 		(.typeParams | functionTypeParams)
 	else
 		empty
@@ -302,7 +321,7 @@ def transformFunction: (
 	("値" | heading(2)),
 	(.value | functionValue),
 	if .examples then
-		("例" | heading(2)),
+		("使用例" | heading(2)),
 		(.examples | blocks)
 	else
 		empty
