@@ -46,7 +46,10 @@ nodeFactory:
         ノートオンの瞬間のレベルを指定します。
 
   events:
-    - Note
+    -
+      type: Note
+      # key:
+      desc: ノートオンでアタックを開始し、ノートオフでリリースを開始します。
 
   output:
     range: |
