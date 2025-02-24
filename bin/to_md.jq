@@ -178,7 +178,10 @@ def functionValue:
 
 def events:
 	if . then
-		map("* " + (. | text) + "\n")
+		{
+			head: ["種別", "キー", "説明"],
+			body: map([.type, .key, .desc])
+		} | table
 	else
 		"イベントを受け取りません。" | paragraph
 	end;
