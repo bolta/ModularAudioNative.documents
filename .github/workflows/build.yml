@@ -2,9 +2,10 @@ name: Rust
 
 on:
   push:
-    branches: [ "master", "develop" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "master", "develop" ]
+    branches: [ "develop" ]
+  workflow_dispatch:
 
 env:
   CARGO_TERM_COLOR: always
@@ -20,11 +21,13 @@ jobs:
       run: |
         sudo apt-get install pandoc
         bin/build.sh
-      # run: cargo build --verbose
-    # - name: Run tests
-    #   run: cargo test --verbose
     - name: Upload 
       uses: actions/upload-artifact@v4
       with:
         name: moddl_docs
         path: target_doc/
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public/
