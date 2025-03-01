@@ -31,6 +31,8 @@ jobs:
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v4
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        # github_token: ${{ secrets.GITHUB_TOKEN }}
+        personal_token: ${{ secrets.PERSONAL_TOKEN }}
+        external_repository: bolta/bolta.github.io
         publish_dir: target_doc/
-        destination_dir: develop/
+        destination_dir: moddl/docs/v0.1.0/develop/
