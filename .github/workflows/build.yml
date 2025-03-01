@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    environment: page-updater
 
     steps:
     - uses: actions/checkout@v4
