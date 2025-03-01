@@ -1,0 +1,27 @@
+function:
+  name: waveIsLooped
+  desc: |
+    波形を表現した配列を受け取り、波形にループが存在するかどうか判定します。
+
+  params:
+    -
+      name: '`waveformData`'
+      type: (Number | Number[])[]
+      required: true
+      desc: |
+        波形データを表す配列。
+
+  value:
+    type: Boolean
+    desc: |
+      波形にループが存在するかどうか。
+
+  examples:
+    - |
+      ```
+      [0, 1, 2, 3, 4, [5, 6, 7, 8]]~waveIsLooped()
+      // ==> true
+
+      [0, 1, 2, 3, 4, 5, 6, 7, 8]~waveIsLooped()
+      // ==> false
+      ```

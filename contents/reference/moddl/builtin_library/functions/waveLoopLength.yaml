@@ -1,0 +1,33 @@
+function:
+  name: waveLoopLength
+  desc: |
+    波形を表現した配列を受け取り、波形のループの長さ（サンプル数）を返します。
+
+  params:
+    -
+      name: '`waveformData`'
+      type: (Number | Number[])[]
+      required: true
+      desc: |
+        波形データを表す配列。
+
+  value:
+    type: Number
+    desc: |
+      波形データのループのサンプル数。
+
+  examples:
+    - |
+      ```
+      [0, 1, 2, 3, 4, [5, 6, 7, 8]]~waveLoopLength()
+      // ==> 4
+
+      [0, 1, 2, 3, 4, 5, 6, 7, 8]~waveLoopLength()
+      // error: IndexOutOfBounds
+      ```
+
+  details:
+    - |
+      波形にループがない場合は `IndexOutOfBounds` エラーが発生します。
+
+      波形にループがあることが保証されない場合は、事前に `waveIsLooped` 関数でチェックしてください。
