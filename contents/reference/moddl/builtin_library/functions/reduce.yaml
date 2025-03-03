@@ -1,0 +1,50 @@
+function:
+  name: reduce
+  desc: |
+    配列の各要素に対して関数による集計を行い、集計結果の値を得ます。
+
+  typeParams:
+    -
+      name: Elem
+      type: \*
+    -
+      name: Result
+      type: \*
+
+  params:
+    -
+      name: '`source`'
+      type: Elem[]
+      required: true
+      desc: |
+        集計元の配列。
+    -
+      name: '`initial`'
+      type: Result
+      required: true
+      desc: |
+        集計結果の初期値。
+
+    -
+      name: '`reducer`'
+      type: (Result, Elem) -> Result
+      required: true
+      desc: |
+        集計を行う関数。
+        
+        現時点までの結果と新しい要素を受け取り、新しい結果を返します。
+
+  value:
+    type: Result
+    desc: |
+      集計結果の値。
+
+  examples:
+    - |
+      ```
+      // 数値の配列から、絶対値が最大の数値を求める（空の配列では 0）
+      let maxByAbs = array -> array~reduce(0,
+          (maxSoFar, elem) -> if abs(elem) > abs(maxSoFar) then elem else maxSoFar);
+      [-10, 0, 5, 99, -800, 42]~maxByAbs()
+      // ==> -800
+      ```

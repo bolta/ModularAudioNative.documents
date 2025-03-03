@@ -1,0 +1,42 @@
+function:
+  name: \@
+  desc: |
+    レジスタを定義します。
+
+  operatorNotation: |
+    `value@label`
+
+  # typeParams:
+  #   -
+  #     name: Value
+  #     type: Number | ModuleDef
+
+  params:
+    -
+      name: '`value`'
+      type: Number | ModuleDef
+      required: true
+      desc: |
+        レジスタを定義する対象。
+
+    -
+      name: '`label`'
+      type: (Label)
+      required: true
+      desc: |
+        レジスタの名前となるラベル（式ではありません）。
+
+  value:
+    type: ModuleDef
+    desc: |
+      レジスタとしてラベルが付与された ModuleDef。
+
+  details:
+    - |
+      `value` が Number の場合、数値を保持するノードの ModuleDef に変換された上でラベルが付与されます。
+      
+      `value` が ModuleDef の場合はそのままラベルが付与されます。
+
+      `label` に指定できるのは識別子（たとえば `foo123`）か、それを `.` でつないだもの（たとえば `foo123.bar456.baz789`）です。
+
+# `@` 演算子が有効なのは、ModuleDef が単体のノードを生成する（NodeDef である）場合のみです。それ以外の場合（演算を表す ModuleDef の場合）

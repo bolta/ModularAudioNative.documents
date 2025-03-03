@@ -1,0 +1,44 @@
+function:
+  name: +
+  desc: |
+    加算またはそれに類する演算を行います。
+
+  operatorNotation: |
+    `lhs + rhs`
+
+  typeParams:
+    -
+      name: (Lhs, Rhs, Result)
+      type: (Number, Number, Number)<br>| (Number, ModuleDef, ModuleDef)<br>| (ModuleDef, (Number | ModuleDef), ModuleDef)<br>| (String, \*, String)<br>| (\*, String, String)<br>| (Array, Array, Array)<br>| (Assoc, Assoc, Assoc)
+
+  params:
+    -
+      name: '`lhs`'
+      type: Lhs
+      required: true
+      desc: |
+        左の項。
+
+    -
+      name: '`rhs`'
+      type: Rhs
+      required: true
+      desc: |
+        右の項。
+
+  value:
+    type: Result
+    desc: |
+      演算の結果。
+
+  details:
+    - |
+      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+
+      TODO リンクを正しく張る
+
+      その他にも以下のオーバーロードがあります：
+
+      * 少なくとも一方の項が String の場合、String でない側を String に変換した上で連結します。String への変換には、`toString` 関数と同じ規則を用います。
+      * 両方の項が Array の場合、それらを連結します。
+      * 両方の項が Assoc の場合、それらをマージします。重複するキーに対しては右側の値が採用されます。

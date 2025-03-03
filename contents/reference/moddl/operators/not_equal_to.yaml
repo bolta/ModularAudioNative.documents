@@ -1,0 +1,40 @@
+function:
+  name: '!='
+  desc: |
+    不等価比較を行います。
+
+  operatorNotation: |
+    `lhs != rhs`
+
+  typeParams:
+    -
+      name: (Lhs, Rhs, Result)
+      type: (Number, Number, Boolean)<br>| (Number, ModuleDef, ModuleDef)<br>| (ModuleDef, (Number | ModuleDef), ModuleDef)<br>| (String, String, Boolean)
+
+  params:
+    -
+      name: '`lhs`'
+      type: Lhs
+      required: true
+      desc: |
+        左の項。
+
+    -
+      name: '`rhs`'
+      type: Rhs
+      required: true
+      desc: |
+        右の項。
+
+  value:
+    type: Result
+    desc: |
+      `lhs` と `rhs` が等しくないかどうか。
+
+  details:
+    - |
+      `lhs != rhs` は `! (lhs == rhs)` と等価です。
+
+      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+
+      TODO リンクを正しく張る

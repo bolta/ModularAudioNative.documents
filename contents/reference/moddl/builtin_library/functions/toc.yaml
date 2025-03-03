@@ -1,0 +1,65 @@
+toc:
+  title: |
+    関数
+  items:
+    -
+      section: 数学
+      items:
+        - sqrt
+        - cbrt
+        - log
+        - log10
+        - sin
+        - cos
+        - tan
+        - asin
+        - acos
+        - atan
+        # - atan2
+        - abs
+        - signum
+        - floor
+        - ceil
+        - round
+        - trunc
+    -
+      section: コレクション
+      items:
+        - count
+    -
+      section: 配列
+      items:
+        - at
+        - map
+        - filter
+        - reduce
+        - flat
+        - flatMap
+        - sum
+    -
+      section: 連想
+      items:
+        - keys
+        - containsKey
+    -
+      section: 波形
+      items:
+        - waveMap
+        - waveLoopLength
+        - waveIsLooped
+    -
+      section: 型
+      items:
+        - type
+        - toString
+    -
+      section: ファイル分割
+      items:
+        - import
+    -
+      section: ユーティリティ
+      items:
+        - print
+
+
+

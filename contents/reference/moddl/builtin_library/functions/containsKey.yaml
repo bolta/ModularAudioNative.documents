@@ -1,0 +1,33 @@
+function:
+  name: containsKey
+  desc: |
+    連想に指定したキーが含まれるかどうか判定します。
+
+  params:
+    -
+      name: '`assoc`'
+      type: Assoc
+      required: true
+      desc: |
+        任意の連想。
+    -
+      name: '`key`'
+      type: String
+      required: true
+      desc: |
+        キー名。
+
+  value:
+    type: Boolean
+    desc: |
+      `assoc` がキー `key` を持つかどうか。
+
+  examples:
+    - |
+      ```
+      { foo: 42, bar: [0, 1, 2], baz: { hoge: 99 } }~containsKey("bar")
+      // ==> true
+
+      { foo: 42, bar: [0, 1, 2], baz: { hoge: 99 } }~containsKey("hoge")
+      // ==> false
+      ```

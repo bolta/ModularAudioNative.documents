@@ -4,6 +4,6 @@ toc:
   items:
     - features/toc
     - constructions/toc
-    - node_factories/toc
     - operators/toc
     - data_types_and_value_notations
+    - builtin_library/toc

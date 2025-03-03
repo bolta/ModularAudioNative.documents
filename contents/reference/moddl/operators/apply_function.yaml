@@ -1,0 +1,61 @@
+function:
+  name: '( )'
+  desc: |
+    関数を引数のリストに適用します。
+
+    式をグループ化する `( )` とは別のものです。
+
+  operatorNotation: |
+    `func(arg1, arg2, ...)`
+
+  typeParams:
+    # -
+    #   name: Func
+    #   type: (Arg0, Arg1, ...) -> Result
+    -
+      name: Arg1
+      type: \*
+    -
+      name: Arg2
+      type: \*
+    -
+      name: Result
+      type: \*
+
+  params:
+    -
+      name: '`func`'
+      type: '(Arg1, Arg2, ...) -> Result'
+      required: true
+      desc: |
+        関数。
+    -
+      name: '`arg1`'
+      type: Arg1
+      required: true
+      desc: |
+        第 1 引数。
+    -
+      name: '`arg2`'
+      type: Arg2
+      required: true
+      desc: |
+        第 2 引数。
+
+  value:
+    type: Result
+    desc: |
+      関数の評価結果。
+
+  details:
+    - |
+      関数を任意の数・任意の型の引数に対して適用し、結果の値を得ます。
+
+      引数の数は 0 個以上の任意の数が可能です。
+
+    - note:
+      - |
+        ModDL の関数は副作用をもたないため、0 引数の関数は基本的に定義する意味がありませんが、関数にデフォルト引数が定義されている場合、適用時に明示する引数がなくなることはあります。
+
+    - |
+      `func(arg1, arg2, ...)` は `arg1~func(arg2, ...)` と等価です。

@@ -1,0 +1,41 @@
+function:
+  name: '( )'
+  desc: |
+    式をグループ化し、評価時の優先度を最高にします。
+
+    関数・メソッドを適用する際の `( )` とは別のものです。
+
+  operatorNotation: |
+    `(value)`
+
+  typeParams:
+    -
+      name: Value
+      type: \*
+
+  params:
+    -
+      name: '`value`'
+      type: Value
+      required: true
+      desc: |
+        任意の値。通常は演算子を含む何らかの式によって表現されます。
+
+  value:
+    type: Value
+    desc: |
+      式の値。
+
+  examples:
+    - |
+      ```
+      1 + 2 * 3
+      // => 7
+      
+      (1 + 2) * 3
+      // => 9
+      ```
+
+  details:
+    - |
+      数式において計算の順序を変更するための ( ) と同様のものです。

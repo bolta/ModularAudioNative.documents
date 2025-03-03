@@ -1,0 +1,60 @@
+function:
+  name: '|'
+  desc: |
+    モジュール定義同士を接続します。
+
+  operatorNotation: |
+    `lhs | rhs`
+
+  typeParams:
+    -
+      name: Lhs
+      type: ModuleDef | Number
+    -
+      name: Rhs
+      type: ModuleDef | Number
+
+  params:
+    -
+      name: '`lhs`'
+      type: Lhs
+      required: true
+      desc: |
+        上流となるモジュール定義。
+
+    -
+      name: '`rhs`'
+      type: Rhs
+      required: true
+      desc: |
+        下流となるモジュール定義。
+
+  value:
+    type: ModuleDef
+    desc: |
+      `lhs` と `rhs` を接続した新たなモジュール定義。
+
+  details:
+    - |
+      この演算子は、`lhs` を上流（出力）側、`rhs` を下流（入力）側として、2 つのモジュール定義を接続します。
+
+      モジュール定義を「接続する」とは、`lhs` の出力を、`rhs` を構成するノードのうち以下の条件を満たす全てのノードの主入力とするような、新たなモジュール定義を生成することです：
+
+      * ノードの仕様として、主入力を受け付ける
+      * 構造において、主入力が割り当たっていない
+
+      以下に例を示します：
+      ```
+      // sineOsc は上記条件に該当するため、440 が入力される
+      440 | sineOsc
+
+      // sineOsc, sawOsc は上記条件に該当するため、440 が入力される。
+      // pulseOsc は仕様上主入力を受け付けるが、すでに主入力が割り当たっているため条件に該当しない
+      440 | (sineOsc + sawOsc + 880 | pulseOsc)
+
+      // adsrEnv は仕様上主入力を受け付けないため、上記条件に該当しない
+      // （440 はどこにも入力されない）
+      440 | adsrEnv
+      ```
+
+      この演算子は ModuleDef と Number に対してオーバーロードされています。引数が Number の場合、定数を出力するノードの ModuleDef に暗黙に変換されます。

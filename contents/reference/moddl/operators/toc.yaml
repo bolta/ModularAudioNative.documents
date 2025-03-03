@@ -4,3 +4,41 @@ toc:
   items:
     - overloaded_calculations
     - precedence
+    -
+      section: 演算子の一覧
+      items:
+        - parenthesis
+        -
+          section: 後置
+          items:
+            - make_register
+            - apply_function
+            - apply_method
+            - access_entry
+            - transform_registers
+            - prefix_register
+        -
+          section: 前置
+          items:
+            - negate
+            - plus
+            - not
+        -
+          section: 二項
+          items:
+            - connect
+            - power
+            - multiply
+            - divide
+            - remainder
+            - add
+            - subtract
+            - less_than
+            - less_than_or_equal_to
+            - equal_to
+            - not_equal_to
+            - greater_than_or_equal_to
+            - greater_than
+            - and
+            - or
+

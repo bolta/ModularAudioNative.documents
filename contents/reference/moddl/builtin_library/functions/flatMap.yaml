@@ -1,0 +1,46 @@
+function:
+  name: flatMap
+  desc: |
+    配列の各要素に関数を適用して任意個の値を含む配列に変換し、その配列を全て連結した 1 次元の配列を得ます。
+
+  typeParams:
+    -
+      name: SrcElem
+      type: \*
+    -
+      name: DestElem
+      type: \*
+
+  params:
+    -
+      name: '`source`'
+      type: SrcElem[]
+      required: true
+      desc: |
+        変換元の配列。
+    -
+      name: '`mapper`'
+      type: SrcElem -> DestElem[]
+      required: true
+      desc: |
+        `source` の各要素に適用し、結果の配列の要素となる値の配列を生成する関数。
+
+  value:
+    type: DestElem[]
+    desc: |
+      結果の配列。
+
+  examples:
+    - |
+      ```
+      [0, 1, 2, 3, 4]~flatMap(x -> [x, x ^ 2, x ^ 3])
+      // ==> [0, 0, 0, 1, 1, 1, 2, 4, 8, 3, 9, 27, 4, 16, 64]
+
+      // 下記と同じ
+      [0, 1, 2, 3, 4]~map(x -> [x, x ^ 2, x ^ 3])~flat()
+      ```
+
+  details:
+    - |
+      この関数は、`map` 関数の結果に `flat` 関数を適用するのと同じです。
+

@@ -21,9 +21,11 @@ for cmd in cargo jq pandoc; do
 done
 
 # YAML → JSON 変換ツールを作っておく
-pushd "$CARGO_DIR" > /dev/null
-	cargo build --release
-popd > /dev/null
+if [ ! -f "$YAML_TO_JSON" ]; then
+	pushd "$CARGO_DIR" > /dev/null
+		cargo build --release
+	popd > /dev/null
+fi
 
 function transform {
 	local inDir="$1"

@@ -1,0 +1,38 @@
+function:
+  name: map
+  desc: |
+    配列の各要素を関数によって変換し、新たな配列を得ます。
+
+  typeParams:
+    -
+      name: SrcElem
+      type: \*
+    -
+      name: DestElem
+      type: \*
+
+  params:
+    -
+      name: '`source`'
+      type: SrcElem[]
+      required: true
+      desc: |
+        変換元の配列。
+    -
+      name: '`mapper`'
+      type: SrcElem -> DestElem
+      required: true
+      desc: |
+        `source` の各要素に適用し、結果の配列の要素となる値を生成する関数。
+
+  value:
+    type: DestElem[]
+    desc: |
+      結果の配列。
+
+  examples:
+    - |
+      ```
+      [0, 1, 2, 3, 4]~map(x -> x ^ 2)
+      // ==> [0, 1, 4, 9, 16]
+      ```

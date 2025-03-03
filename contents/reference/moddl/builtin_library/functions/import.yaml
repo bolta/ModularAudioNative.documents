@@ -1,0 +1,60 @@
+function:
+  name: import
+  desc: |
+    他の ModDL ソースファイルで公開された値を取得します。
+
+  params:
+    -
+      name: '`path`'
+      type: String
+      required: true
+      desc: |
+        値を取得する ModDL ソースファイルのパス。
+
+  value:
+    type: \*
+    desc: |
+      `path` で指定された ModDL ソースファイルの `export` 文で公開されている値。
+
+  examples:
+    - |
+      以下の `sub.moddl` と `main*.moddl` が同じディレクトリにあるものとします。
+
+      `sub.moddl`
+      ```
+      @let :osc, pulseOsc { duty: 0.5@duty }
+      @let :filt, lpf { freq: 10000@cutoff, q: 10@q }
+      @let :env, adsrEnv { attack: 0@attack }
+      @export {
+        someSynth: osc | filt * env
+      }
+      ```
+
+      `main1.moddl`（`someSynth` を利用するが、そこで定義されたレジスタは利用しない）
+      ```
+      @instrument ^a, import("./sub.moddl").someSynth
+      a o5l8v13
+      a cdefg
+      ```
+
+      `main2.moddl`（`someSynth` と、そこで定義されたレジスタ `duty` を利用する）
+      ```
+      @instrument ^a, import("./sub.moddl").someSynth#(duty)
+      a o5l8v13 yduty,0.25
+      a cdefg
+      ```
+
+      `main3.moddl`（`someSynth` を利用する。そこで定義された全てのレジスタもプレフィックス `s` をつけて利用する）
+      ```
+      @instrument ^a, import("./sub.moddl").someSynth@@s
+      a o5l8v13 ys.duty,0.25 ys.attack,0.2
+      a cdefg
+      ```
+
+  details:
+    - |
+      `path` は絶対パスであるか、`./` か `../` で始まる相対パスでなければなりません。`./` か `../` で始まらない相対パスは予約されており、現在のバージョンでは使えません。
+
+      `path` で指定された ModDL ソースファイルに `export` 文がない場合、`ExportNotFound` エラーになります。
+
+      `import` 関数で取得した値に ModuleDef 型の値が含まれる場合（配列や連想（さらにはネストしたそれら）の要素・値として間接的に含まれる場合を含みます）、その中で定義されたレジスタは、そのままでは使えません。これは値を取り込む側とのレジスタ名の衝突を回避するため、そのままでは使えないようガードする措置が施されているためです。ガードを解除するには、取得した ModuleDef 型の値に `#( )` または `@@` 演算子を適用します（レジスタの取捨選択や変換が行われると同時にガードが解除されます。使用例の `main2.moddl`, `main3.moddl` を参照してください）。全てのレジスタをそのままの名前で取り込む場合は、`#( )` 演算子の AllowAll ルールを使い、`#(*)` とします。

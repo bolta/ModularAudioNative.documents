@@ -1,0 +1,32 @@
+function:
+  name: floor
+  desc: |
+    与えられた数値を上回らない最大の整数を求めます。
+
+  typeParams:
+    -
+      name: Value
+      type: Number | ModuleDef
+
+  params:
+    -
+      name: '`arg`'
+      type: Value
+      required: true
+      # default:
+      #   value: 0
+      desc: |
+        任意の数値。
+
+  value:
+    type: Value
+    desc: |
+      `arg` を上回らない最大の整数。
+
+  details:
+    - |
+      `floor` と `trunc` は、`arg >= 0` のときは同じ結果を返しますが、 `arg < 0` のときは異なる結果を返します。たとえば `floor(-3.5) == -4` に対して `trunc(-3.5) == -3` となります。
+
+      この関数は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+
+      TODO リンクを正しく張る

@@ -1,0 +1,28 @@
+function:
+  name: keys
+  desc: |
+    連想の全てのキーを配列として返します。
+
+  params:
+    -
+      name: '`assoc`'
+      type: Assoc
+      required: true
+      desc: |
+        任意の連想。
+
+  value:
+    type: String[]
+    desc: |
+      `assoc` の全てのキーの配列
+
+  examples:
+    - |
+      ```
+      { foo: 42, bar: [0, 1, 2], baz: { hoge: 99 } }~keys()
+      // ==> ["foo", "baz", "bar"]
+      ```
+
+  details:
+    - |
+      値に含まれるキーの順序は保証されません。

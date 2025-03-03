@@ -46,7 +46,10 @@ nodeFactory:
         ノートオンの瞬間のレベルを指定します。
 
   events:
-    - Note
+    -
+      type: Note
+      # key:
+      desc: ノートオンでアタックを開始し、ノートオフでリリースを開始します。
 
   output:
     range: |
@@ -63,6 +66,8 @@ nodeFactory:
       その後 `decay` 秒をかけて、出力は線形に `sustain` まで減少します。
 
       ノートオフを受け取ると、その瞬間から `release` 秒をかけて出力は線形に減少し、その後 0 になります。
+
+      <img src="./adsrEnv.png" width=50%>
 
     -
       sample:

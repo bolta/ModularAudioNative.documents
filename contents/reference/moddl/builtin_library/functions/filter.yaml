@@ -1,0 +1,37 @@
+function:
+  name: filter
+  desc: |
+    配列の各要素のうち、関数で表された条件を満たすものだけを含む新たな配列を得ます。
+
+  typeParams:
+    -
+      name: Elem
+      type: \*
+
+  params:
+    -
+      name: '`source`'
+      type: Elem[]
+      required: true
+      desc: |
+        変換元の配列。
+    -
+      name: '`predicate`'
+      type: Elem -> Number
+      required: true
+      desc: |
+        `source` の各要素に適用する関数。
+        
+        要素を結果に含める場合は truthy な値を、含めない場合は falsy な値を返します。
+
+  value:
+    type: Elem[]
+    desc: |
+      結果の配列。
+
+  examples:
+    - |
+      ```
+      [0, 1, 2, 3, 4]~filter(x -> x % 2 == 0)
+      // ==> [0, 2, 4]
+      ```

@@ -1,0 +1,9 @@
+toc:
+  title: |
+    定数
+  items:
+    - 'true'
+    - 'false'
+    - 'pi'
+    - 'tau'
+    - 'e'

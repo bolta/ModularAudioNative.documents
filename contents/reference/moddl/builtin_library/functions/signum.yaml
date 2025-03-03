@@ -1,0 +1,30 @@
+function:
+  name: signum
+  desc: |
+    符号を求めます。
+
+  typeParams:
+    -
+      name: Value
+      type: Number | ModuleDef
+
+  params:
+    -
+      name: '`arg`'
+      type: Value
+      required: true
+      # default:
+      #   value: 0
+      desc: |
+        任意の数値。
+
+  value:
+    type: Value
+    desc: |
+      `arg` の符号が正なら 1、0 なら 0、負なら -1。
+
+  details:
+    - |
+      この関数は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+
+      TODO リンクを正しく張る

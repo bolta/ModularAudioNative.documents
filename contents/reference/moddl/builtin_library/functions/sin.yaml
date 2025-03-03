@@ -1,0 +1,30 @@
+function:
+  name: sin
+  desc: |
+    正弦を求めます。
+
+  typeParams:
+    -
+      name: Value
+      type: Number | ModuleDef
+
+  params:
+    -
+      name: '`arg`'
+      type: Value
+      required: true
+      # default:
+      #   value: 0
+      desc: |
+        角度（ラジアン単位）。
+
+  value:
+    type: Value
+    desc: |
+      `arg` に対する正弦。
+
+  details:
+    - |
+      この関数は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+
+      TODO リンクを正しく張る

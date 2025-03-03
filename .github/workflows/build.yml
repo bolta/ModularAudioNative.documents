@@ -2,9 +2,10 @@ name: Rust
 
 on:
   push:
-    branches: [ "master", "develop" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "master", "develop" ]
+    branches: [ "develop" ]
+  workflow_dispatch:
 
 env:
   CARGO_TERM_COLOR: always
@@ -13,6 +14,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    environment: page-updater
 
     steps:
     - uses: actions/checkout@v4
@@ -20,11 +24,17 @@ jobs:
       run: |
         sudo apt-get install pandoc
         bin/build.sh
-      # run: cargo build --verbose
-    # - name: Run tests
-    #   run: cargo test --verbose
     - name: Upload 
       uses: actions/upload-artifact@v4
       with:
         name: moddl_docs
         path: target_doc/
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        # github_token: ${{ secrets.GITHUB_TOKEN }}
+        personal_token: ${{ secrets.PERSONAL_TOKEN }}
+        external_repository: bolta/bolta.github.io
+        publish_branch: main
+        publish_dir: target_doc/
+        destination_dir: moddl/v0.1.0/docs/develop/

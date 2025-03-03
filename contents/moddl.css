@@ -1,37 +1,61 @@
 body {
 	padding: 1em;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+h1, h2, h3 {
+	margin-left: -8px;
+	margin-right: -8px;
 }
 
 h1 {
 	color: white;
 	background-color: #000080;
 	padding: 0.25em;
-	padding-left: 0.5em;
+	padding-left: 10px;
 }
 h2 {
 	color: white;
 	background-color: #4040c0;
 	padding: 0.25em;
-	padding-left: 0.5em;
+	padding-left: 10px;
 }
 h3 {
 	color: white;
 	background-color: #8080ff;
 	padding: 0.25em;
-	padding-left: 0.5em;
+	padding-left: 10px;
 }
 
 .title-type {
 	/*color: red;*/
 	font-size: 50%;
 	color: #c0c0ff;
-	margin-left: 0.5em;
-	margin-right: 0.5em;
+	margin-right: 0.25em;
 }
 
 table, th, td {
 	border-style: solid;
 	border-width: 1px;
+}
+table {
+	min-width: 300px;
+}
+th {
+	background-color: #e0e0ff;
+}
+th, td {
+	min-width: 50px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+th :has(br), td :has(br) {
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+th p, td p {
+	margin: 0px;
 }
 
 .caution:before {

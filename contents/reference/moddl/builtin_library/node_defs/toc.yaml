@@ -1,0 +1,51 @@
+toc:
+  title: |
+    ノード定義
+  items:
+    -
+      section: 波形生成
+      items:
+        - pulseOsc
+        - sineOsc
+        - sawOsc
+        - triangleOsc
+        - phase
+        - uniformNoise
+        - waveformPlayer
+    -
+      section: フィルタ
+      items:
+        - bpf
+        - hpf
+        - lpf
+    -
+      section: エンベロープジェネレータ
+      items:
+        - adsrEnv
+        - expEnv
+    # -
+    #   section: ステレオ
+    #   items:
+    #     - pan
+    -
+      section: 遷移
+      items:
+        - glide
+    -
+      section: エフェクト
+      items:
+      #   -
+      #     section: 空間
+      #     items:
+      #       - delay
+      #   -
+      #     section: 歪み
+      #     items:
+      #       - limit
+
+        -
+          section: Lo-Fi
+          items:
+            - quantCrush
+            - sampleCrush
+            - nesFreq

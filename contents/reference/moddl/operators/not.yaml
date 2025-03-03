@@ -1,0 +1,42 @@
+function:
+  name: '!'
+  desc: |
+    数値を真偽値として解釈した上で、その真偽を反転し、Boolean として返します。
+
+  operatorNotation: |
+    `! arg`
+
+  typeParams:
+    -
+      name: (Arg, Result)
+      type: (Number, Boolean)<br>| (ModuleDef, ModuleDef)
+
+  params:
+    -
+      name: '`arg`'
+      type: Arg
+      required: true
+      desc: |
+        項。
+
+  value:
+    type: Result
+    desc: |
+      式の値。
+
+  examples:
+    - |
+      ```
+      [2, 1, 0, -1, -2]~map(x -> ! x)
+      // ==> [-1, -1, 1, 1, 1]
+
+      // Number から真偽値が等しい Boolean への変換
+      [2, 1, 0, -1, -2]~map(x -> !! x)
+      // ==> [1, 1, -1, -1, -1]
+      ```
+
+  details:
+    - |
+      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+
+      TODO リンクを正しく張る

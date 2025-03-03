@@ -104,14 +104,20 @@ def blocks: if type == "object" then
 		"?"
 	end
 elif type == "string" then
-	. | text
+	(. + "\n") | text
 elif type == "number" then
-	. | tostring | text
+	(. | tostring + "\n") | text
 elif type == "array" then
 	map(blocks)
 else
 	empty
 end;
+
+def table:
+	# テーブルの生成を blocks から切り出したいが、テーブル生成中に blocks へ再帰しているのでうまくいかない
+	# （jq では相互再帰を書けないよう？）
+	# そこでテーブルの生成処理は blocks の中に置き、そこで処理させるために table キーをつけて渡すようにする
+	{ table: . } | blocks;
 
 def tableRow: "|" + (map(" " + . + " |") | join(""));
 
@@ -132,7 +138,7 @@ def requirement:
 	end);
 
 # TODO table で書き直す
-def params:
+def nodeDefParams:
 	if . then
 		(["名前", "必須/省略時", "説明"] | tableRow),
 		(["----", "----", "----"] | tableRow),
@@ -148,18 +154,37 @@ def params:
 		"入力はありません。" | paragraph
 	end;
 
+def functionParams:
+	if . then
+		{
+			head: ["名前", "型", "必須/省略時", "説明"],
+			body: map([.name, .type, requirement, .desc])
+		} | table
+	else
+		"引数はありません。" | paragraph
+	end;
+
+def functionTypeParams:
+	{
+		head: ["名前", "型定義"],
+		body: map([.name, .type])
+	} | table;
+
+def functionValue:
+	{
+		head: ["型", "説明"],
+		body: [[.type, .desc]]
+	} | table;
+
 def events:
 	if . then
-		map("* " + (. | text) + "\n")
+		{
+			head: ["種別", "キー", "説明"],
+			body: map([.type, .key, .desc])
+		} | table
 	else
 		"イベントを受け取りません。" | paragraph
 	end;
-
-def table:
-	# テーブルの生成を blocks から切り出したいが、テーブル生成中に blocks へ再帰しているのでうまくいかない
-	# （jq では相互再帰を書けないよう？）
-	# そこでテーブルの生成処理は blocks の中に置き、そこで処理させるために table キーをつけて渡すようにする
-	{ table: . } | blocks;
 
 def constructionParams:
 	{
@@ -180,7 +205,7 @@ def transformTocItems(depth; baseDir): (
 		| (
 			open("li"; { }),
 			if $toc then
-				open("details"; { }),
+				open("details"; { open: "open" }),
 				open("summary"; { }),
 				($key | toLink),
 				close("summary"),
@@ -207,12 +232,25 @@ def transformToc: (
 );
 
 def transformNodeFactory: (
-	(elem("span"; { class: "title-type" }; "node def ") + .name | heading(1)),
+	(if .functionParams then "()" else "" end) as $paren
+	| (elem("span"; { class: "title-type" }; "node def ") + .name + $paren | heading(1)),
 	(.desc),
+	if .functionTypeParams then
+		("関数の型定義" | heading(2)),
+		(.functionTypeParams | functionTypeParams)
+	else
+		empty
+	end,
+	if .functionParams then
+		("関数の引数" | heading(2)),
+		(.functionParams | functionParams)
+	else
+		empty
+	end,
 	("主入力" | heading(2)),
 	(.input | if . | trim == "%noInput" then "入力はありません。\n" else . end | blocks),
 	("パラメータ入力" | heading(2)),
-	(.params | params),
+	(.params | nodeDefParams),
 	("イベント" | heading(2)),
 	(.events | events),
 	("出力" | heading(2)),
@@ -220,6 +258,74 @@ def transformNodeFactory: (
 		(.desc | blocks),
 		(.range | if . then ("範囲" | heading(3)), blocks else empty end)
 	)),
+	if .examples then
+		("使用例" | heading(2)),
+		(.examples | blocks)
+	else
+		empty
+	end,
+	if .details then
+		("詳細" | heading(2)),
+		(.details | blocks)
+	else
+		empty
+	end,
+	""
+);
+
+def transformConstant: (
+	# TODO constant true: Number = 1 のように 1 行にまとめた方が見やすいか
+	(elem("span"; { class: "title-type" }; "constant ") + .name | heading(1)),
+	(.desc),
+	("型" | heading(2)),
+	(.type | blocks),
+	if .value then
+		("値" | heading(2)),
+		(.value | blocks)
+	else
+		empty
+	end,
+	if .details then
+		("詳細" | heading(2)),
+		(.details | blocks)
+	else
+		empty
+	end,
+	""
+);
+
+def transformFunction: (
+	(if .operatorNotation then "operator" else "function" end) as $category
+	| (elem("span"; { class: "title-type" }; $category + " ") + .name | heading(1)),
+	(.desc),
+	if .operatorNotation then
+		("記法" | heading(2)),
+		(.operatorNotation | blocks)
+	else
+		empty
+	end,
+	if .typeParams then
+		("型定義" | heading(2)),
+		(.typeParams | functionTypeParams)
+	else
+		empty
+	end,
+	("引数" | heading(2)),
+	(.params | functionParams),
+	if .constraints then
+		("制約" | heading(2)),
+		(.constraints | blocks)
+	else
+		empty
+	end,
+	("値" | heading(2)),
+	(.value | functionValue),
+	if .examples then
+		("使用例" | heading(2)),
+		(.examples | blocks)
+	else
+		empty
+	end,
 	if .details then
 		("詳細" | heading(2)),
 		(.details | blocks)
@@ -269,8 +375,12 @@ def transformMmlCommand: (
 
 if .toc then
 	.toc | transformToc
-elif .nodeFactory then
+elif .nodeFactory then # TODO nodeDef に変える
 	.nodeFactory | transformNodeFactory
+elif .constant then
+	.constant | transformConstant
+elif .function then
+	.function | transformFunction
 elif .construction then
 	.construction | transformConstruction
 elif .article then

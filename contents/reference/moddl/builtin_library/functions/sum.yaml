@@ -1,0 +1,45 @@
+function:
+  name: sum
+  desc: |
+    配列の全ての要素の総和を求めます。
+
+  typeParams:
+    -
+      name: Elem
+      type: \*<br>`+` 演算子の仕様に従います。
+    -
+      name: Result
+      type: \*<br>`+` 演算子の仕様に従います。
+
+  params:
+    -
+      name: '`source`'
+      type: Elem[]
+      required: true
+      desc: |
+        集計元の配列。
+
+  value:
+    type: Result
+    desc: |
+      `source` の全ての要素の総和。
+
+  examples:
+    - |
+      ```
+      [0, 1, 2, 3, 4, 5, 6]~sum()
+      // ==> 21
+
+      // 加算合成で矩形波を生成する（配列は任意個の連番とする）
+      [0, 1, 2, 3, 4, 5, 6]~map(x -> let k = 2 * x + 1; =f=> (k * f) | sineOsc / k)~sum()
+
+      // 文字列を連結する
+      ["foo", "bar", "baz"]~sum()
+      // ==> "foobarbaz"
+      ```
+
+  details:
+    - |
+      この関数は、配列の全ての要素の間に `+` 演算子を挿入した式と同じ結果を得ます。
+
+      したがって、例に挙げたように、`+` 演算子が対応している型の値の配列であれば同様に扱うことができます。

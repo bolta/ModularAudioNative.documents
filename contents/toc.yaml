@@ -2,6 +2,9 @@ toc:
   title: |
     ModDL/MML 0.1.0 ドキュメント
   items:
-    - reference/toc
+    - overview
+    - environment
     - versioning_policy
     - known_issues
+    - disclaimer
+    - reference/toc
