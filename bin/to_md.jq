@@ -47,6 +47,7 @@ def link(addAttrs; text): elem("a";
 
 def text(linkAttrs): .
 	# 内部リンクを処理（コマンドライン引数で --argjson TITLES '{ "/abs/path/to/json": "title" }' が与えられている必要がある）
+	| gsub("%type\\((?<name>[^)]*)\\)"; "%link(/reference/moddl/data_types/\(.name), _\(.name)_)")
 	| gsub("%constr(?:uction)?\\((?<name>[^)]*)\\)"; "%linkCode(/reference/moddl/constructions/\(.name))")
 	| gsub("%func(?:tion)?\\((?<name>[^)]*)\\)"; "%linkCode(/reference/moddl/builtin_library/functions/\(.name))")
 	| gsub("%oper(?:ator)?\\((?<name>[^)]*)\\)"; "%linkCode(/reference/moddl/operators/\(.name))")
@@ -258,6 +259,26 @@ def transformToc: (
 	""
 );
 
+def transformDataType: (
+	(elem("span"; { class: "title-type" }; "data type ") + .name | heading(1)),
+	(.desc | blocks),
+	("記法" | heading(2)),
+	(.notations | blocks),
+	if .examples then
+		("記述例" | heading(2)),
+		(.examples | blocks)
+	else
+		empty
+	end,
+	if .details then
+		("詳細" | heading(2)),
+		(.details | blocks)
+	else
+		empty
+	end,
+	""
+);
+
 def transformNodeFactory: (
 	(if .functionParams then "()" else "" end) as $paren
 	| (elem("span"; { class: "title-type" }; "node def ") + .name + $paren | heading(1)),
@@ -402,6 +423,8 @@ def transformMmlCommand: (
 
 if .toc then
 	.toc | transformToc
+elif .dataType then
+	.dataType | transformDataType
 elif .nodeFactory then # TODO nodeDef に変える
 	.nodeFactory | transformNodeFactory
 elif .constant then

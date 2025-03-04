@@ -10,24 +10,20 @@ find -name \*.json \
 		(input_filename | sub("^\\./"; "")): ({
 			title: (
 				if has("toc") then
-					# "table of contents: " + .toc.title
 					.toc.title
+				elif has("dataType") then
+					.dataType.name
 				elif has("nodeFactory") then
-					# "node factory: " + .nodeFactory.name
 					.nodeFactory.name
 				elif has("constant") then
-					# "constant: " + .constant.name
 					.constant.name
 				elif has("function") then
-					# "function: " + .function.name
 					.function.name
 				elif has("construction") then
-					# "construction: " + .construction.name
 					.construction.name
 				elif has("article") then
 					.article.title
 				elif has("mmlCommand") then
-					# "MML command: " + .mmlCommand.name
 					.mmlCommand.name
 				else
 					"???"
