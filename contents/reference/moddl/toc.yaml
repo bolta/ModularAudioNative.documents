@@ -3,6 +3,7 @@ toc:
     ModDL リファレンス
   items:
     - features/toc
+    - data_types/toc
     - constructions/toc
     - operators/toc
     - data_types_and_value_notations

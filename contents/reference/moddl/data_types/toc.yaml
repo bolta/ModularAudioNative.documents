@@ -1,0 +1,15 @@
+toc:
+  title: |
+    データ型
+  items:
+    - Number
+    - Boolean
+    - Waveform
+    - TrackSet
+    - QuotedIdentifier
+    - String
+    - Array
+    - Assoc
+    - ModuleDef
+    - NodeDef
+    - Function
