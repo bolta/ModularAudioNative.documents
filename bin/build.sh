@@ -94,6 +94,13 @@ function yamlToJsonCallback {
 }
 transform "$SRC_DIR" "$INTERM_DIR" yamlToJsonCallback
 
+if [ -n "$LOCAL" ] && [ -f "$INTERM_DIR/$CSS_FILENAME" ]; then
+	{
+		echo
+		echo 'body { background-color: #e0e0ff; }'
+	} >> "$INTERM_DIR/$CSS_FILENAME"
+fi
+
 titles=$(./collect_titles.sh "$INTERM_DIR")
 
 JSON_ROOT="$(
@@ -138,13 +145,6 @@ function jsonToHtmlCallback {
 	esac
 }
 transform "$INTERM_DIR" "$DEST_DIR" jsonToHtmlCallback
-
-if [ -n "$LOCAL" ] && [ -f "$DEST_DIR/$CSS_FILENAME" ]; then
-	{
-		echo
-		echo 'body { background-color: #e0e0ff; }'
-	} >> "$DEST_DIR/$CSS_FILENAME"
-fi
 
 # 目次が過不足ないことを検証
 diff=$(diff <(
