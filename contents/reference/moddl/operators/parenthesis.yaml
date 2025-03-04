@@ -3,7 +3,7 @@ function:
   desc: |
     式をグループ化し、評価時の優先度を最高にします。
 
-    関数・メソッドを適用する際の `( )` とは別のものです。
+    関数・メソッドを適用する際の %oper(apply_function), %oper(apply_method) とは別のものです。
 
   operatorNotation: |
     `(value)`
