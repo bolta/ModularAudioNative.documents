@@ -13,7 +13,7 @@ article:
       これに該当するのは以下の演算です：
 
       * 2 項演算子 %oper(power), %oper(multiply), %oper(divide), %oper(remainder), %oper(add), %oper(subtract), %oper(less_than), %oper(less_than_or_equal_to), %oper(equal_to), %oper(not_equal_to), %oper(greater_than_or_equal_to), %oper(greater_than), %oper(and), %oper(or)
-        * ただし、%oper(add) や `==` など、さらに特殊なオーバーロードをもつ演算子も存在します。詳しくはそれぞれの記事を参照してください。
+        * ただし、%oper(add) や %oper(equal_to) など、さらに特殊なオーバーロードをもつ演算子も存在します。詳しくはそれぞれの記事を参照してください。
       * 単項演算子 %oper(not), %oper(negate), %oper(plus)
       * 全ての数値関数。%func(log), %func(sin), %func(abs), %func(round) 等々
 

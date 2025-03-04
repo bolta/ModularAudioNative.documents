@@ -17,6 +17,7 @@ function:
         変換元の配列。
     -
       name: '`predicate`'
+      # 1, -1 以外の数値を返してもいいので Boolean ではない
       type: Elem -> Number
       required: true
       desc: |
