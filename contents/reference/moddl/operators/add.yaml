@@ -33,12 +33,10 @@ function:
 
   details:
     - |
-      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
-
-      TODO リンクを正しく張る
+      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。
 
       その他にも以下のオーバーロードがあります：
 
-      * 少なくとも一方の項が String の場合、String でない側を String に変換した上で連結します。String への変換には、`toString` 関数と同じ規則を用います。
+      * 少なくとも一方の項が String の場合、String でない側を String に変換した上で連結します。String への変換には、%func(toString) 関数と同じ規則を用います。
       * 両方の項が Array の場合、それらを連結します。
       * 両方の項が Assoc の場合、それらをマージします。重複するキーに対しては右側の値が採用されます。

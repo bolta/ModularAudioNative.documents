@@ -12,10 +12,10 @@ article:
 
       これに該当するのは以下の演算です：
 
-      * 2 項演算子 `^`, `*`, `/`, `%`, `+`, `-`, `<`, `<=`, `==`, `!=`, `>=`, `>`, `&&`, `||`
-        * ただし、`+` や `==` など、さらに特殊なオーバーロードをもつ演算子も存在します。詳しくはそれぞれの記事を参照してください。
-      * 単項演算子 `!`, `-`, `+`
-      * 全ての数値関数。`log`, `sin`, `abs`, `round` 等々
+      * 2 項演算子 %oper(power), %oper(multiply), %oper(divide), %oper(remainder), %oper(add), %oper(subtract), %oper(less_than), %oper(less_than_or_equal_to), %oper(equal_to), %oper(not_equal_to), %oper(greater_than_or_equal_to), %oper(greater_than), %oper(and), %oper(or)
+        * ただし、%oper(add) や `==` など、さらに特殊なオーバーロードをもつ演算子も存在します。詳しくはそれぞれの記事を参照してください。
+      * 単項演算子 %oper(not), %oper(negate), %oper(plus)
+      * 全ての数値関数。%func(log), %func(sin), %func(abs), %func(round) 等々
 
 
       引数の型に応じた動作を以下に説明します。
@@ -28,13 +28,13 @@ article:
 
       この演算は、定義フェーズで ModDL インタプリタによって行われます。演奏開始時にはすでに値が確定しているため、演奏フェーズでサンプルごとに演算が行われるようなことはありません。
 
-      他の演算、たとえば `!` のような単項演算であったり、`sin` や `floor` のような関数で表現される演算であっても扱いは同様です。`! true` は定義フェーズで `false`（= `-1`）となり、同様に `sin(0)` は `0` となります。
+      他の演算、たとえば %oper(not) のような単項演算であったり、%func(sin) や %func(floor) のような関数で表現される演算であっても扱いは同様です。`! true` は定義フェーズで `false`（= `-1`）となり、同様に `sin(0)` は `0` となります。
 
       ### 引数の少なくとも 1 つが ModuleDef の場合
 
       一方、演算に ModuleDef が関係する場合は、結果も ModuleDef になります。
 
-      たとえば、`@let :output, sineOsc + sawOsc` という文を考えます。ここでは先ほどの例と異なり、`+` の引数はどちらも ModuleDef となっています（NodeDef も ModuleDef の一種です）。この場合、演算の結果は「入力として `sineOsc` と `sawOsc` の出力を受け取り、それらを足し合わせたものを出力するノードの ModuleDef」となります。
+      たとえば、`@let :output, sineOsc + sawOsc` という文を考えます。ここでは先ほどの例と異なり、%oper(add) の引数はどちらも ModuleDef となっています（NodeDef も ModuleDef の一種です）。この場合、演算の結果は「入力として %nodeDef(sineOsc) と %nodeDef(sawOsc) の出力を受け取り、それらを足し合わせたものを出力するノードの ModuleDef」となります。
 
       <img src="./node_structure_calculation.png" width=50%>
       
@@ -45,9 +45,9 @@ article:
       <img src="./node_structure_and_number_calculation.png" width=50%>
 
 # 
-#       ## 演算子 `+`
+#       ## 演算子 %oper(add)
 # 
-#       演算子 `+` については、前述の Number か ModuleDef かによるオーバーロードに加えて、次のようなオーバーロードが存在します。
+#       演算子 %oper(add) については、前述の Number か ModuleDef かによるオーバーロードに加えて、次のようなオーバーロードが存在します。
 # 
 #       ### 少なくとも一方の引数が String の場合
 # 
@@ -92,9 +92,9 @@ article:
 
       この関数に与える `x` と `y` がともに Number であれば、全ての演算（累乗、加算、平方根）は数値演算となります。したがって定義フェーズだけで計算が完結し、結果は Number となります。
 
-      そうでない場合、たとえば `x` に Number ではなく ModuleDef を与えた場合を考えます。このとき、`x ^ 2` の結果は Number ではなく ModuleDef になります。すると、それに対する加算である `x ^ 2 + y ^ 2` も（`y ^ 2` が Number か ModuleDef かに依らず）ModuleDef になり、さらにはそれを引数とする、最終結果である `sqrt(x ^ 2 + y ^ 2)` までも ModuleDef になります。
+      そうでない場合、たとえば、`x` に Number ではなく ModuleDef を与えた場合を考えます。このとき、`x ^ 2` の結果は Number ではなく ModuleDef になります。すると、それに対する加算である `x ^ 2 + y ^ 2` も（`y ^ 2` が Number か ModuleDef かに依らず）ModuleDef になり、さらにはそれを引数とする、最終結果である `sqrt(x ^ 2 + y ^ 2)` までも ModuleDef になります。
       
-      `y` を ModuleDef にした場合も当然同じ結果になるので、結局 `dist` 関数は組み込みの `+` や `sin` と全く同様にオーバーロードされていることになります。
+      `y` を ModuleDef にした場合も同様の過程を経て同じ結果になるので、結局 `dist` 関数は組み込みの %oper(add) や %func(sin) と全く同様にオーバーロードされていることになります。
 
       このように、基本的な数値演算がオーバーロードされていることに端を発して、より複雑な計算においても自動的にオーバーロードのメリットを享受することができます。
 

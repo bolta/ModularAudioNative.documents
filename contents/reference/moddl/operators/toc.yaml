@@ -16,7 +16,7 @@ toc:
             - apply_method
             - access_entry
             - transform_registers
-            - prefix_register
+            - prefix_registers
         -
           section: 前置
           items:

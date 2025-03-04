@@ -1,6 +1,6 @@
 mmlCommand:
   name: |
-    `{` ... `}`
+    { ... }
   desc: |
     スタックを push/pop します。
   format: |

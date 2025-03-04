@@ -38,5 +38,5 @@ nodeFactory:
 
   details:
     - |
-      `waveformPlayer` はノード定義を提供する関数であり、それ自体はノード定義ではありません。ノード定義を利用するには関数適用の `()` 演算子が必要です。
+      %nodeDef(waveformPlayer) はノード定義を提供する関数であり、それ自体はノード定義ではありません。ノード定義を利用するには関数適用の %oper(apply_function) 演算子が必要です。
 

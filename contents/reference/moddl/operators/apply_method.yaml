@@ -49,4 +49,4 @@ function:
 
   details:
     - |
-      関数適用の糖衣構文であり、`arg1~func(arg2, ...)` は `func(arg1, arg2, ...)` と等価です。
+      関数適用の %oper(apply_function) の糖衣構文であり、`arg1~func(arg2, ...)` は `func(arg1, arg2, ...)` と等価です。

@@ -16,7 +16,9 @@ construction:
     - |
       <!-- TODO もうちょっと詳しく説明 -->
 
-      `ticksPerBar` 文がない場合、1 小節（4 拍）あたり 384 ticks となります。
+      %constr(ticksPerBar) 文がない場合、1 小節（4 拍）あたり 384 ticks となります。
+
+      糖衣構文として %constr(ticksPerBeat) 文があります。
 
     - sample:
         code: |

@@ -33,4 +33,4 @@ construction:
         code: |
           @instrument ^ab, pulseOsc { duty: 0.25 } | lpf { 3000 }* adsrEnv { initial: 0.5, attack: 0.1, decay: 1, sustain: 0.3, release: 0.3 }
         desc: |
-          トラック a, b に、`pulseOsc`, `lpf`, `adsrEnv` で構成されるインストゥルメントを設定します。
+          トラック a, b に、%nodeDef(pulseOsc), %nodeDef(lpf), %nodeDef(adsrEnv) で構成されるインストゥルメントを設定します。

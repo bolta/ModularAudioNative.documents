@@ -1,6 +1,6 @@
 mmlCommand:
   name: |
-    `[` ... `]`
+    [ ... ]
   desc: |
     繰り返し演奏を行います。
   format: |

@@ -1,6 +1,6 @@
 mmlCommand:
   name: |
-    `l`, `L`
+    l, L
   desc: |
     デフォルト音長を設定します。
   format: |

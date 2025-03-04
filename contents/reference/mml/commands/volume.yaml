@@ -1,6 +1,6 @@
 mmlCommand:
   name: |
-    `V`
+    V
   desc: |
     ボリュームを設定します。
   format: |

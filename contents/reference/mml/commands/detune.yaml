@@ -1,6 +1,6 @@
 mmlCommand:
   name: |
-    `@d`
+    \@d
   desc: |
     デチューンを設定します。
   format: |

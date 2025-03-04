@@ -3,7 +3,7 @@ function:
   desc: |
     関数を引数のリストに適用します。
 
-    式をグループ化する `( )` とは別のものです。
+    式をグループ化する %oper(parenthesis) とは別のものです。
 
   operatorNotation: |
     `func(arg1, arg2, ...)`
@@ -58,4 +58,4 @@ function:
         ModDL の関数は副作用をもたないため、0 引数の関数は基本的に定義する意味がありませんが、関数にデフォルト引数が定義されている場合、適用時に明示する引数がなくなることはあります。
 
     - |
-      `func(arg1, arg2, ...)` は `arg1~func(arg2, ...)` と等価です。
+      糖衣構文として %oper(apply_method) があり、`func(arg1, arg2, ...)` は `arg1~func(arg2, ...)` と等価です。

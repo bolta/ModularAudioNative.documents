@@ -14,15 +14,15 @@ article:
           - 結合性
         body:
           -
-            - "`(` ... `)`"
+            - "%oper(parenthesis)"
             - 式のグループ化
             - なし
           -
-            - "`@`, `#(` ... `)`, `@@`<br>`(` ... `)`, `~` ... `(` ... `)`<br>`.`"
+            - "%oper(make_register), %oper(apply_method), %oper(prefix_registers)<br>%oper(apply_function), %oper(apply_method)<br>%oper(access_entry)"
             - ラベル、ラベル変換、ラベルプレフィックス<br>関数呼び出し、メソッド呼び出し<br>プロパティアクセス
             - 左
           -
-            - "`-`, `+`, `!`"
+            - "%oper(negate), %oper(plus), %oper(not)"
             - 符号変換、論理否定
             - 右
           -
@@ -30,30 +30,30 @@ article:
             - ノード引数
             - なし
           -
-            - "`|`"
+            - "%oper(connect)"
             - 接続
             - 左
           -
-            - "`^`"
+            - "%oper(power)"
             - 累乗
             - 右
           -
-            - "`*`, `/`, `%`"
+            - "%oper(multiply), %oper(divide), %oper(remainder)"
             - 乗除算、剰余
             - 左
           -
-            - "`+`, `-`"
+            - "%oper(add), %oper(subtract)"
             - 加減算
             - 左
           -
-            - "`<`, `<=`, `==`, `!=`, `>=`, `>`"
+            - "%oper(less_than), %oper(less_than_or_equal_to), %oper(equal_to), %oper(not_equal_to), %oper(greater_than_or_equal_to), %oper(greater_than)"
             - 大小・等価比較
             - 左
           -
-            - "`&&`"
+            - "%oper(and)"
             - 論理積
             - 左
           -
-            - "`||`"
+            - "%oper(or)"
             - 論理和
             - 左

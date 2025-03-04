@@ -3,7 +3,7 @@ function:
   desc: |
     数値をそのまま返します。
 
-    二項演算子の `+` とは別のものです。
+    二項演算子の %oper(add) とは別のものです。
 
   operatorNotation: |
     `+ arg`
@@ -30,8 +30,6 @@ function:
     - |
       引数が Number または ModuleDef であることを要求しますが、それ以外の作用はありません。
 
-      単項 `-` 演算子との対称性のために設けられています。
+      単項 %oper(negate) 演算子との対称性のために設けられています。
 
-      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
-
-      TODO リンクを正しく張る
+      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。

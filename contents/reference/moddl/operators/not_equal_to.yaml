@@ -33,8 +33,8 @@ function:
 
   details:
     - |
-      `lhs != rhs` は `! (lhs == rhs)` と等価です。
+      %oper(equal_to) 演算子とは論理否定の関係にあり、`lhs != rhs` は `! (lhs == rhs)` と等価です。
 
-      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
+      一部の言語の `!=` 演算子で見られるような、柔軟な比較を行うことはありません（ModDL には `!==` 演算子はありません）。
 
-      TODO リンクを正しく張る
+      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。

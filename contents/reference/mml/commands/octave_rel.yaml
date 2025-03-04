@@ -1,6 +1,6 @@
 mmlCommand:
   name: |
-    `<`, `>`
+    <, >
   desc: |
     オクターブを 1 つ増減します。
   format: |

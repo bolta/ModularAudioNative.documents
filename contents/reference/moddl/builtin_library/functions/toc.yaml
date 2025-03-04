@@ -45,8 +45,8 @@ toc:
       section: 波形
       items:
         - waveMap
-        - waveLoopLength
         - waveIsLooped
+        - waveLoopLength
     -
       section: 型
       items:

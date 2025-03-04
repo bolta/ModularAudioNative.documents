@@ -1,6 +1,6 @@
 mmlCommand:
   name: |
-    `v`
+    v
   desc: |
     ベロシティを設定します。
   format: |

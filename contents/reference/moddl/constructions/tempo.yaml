@@ -14,8 +14,8 @@ construction:
 
   details:
     - |
-      `tempo` 文は全てのトラックに作用します。
+      %constr(tempo) 文は全てのトラックに作用します。
 
-      `tempo` 文がない場合、テンポは 120 bpm となります。
+      %constr(tempo) 文がない場合、テンポは 120 bpm となります。
 
-      テンポを曲の途中で変更する場合は、MML の `t` コマンドを使います。
+      テンポを曲の途中で変更する場合は、MML の %mmlCmd(tempo) コマンドを使います。

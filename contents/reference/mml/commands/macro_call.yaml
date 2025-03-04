@@ -1,6 +1,6 @@
 mmlCommand:
   name: |
-    `$`
+    $
   desc: |
     トラック内で定義済みのマクロを呼び出します。
   format: |

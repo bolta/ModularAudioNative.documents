@@ -21,5 +21,5 @@ article:
 
       groove トラックは、tick タイマーの出力を入力に取り、それに変調を加えたものを出力します。変調を加えた tick タイマーを使うのは、他のトラックを操作するシーケンサです。
 
-      それぞれのトラックを定義するには、`@instrument`, `@effect`, `@groove` の各構築文を使います。
+      それぞれのトラックを定義するには、%constr(instrument), %constr(effect), %constr(groove) の各構築文を使います。
 

@@ -1,6 +1,6 @@
 mmlCommand:
   name: |
-    `r`
+    r
   desc: |
     休符を記述します。
   format: |

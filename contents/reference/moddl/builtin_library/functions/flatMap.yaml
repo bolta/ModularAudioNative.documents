@@ -42,5 +42,5 @@ function:
 
   details:
     - |
-      この関数は、`map` 関数の結果に `flat` 関数を適用するのと同じです。
+      この関数は、%func(map) 関数の結果に %func(flat) 関数を適用するのと同じです。
 

@@ -1,6 +1,6 @@
 mmlCommand:
   name: |
-    `q`
+    q
   desc: |
     音長比（gate rate）を設定します。
   format: |

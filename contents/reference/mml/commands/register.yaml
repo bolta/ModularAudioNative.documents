@@ -1,6 +1,6 @@
 mmlCommand:
   name: |
-    `y`
+    y
   desc: |
     トラックで定義されたレジスタに値を設定します。
   format: |

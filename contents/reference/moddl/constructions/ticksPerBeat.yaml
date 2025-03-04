@@ -14,4 +14,4 @@ construction:
 
   details:
     - |
-      この文は `ticksPerBar` 文の糖衣構文であり、`@ticksPerBeat ticks` は `@ticksPerBar 4 * ticks` と等価です。
+      この文は %constr(ticksPerBar) 文の糖衣構文であり、`@ticksPerBeat ticks` は `@ticksPerBar 4 * ticks` と等価です。

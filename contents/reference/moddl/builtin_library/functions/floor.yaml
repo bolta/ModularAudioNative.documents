@@ -25,8 +25,6 @@ function:
 
   details:
     - |
-      `floor` と `trunc` は、`arg >= 0` のときは同じ結果を返しますが、 `arg < 0` のときは異なる結果を返します。たとえば `floor(-3.5) == -4` に対して `trunc(-3.5) == -3` となります。
+      %func(floor) と %func(trunc) は、`arg >= 0` のときは同じ結果を返しますが、 `arg < 0` のときは異なる結果を返します。たとえば `floor(-3.5) == -4` に対して `trunc(-3.5) == -3` となります。
 
-      この関数は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
-
-      TODO リンクを正しく張る
+      この関数は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。

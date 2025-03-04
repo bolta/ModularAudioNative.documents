@@ -3,7 +3,7 @@ function:
   desc: |
     数値の符号を反転します。
 
-    二項演算子の `-` とは別のものです。
+    二項演算子の %oper(subtract) とは別のものです。
 
   operatorNotation: |
     `- arg`
@@ -28,7 +28,7 @@ function:
 
   details:
     - |
-      この演算子を論理否定のために使わないでください。0 に対しては適切な結果になりません。論理否定演算子 `!` を使ってください。
+      この演算子を論理否定のために使わないでください。0 に対しては適切な結果になりません。論理否定演算子 %oper(not) を使ってください。
 
     - table:
         head:
@@ -59,6 +59,4 @@ function:
 
 
     - |
-      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(overloaded_calculations)」を参照してください。
-
-      TODO リンクを正しく張る
+      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。

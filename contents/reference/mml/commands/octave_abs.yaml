@@ -1,6 +1,6 @@
 mmlCommand:
   name: |
-    `o`
+    o
   desc: |
     オクターブを設定します。
   format: |

@@ -41,12 +41,12 @@ nodeFactory:
 
   details:
     - |
-      `phase` はノード定義を提供する関数であり、それ自体はノード定義ではありません。ノード定義を利用するには関数適用の `()` 演算子が必要です。
+      %nodeDef(phase) はノード定義を提供する関数であり、それ自体はノード定義ではありません。ノード定義を利用するには関数適用の %oper(apply_function) 演算子が必要です。
 
       生成されるノードは、入力される周波数に応じた速度で [0, τ) の範囲で一様に増加を繰り返す値を出力します。
 
-      出力に `sin` などの変換を適用することで、オシレータを実装することができます。
+      出力に %func(sin) などの変換を適用することで、オシレータを実装することができます。
 
     - note:
       - |
-        組み込みのオシレータである `pulseOsc`, `sawOsc`, `sineOsc`, `triangleOsc` は内部で位相を管理しているため、`phase` を使う必要はありません。
+        組み込みのオシレータである %nodeDef(pulseOsc), %nodeDef(sawOsc), %nodeDef(sineOsc), %nodeDef(triangleOsc) は内部で位相を管理しているため、%nodeDef(phase) を使う必要はありません。
