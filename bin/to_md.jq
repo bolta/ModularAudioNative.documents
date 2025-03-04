@@ -18,15 +18,24 @@ def removeDots: gsub("/(\\./)+"; "/") | removeDots_;
 
 def dirname: sub("/+$"; "") | sub("/+[^/]+$"; "");
 def toAbsPath: if startswith("/") then
-	.
+	($JSON_ROOT | gsub("/?$"; "")) + .
 else
 	(input_filename | dirname) + "/" + . | removeDots
+end;
+def toRelPath: if startswith("/") then
+	# ドキュメントルートからのパスを、現在文書からのパスに変換
+	. as $path
+	| input_filename | sub("[^/]*$"; "") as $absCurDir
+	| $absCurDir[($JSON_ROOT | gsub("/?$"; "/")) | length :] as $relCurDirFromJsonRoot
+	| $relCurDirFromJsonRoot | gsub("[^/]+/"; "../") | sub("/$"; "") + $path
+else
+	.
 end;
 
 
 def text: .
 	# 内部リンクを処理（コマンドライン引数で --argjson TITLES '{ "/abs/path/to/json": "title" }' が与えられている必要がある）
-	| gsub("%link\\((?<path>[^)]*)\\)"; "[\($TITLES[.path | toAbsPath + ".json"].title)](\(.path).html)")
+	| gsub("%link\\((?<path>[^)]*)\\)"; "[\($TITLES[.path | toAbsPath + ".json"].title)](\(.path | toRelPath).html)")
 	;
 	
 

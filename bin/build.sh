@@ -96,6 +96,10 @@ transform "$SRC_DIR" "$INTERM_DIR" yamlToJsonCallback
 
 titles=$(./collect_titles.sh "$INTERM_DIR")
 
+JSON_ROOT="$(
+	readlink -f $INTERM_DIR
+)";
+
 function jsonToHtmlCallback {
 	local inDir="$1"
 	local file="$2"
@@ -118,7 +122,7 @@ function jsonToHtmlCallback {
 			title=
 
 			# $titles が絶対パスに基づくので、$inPath も絶対パスにする
-			"$JSON_TO_MD" "$(readlink -f "$inPath")" --argjson TITLES "$titles" \
+			"$JSON_TO_MD" "$(readlink -f "$inPath")" --argjson TITLES "$titles" --arg JSON_ROOT "$JSON_ROOT" \
 			| pandoc -f markdown --mathml -t html -s -c "$cssDir"/"$CSS_FILENAME" --metadata title="$title" \
 			> "$outPath"
 
