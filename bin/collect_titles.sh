@@ -6,8 +6,6 @@ cd "$BASE_DIR"
 find -name \*.json \
 | while read path; do readlink -f "$path"; done \
 | xargs jq '
-
-
 	{
 		(input_filename | sub("^\\./"; "")): ({
 			title: (
@@ -34,7 +32,7 @@ find -name \*.json \
 				else
 					"???"
 				end
-			),
+			) | gsub("\\\\"; ""),
 		} + if has("toc") then
 			.
 		else
