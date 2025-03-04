@@ -13,6 +13,12 @@ JSON_TO_MD="../bin/to_md.jq"
 # 文書置き場のルートにある想定
 CSS_FILENAME=moddl.css
 
+if [ $# -ge 1 ] && [ "$1" == '--local' ]; then
+	LOCAL=1
+else
+	LOCAL=
+fi
+
 for cmd in cargo jq pandoc; do
 	if ! which "$cmd" > /dev/null; then
 		echo "This script requires \"$cmd\" available as a command." >&2
@@ -128,6 +134,13 @@ function jsonToHtmlCallback {
 	esac
 }
 transform "$INTERM_DIR" "$DEST_DIR" jsonToHtmlCallback
+
+if [ -n "$LOCAL" ] && [ -f "$DEST_DIR/$CSS_FILENAME" ]; then
+	{
+		echo
+		echo 'body { background-color: #e0e0ff; }'
+	} >> "$DEST_DIR/$CSS_FILENAME"
+fi
 
 # 目次が過不足ないことを検証
 diff=$(diff <(
