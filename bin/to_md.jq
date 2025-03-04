@@ -32,8 +32,20 @@ else
 	.
 end;
 
+# 入れ子にしてはいけない
+def elem(name; attrs; content): open(name; attrs) + content + close(name);
 
-def text: .
+def linkText: if .text then
+	.text
+else
+	$TITLES[.path | toAbsPath + ".json"].title // "*** document not found"
+end;
+
+def link(addAttrs; text): elem("a";
+		{ href: (.path | toRelPath + ".html") } + addAttrs;
+		text);
+
+def text(linkAttrs): .
 	# 内部リンクを処理（コマンドライン引数で --argjson TITLES '{ "/abs/path/to/json": "title" }' が与えられている必要がある）
 	| gsub("%constr(?:uction)?\\((?<name>[^)]*)\\)"; "%linkCode(/reference/moddl/constructions/\(.name))")
 	| gsub("%func(?:tion)?\\((?<name>[^)]*)\\)"; "%linkCode(/reference/moddl/builtin_library/functions/\(.name))")
@@ -41,14 +53,12 @@ def text: .
 	| gsub("%const(?:ant)?\\((?<name>[^)]*)\\)"; "%linkCode(/reference/moddl/builtin_library/constants/\(.name))")
 	| gsub("%node[Dd]ef\\((?<name>[^)]*)\\)"; "%linkCode(/reference/moddl/builtin_library/node_defs/\(.name))")
 	| gsub("%mml[Cc](?:md|ommand)\\((?<name>[^)]*)\\)"; "%linkCode(/reference/mml/commands/\(.name))")
-	# TODO リンク文言に半角閉じ括弧を使いたい場合は対応できない
-	| gsub("%link\\((?<path>[^,)]*)(?:,\\s*(?<text>[^)]+))?\\)"; "[\(if .text then .text | stderr else $TITLES[.path | toAbsPath + ".json"].title end)](\(.path | toRelPath).html)")
-	| gsub("%linkCode\\((?<path>[^,)]*)(?:,\\s*(?<text>[^)]+))?\\)"; "[`\(if .text then .text | stderr else $TITLES[.path | toAbsPath + ".json"].title | gsub("\\\\"; "") end)`](\(.path | toRelPath).html)")
+	| gsub("%link\\((?<path>[^,)]*)(?:,\\s*(?<text>[^)]+))?\\)"; link(linkAttrs; linkText))
+	| gsub("%linkCode\\((?<path>[^,)]*)(?:,\\s*(?<text>[^)]+))?\\)";
+			link(linkAttrs; "`" + (linkText | gsub("\\\\"; "")) + "`"))
 	;
-	
 
-# 入れ子にしてはいけない
-def elem(name; attrs; content): open(name; attrs) + content + close(name);
+def text: text({ });
 
 def heading(level): [
 	("#" * level) + " " + (. | text),
@@ -209,7 +219,7 @@ def constructionParams:
 		body: map([.name, .type, requirement, .desc])
 	} | table;
 
-def toLink: ("%link(" + . + ")") | text;
+def toLink(linkAttrs): ("%link(" + . + ")") | text(linkAttrs);
 
 def transformTocItems(depth; baseDir): (
 	open("ul"; { class: "toc" }),
@@ -224,7 +234,7 @@ def transformTocItems(depth; baseDir): (
 			if $toc then
 				open("details"; { open: "open" }),
 				open("summary"; { }),
-				($key | toLink),
+				($key | toLink({ target: "content" })),
 				close("summary"),
 				# リンク先 toc の内容をここに展開する。
 				# リンク先の items のキーを現在の $key のディレクトリで修飾してやる
@@ -234,7 +244,7 @@ def transformTocItems(depth; baseDir): (
 				($entry.section | text),
 				($entry.items | transformTocItems(depth + 1; baseDir))
 			else
-				($key | toLink)
+				($key | toLink({ target: "content" }))
 			end,
 			close("li")
 		)
