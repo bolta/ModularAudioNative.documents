@@ -251,7 +251,7 @@ def transformToc: (
 def transformNodeFactory: (
 	(if .functionParams then "()" else "" end) as $paren
 	| (elem("span"; { class: "title-type" }; "node def ") + .name + $paren | heading(1)),
-	(.desc),
+	(.desc | blocks),
 	if .functionTypeParams then
 		("関数の型定義" | heading(2)),
 		(.functionTypeParams | functionTypeParams)
@@ -293,7 +293,7 @@ def transformNodeFactory: (
 def transformConstant: (
 	# TODO constant true: Number = 1 のように 1 行にまとめた方が見やすいか
 	(elem("span"; { class: "title-type" }; "constant ") + .name | heading(1)),
-	(.desc),
+	(.desc | blocks),
 	("型" | heading(2)),
 	(.type | blocks),
 	if .value then
@@ -314,7 +314,7 @@ def transformConstant: (
 def transformFunction: (
 	(if .operatorNotation then "operator" else "function" end) as $category
 	| (elem("span"; { class: "title-type" }; $category + " ") + .name | heading(1)),
-	(.desc),
+	(.desc | blocks),
 	if .operatorNotation then
 		("記法" | heading(2)),
 		(.operatorNotation | blocks)
@@ -354,7 +354,7 @@ def transformFunction: (
 
 def transformConstruction: (
 	(elem("span"; { class: "title-type" }; "construction ") + .name | heading(1)),
-	(.desc),
+	(.desc | blocks),
 	("パラメータ" | heading(2)),
 	(.params | constructionParams),
 	("詳細" | heading(2)),
@@ -376,7 +376,7 @@ def mmlCommandParams:
 
 def transformMmlCommand: (
 	(elem("span"; { class: "title-type" }; "MML command ") + .name | heading(1)),
-	(.desc),
+	(.desc | blocks),
 	("書式" | heading(2)),
 	(.format | blocks),
 	if .params then
