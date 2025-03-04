@@ -43,7 +43,7 @@ def text: .
 	| gsub("%mml[Cc](?:md|ommand)\\((?<name>[^)]*)\\)"; "%linkCode(/reference/mml/commands/\(.name))")
 	# TODO リンク文言に半角閉じ括弧を使いたい場合は対応できない
 	| gsub("%link\\((?<path>[^,)]*)(?:,\\s*(?<text>[^)]+))?\\)"; "[\(if .text then .text | stderr else $TITLES[.path | toAbsPath + ".json"].title end)](\(.path | toRelPath).html)")
-	| gsub("%linkCode\\((?<path>[^,)]*)(?:,\\s*(?<text>[^)]+))?\\)"; "[`\(if .text then .text | stderr else $TITLES[.path | toAbsPath + ".json"].title end)`](\(.path | toRelPath).html)")
+	| gsub("%linkCode\\((?<path>[^,)]*)(?:,\\s*(?<text>[^)]+))?\\)"; "[`\(if .text then .text | stderr else $TITLES[.path | toAbsPath + ".json"].title | gsub("\\\\"; "") end)`](\(.path | toRelPath).html)")
 	;
 	
 

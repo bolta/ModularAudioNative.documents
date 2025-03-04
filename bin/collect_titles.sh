@@ -32,7 +32,7 @@ find -name \*.json \
 				else
 					"???"
 				end
-			) | gsub("\\\\"; ""),
+			),
 		} + if has("toc") then
 			.
 		else
