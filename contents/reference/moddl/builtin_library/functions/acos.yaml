@@ -20,7 +20,7 @@ function:
 
   constraints: |
     ```
-    -1 <=arg && arg <= 1
+    -1 <= arg && arg <= 1
     ```
 
   value:

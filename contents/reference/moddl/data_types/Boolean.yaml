@@ -2,7 +2,7 @@ dataType:
   name: Boolean
   desc:
     - |
-      %type(Number) 型の部分集合であり、**真偽値**を表す必要最小限の値だけを含む型です。
+      %type(Number) 型の部分集合であり、**真偽値**の代表である %const(true), %const(false) だけを含む型です。
 
       正式な型ではなく、仕様を記述する目的にのみ使われます。
 
