@@ -421,6 +421,7 @@ def transformMmlCommand: (
 	""
 );
 
+# (input_filename[($JSON_ROOT | gsub("/?$"; "/")) | length : -(".json" | length)] | "`" + . + "`" | paragraph),
 if .toc then
 	.toc | transformToc
 elif .dataType then
