@@ -262,7 +262,7 @@ def transformToc: (
 def transformDataType: (
 	(elem("span"; { class: "title-type" }; "data type ") + .name | heading(1)),
 	(.desc | blocks),
-	("記法" | heading(2)),
+	("値の記法" | heading(2)),
 	(.notations | blocks),
 	if .examples then
 		("記述例" | heading(2)),
