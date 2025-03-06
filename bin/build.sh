@@ -97,7 +97,7 @@ transform "$SRC_DIR" "$INTERM_DIR" yamlToJsonCallback
 if [ -n "$LOCAL" ] && [ -f "$INTERM_DIR/$CSS_FILENAME" ]; then
 	{
 		echo
-		echo 'body { background-color: #e0e0ff; }'
+		echo 'body { background-color: #ffe0f0; }'
 	} >> "$INTERM_DIR/$CSS_FILENAME"
 fi
 
