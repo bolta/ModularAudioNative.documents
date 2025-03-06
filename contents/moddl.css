@@ -40,6 +40,11 @@ table, th, td {
 }
 table {
 	min-width: 300px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+table table {
+	border-collapse: collapse;
 }
 th {
 	background-color: #e0e0ff;
