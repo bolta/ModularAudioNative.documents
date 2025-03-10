@@ -422,17 +422,22 @@ def transformMmlCommand: (
 );
 
 def breadcrumb:
-	open("p"; { class: "breadcrumb" }),
-	([
-		input_filename[($JSON_ROOT | gsub("/?$"; "/")) | length : -(".json" | length)] as $path
-		| $path | split("/") as $pathElems
-		| (
-			range(1; $pathElems | length)
-			| ($pathElems[0 : .] | join("/") | "/" + . + "/toc")
-		), "/" + $path
-		| toLink({ })
-	] | join(" / ")),
-	close("p");
+	input_filename[($JSON_ROOT | gsub("/?$"; "/")) | length : -(".json" | length)] as $path
+	| if $path == "toc" then
+		empty
+	else
+		open("p"; { class: "breadcrumb" }),
+		"/ ",
+		([
+			$path | split("/") as $pathElems
+			| (
+				range(1; $pathElems | length)
+				| ($pathElems[0 : .] | join("/") | "/" + . + "/toc")
+			), if $pathElems[-1] == "toc" then empty else "/" + $path end
+			| toLink({ })
+		] | join(" / ")),
+		close("p")
+	end;
 
 # (input_filename[($JSON_ROOT | gsub("/?$"; "/")) | length : -(".json" | length)] | "`" + . + "`" | paragraph),
 breadcrumb,
