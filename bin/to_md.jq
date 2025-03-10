@@ -421,7 +421,21 @@ def transformMmlCommand: (
 	""
 );
 
+def breadcrumb:
+	open("p"; { class: "breadcrumb" }),
+	([
+		input_filename[($JSON_ROOT | gsub("/?$"; "/")) | length : -(".json" | length)] as $path
+		| $path | split("/") as $pathElems
+		| (
+			range(1; $pathElems | length)
+			| ($pathElems[0 : .] | join("/") | "/" + . + "/toc")
+		), "/" + $path
+		| toLink({ })
+	] | join(" / ")),
+	close("p");
+
 # (input_filename[($JSON_ROOT | gsub("/?$"; "/")) | length : -(".json" | length)] | "`" + . + "`" | paragraph),
+breadcrumb,
 if .toc then
 	.toc | transformToc
 elif .dataType then
