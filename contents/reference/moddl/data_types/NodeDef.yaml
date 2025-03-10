@@ -1,0 +1,25 @@
+dataType:
+  name: NodeDef
+  desc:
+    - |
+      **ノード定義**を表す型です。
+
+      ノード定義とはモジュール定義の特別な場合であり、そこから生成されるモジュールが単体のノードであるものです。
+
+      ノード定義以外のモジュール定義と異なり、%oper(set_node_params) 演算子を使ってパラメータ入力を指定することができます。
+
+      %type(NodeDef) 型は %type(ModuleDef) 型の部分型です。
+
+  notations:
+    - |
+      %link(/reference/moddl/builtin_library/node_defs/toc, 組み込みライブラリに収録されたノード定義)は、全て %type(NodeDef) 型の値です。
+
+      これ以外のノード定義を新規に作り出す方法は、現時点ではありません。
+
+      %type(NodeDef) 型の値に %oper(set_node_params) 演算子を適用した結果は、（%type(ModuleDef) 型の値ではありますが）%type(NodeDef) 型の値ではありません。
+
+  details:
+    - |
+      モジュール定義に関する詳細は「%link(/reference/moddl/features/nodes_and_modules)」を参照してください。
+
+

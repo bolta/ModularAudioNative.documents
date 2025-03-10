@@ -9,8 +9,9 @@ toc:
       items:
         - parenthesis
         -
-          section: 後置
+          section: 単項（後置）
           items:
+            - set_node_params
             - make_register
             - apply_function
             - apply_method
@@ -18,13 +19,13 @@ toc:
             - transform_registers
             - prefix_registers
         -
-          section: 前置
+          section: 単項（前置）
           items:
             - negate
             - plus
             - not
         -
-          section: 二項
+          section: 二項（中置）
           items:
             - connect
             - power
