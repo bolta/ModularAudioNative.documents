@@ -5,9 +5,10 @@ body {
 }
 p.breadcrumb {
 	font-size: small;
+	margin: 0px;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
 	margin-left: -8px;
 	margin-right: -8px;
 }
@@ -29,6 +30,13 @@ h3 {
 	background-color: #8080ff;
 	padding: 0.25em;
 	padding-left: 10px;
+}
+h4 {
+	color: #303040;
+	background-color: #c0c0ff;
+	padding: 0px;
+	padding-left: 10px;
+	margin-bottom: 4px;
 }
 
 .title-type {
