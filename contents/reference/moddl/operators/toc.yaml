@@ -4,42 +4,99 @@ toc:
   items:
     - overloaded_calculations
     - precedence
+# -
+#   section: 演算子の一覧
+#   items:
+#     - parenthesis
+#     - if
+#     - function
+#     - input_ref
+#     - let
+#     -
+#       section: 後置
+#       items:
+#         - set_node_params
+#         - make_register
+#         - apply_function
+#         - apply_method
+#         - access_entry
+#         - transform_registers
+#         - prefix_registers
+#     -
+#       section: 前置
+#       items:
+#         - negate
+#         - plus
+#         - not
+#     -
+#       section: 中置
+#       items:
+#         - connect
+#         - power
+#         - multiply
+#         - divide
+#         - remainder
+#         - add
+#         - subtract
+#         - less_than
+#         - less_than_or_equal_to
+#         - equal_to
+#         - not_equal_to
+#         - greater_than_or_equal_to
+#         - greater_than
+#         - and
+#         - or
     -
       section: 演算子の一覧
       items:
-        - parenthesis
         -
-          section: 単項（後置）
+          section: モジュール構築
           items:
+            - connect
             - set_node_params
+            - input_ref
             - make_register
-            - apply_function
-            - apply_method
-            - access_entry
             - transform_registers
             - prefix_registers
         -
-          section: 単項（前置）
+          section: 算術
           items:
             - negate
             - plus
-            - not
-        -
-          section: 二項（中置）
-          items:
-            - connect
             - power
             - multiply
             - divide
             - remainder
             - add
             - subtract
+        -
+          section: 比較
+          items:
             - less_than
             - less_than_or_equal_to
             - equal_to
             - not_equal_to
             - greater_than_or_equal_to
             - greater_than
+        -
+          section: 論理
+          items:
+            - if
             - and
             - or
-
+            - not
+        -
+          section: 関数
+          items:
+            # - function
+            - apply_function
+            - apply_method
+        -
+          section: データ構造
+          items:
+            - access_entry
+        -
+          section: 補助
+          items:
+            - parenthesis
+            - let

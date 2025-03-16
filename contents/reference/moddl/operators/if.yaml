@@ -1,0 +1,58 @@
+function:
+  name: 'if'
+  desc: |
+    条件分岐を行います。
+
+  operatorNotation: |
+    `if cond then thenValue else elseValue`
+
+  typeParams:
+    -
+      name: ThenValue
+      type: \*
+    -
+      name: ElseValue
+      type: \*
+
+  params:
+    -
+      name: '`cond`'
+      type: Number | ModuleDef
+      required: true
+      desc: |
+        条件。真偽値として解釈されます。
+    -
+      name: '`thenValue`'
+      type: ThenValue
+      required: true
+      desc: |
+        `cond` が truthy である場合の値。
+    -
+      name: '`elseValue`'
+      type: ElseValue
+      required: true
+      desc: |
+        `cond` が falsy である場合の値。
+
+
+  value:
+    type: ThenValue | ElseValue
+    desc: |
+      `cond` の値に応じた、`thenValue` か `elseValue` のいずれかの値。
+
+  # examples:
+  #   - |
+
+  details:
+    - |
+      `else` 以降は式が一続きに解釈できる限り、全て `elseValue` として解釈されます。このため、望む結果を得るために括弧が必要になる場合があります：
+
+      ```
+      // sineOsc か triangleOsc * 2 が得られる
+      if cond then sineOsc else triangleOsc * 2
+
+      // sineOsc * 2 か triangleOsc * 2 が得られる
+      (if cond then sineOsc else triangleOsc) * 2
+      ```
+
+      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。

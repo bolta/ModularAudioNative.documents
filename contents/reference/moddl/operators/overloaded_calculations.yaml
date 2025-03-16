@@ -78,11 +78,11 @@ article:
     - |
       ## `if` 式
 
-      `if` 式は、条件式、`then` 式、`else` 式の 3 つの引数を取りますが、このうち条件式の型によって**のみ**オーバーロードされています。
+      %oper(if) 式は、`cond`、`thenValue`、`elseValue` の 3 つの引数を取りますが、このうち `cond` の型によって**のみ**オーバーロードされています。
 
-      条件式が Number の場合、その値を真偽値として解釈したときに真であれば `then` 式の値、偽であれば `else` 式の値が結果となります。`then` 式と `else` 式の型については検証・変換されません（両者の型が異なっていてもかまいません）。この演算は定義フェーズで行われます。
+      `cond` 式が %type(Number) の場合、その値を真偽値として解釈したときに真であれば `thenValue`、偽であれば `elseValue` が結果となります。`thenValue` と `elseValue` の型については検証・変換されません（両者の型が異なっていてもかまいません）。この演算は定義フェーズで行われます。
 
-      条件式が ModuleDef の場合、`then`, `else` 式もそれぞれ ModuleDef として解釈され（Number であれば ModuleDef に変換されます）、条件式の値を真偽値として解釈したときに真であれば `then` 式の出力、偽であれば `else` 式の出力を出力する ModuleDef が結果となります。この場合、条件演算は演奏フェーズでサンプルごとに行われます。
+      `cond` が %type(ModuleDef) の場合、`thenValue`, `elseValue` 式もそれぞれ %type(ModuleDef) として解釈され（%type(Number) であれば %type(ModuleDef) に変換されます）、%type(cond) の値を真偽値として解釈したときに真であれば `thenValue` の出力、偽であれば `elseValue` の出力を出力する %type(ModuleDef) が結果となります。この場合、条件演算は演奏フェーズでサンプルごとに行われます。
 
       ## ユーザ定義関数
 

@@ -1,0 +1,47 @@
+function:
+  name: '= =>'
+  desc: |
+    入力参照（モジュールへの入力を明示的に参照するための変数）を定義します。
+
+  operatorNotation: |
+    `=input=> moduleDef`
+
+  # typeParams:
+  #   -
+  #     name: (Lhs, Rhs, Result)
+  #     type: (Number, Number, Boolean)<br>| (Number, ModuleDef, ModuleDef)<br>| (ModuleDef, (Number | ModuleDef), ModuleDef)
+
+  params:
+    -
+      name: '`input`'
+      type: (Identifier)
+      required: true
+      desc: |
+        入力参照を設定する変数名（式ではありません）。
+
+    -
+      name: '`moduleDef`'
+      type: ModuleDef
+      required: true
+      desc: |
+        モジュール定義。定義中に `input` を用いることができます。
+
+  value:
+    type: ModuleDef
+    desc: |
+      `moduleDef` の値。
+
+  examples:
+    - |
+      以下の例では、2 つのオシレータを、周波数を少しずらして発音させるモジュールを定義します：
+
+      ```
+      let detuneCent = 10;
+      =freq=> freq | sineOsc + (2 ^ (detuneCent / 1200) * freq) | sineOsc
+      ```
+
+  details:
+    - |
+      変数 `input` に設定される値は、%type(ModuleDef) 型の値です。
+
+      使い方の詳細は「%link(/reference/moddl/features/building_modules)」を参照してください。

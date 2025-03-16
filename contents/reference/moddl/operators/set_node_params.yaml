@@ -1,0 +1,37 @@
+function:
+  name: '\{ }'
+  desc: |
+    ノード定義にパラメータ入力を設定します。
+
+  operatorNotation: |
+    `nodeDef { param1, param2, ... }`
+
+  # typeParams:
+  #   -
+  #     name: Value
+  #     type: Number | ModuleDef
+
+  params:
+    -
+      name: '`nodeDef`'
+      type: NodeDef
+      required: true
+      desc: |
+        ノード定義。
+
+    -
+      name: '`param1`, `param2`, ...'
+      type: (Param)
+      required: true
+      desc: |
+        パラメータ入力（）。
+        TODO 詳細記述
+
+  value:
+    type: ModuleDef
+    desc: |
+      パラメータ入力が設定されたノードのモジュール定義。
+
+  details:
+    - |
+      TODO blah blah

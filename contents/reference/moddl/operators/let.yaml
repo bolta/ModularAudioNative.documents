@@ -1,0 +1,80 @@
+function:
+  name: 'let'
+  desc: |
+    ローカル変数を定義します。
+
+  operatorNotation: |
+    `let var = varValue; value`
+
+  typeParams:
+    -
+      name: VarValue
+      type: \*
+    -
+      name: Value
+      type: \*
+
+  params:
+    -
+      name: '`var`'
+      type: (Identifier)
+      required: true
+      desc: |
+        定義する変数の名前（式ではありません）。
+    -
+      name: '`varValue`'
+      type: VarValue
+      required: true
+      desc: |
+        `var` に設定する値。
+    -
+      name: '`value`'
+      type: Value
+      required: true
+      desc: |
+        式の値。定義中に `var` を用いることができます。
+
+
+  value:
+    type: Value
+    desc: |
+      `value` の値。
+
+  examples:
+    - |
+      以下の例では、2 つのオシレータを、周波数を少しずらして発音させるモジュールを定義します。`10` という数値に対して名前をつけることで、その数値の意味と単位を明確にしています：
+
+      ```
+      let detuneCent = 10;
+      =freq=> freq | sineOsc + (2 ^ (detuneCent / 1200) * freq) | sineOsc
+      ```
+
+      %oper(let) 式は連鎖させることができます。これにより、ローカル変数を必要な数だけ定義することができます：
+      
+      ```
+      let osc = pulseOsc { duty: 0.5@duty };
+      let flt = lpf { freq: 10000@cutoff, q: 5 };
+      let env = adsrEnv { attack: 0@attack };
+      osc | flt * env
+      ```
+
+    - note:
+      - |
+        構文上は、%oper(let) 式の `value` の個所がまた %oper(let) 式になった、入れ子構造になっています。
+
+
+  details:
+    - |
+      `;` 以降は式が一続きに解釈できる限り、全て `value` として解釈されます。したがって、その全体でローカル変数が有効になります。このことは通常問題になりませんが、%oper(let) 式全体を %oper(parenthesis) で囲むことで、ローカル変数のスコープを明示的にコントロールすることもできます。
+      
+      以下の式は、%oper(parenthesis) を使って `var2` の有効範囲を限定しています。`anotherCalc` の個所で `var2` を使おうとするとエラーになります：
+
+      ```
+      let var1 = var1Value;
+      (
+        let var2 = var2Value;
+        someCalc(var1, var2)
+      ) | anotherCalc(var1)
+      ```
+
+      `let var = varValue; value` は `(var -> value)(varValue)` の糖衣構文です。
