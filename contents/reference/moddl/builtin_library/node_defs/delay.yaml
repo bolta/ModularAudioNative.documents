@@ -1,0 +1,55 @@
+nodeFactory:
+  name: delay
+  desc: |
+    入力を遅延させて出力します。出力を入力にフィードバックさせることもできます。
+
+  functionParams:
+    -
+      name: '`maxTime`'
+      type: Number
+      required: true
+      desc: |
+        ディレイタイムの最大値。単位は秒です。
+
+  input: |
+    任意の信号を受け取ります。
+
+  params:
+    -
+      name: '`time`'
+      default:
+        value: '`maxTime`'
+      desc: |
+        ディレイタイム。単位は秒です。
+    -
+      name: '`feedback`'
+      default:
+        value: '`0`'
+      desc: |
+        フィードバックレベル。通常 `1` 未満にします。
+
+  events:
+
+  output:
+    desc: |
+      `time` 秒前の入力に、`time` 秒前の出力の `feedback` 倍を加えたもの。
+
+  examples:
+    - |
+      ```
+      @let :delayTime, 0.5
+
+      // delay の出力には原音は含まれないため、遅れた音しか出力されない
+      @instrument ^a, (pulseOsc * adsrEnv) | delay(delayTime) { feedback: 0.95 }
+
+      // 原音と遅れた音を混合する
+      @instrument ^a, (pulseOsc * adsrEnv) | delay(delayTime) { feedback: 0.95 }~dryWet(wet: 0.5)
+      ```
+
+  details:
+    - |
+      `time` は演奏中に変更することができますが、構築時に設定した `maxTime` の値を超えることはできません。
+
+      `feedback` が `0` でない場合、入力波形は `time` 秒が経過するごとに `feedback` 倍の振幅で繰り返されます。
+
+      %nodeDef(delay) の出力には、入力波形は含まれません。このため、単体で使うと遅れた波形だけが出力されます。出力に入力自体を含めたい場合は、%func(dryWet) 関数を併用してください。

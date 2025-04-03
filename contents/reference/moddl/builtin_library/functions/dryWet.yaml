@@ -1,0 +1,57 @@
+function:
+  name: dryWet
+  desc: |
+    エフェクトに dry/wet 混合機能を付与します。
+
+  typeParams:
+    -
+      name: Dry
+      type: Number | ModuleDef
+    -
+      name: Wet
+      type: Number | ModuleDef
+
+  params:
+    -
+      name: '`effect`'
+      type: ModuleDef
+      required: true
+      desc: |
+        エフェクトのモジュール定義。
+    -
+      name: '`dry`'
+      type: Dry
+      default:
+        value: '`1`'
+      desc: |
+        ドライレベル（`effect` を通す前の波形のレベル）。
+    -
+      name: '`wet`'
+      type: Wet
+      default:
+        value: '`1`'
+      desc: |
+        ウェットレベル（`effect` を通した波形のレベル）。
+
+  value:
+    type: ModuleDef
+    desc: |
+      `effect` を通す前の波形と通した後の波形を混合して出力するエフェクト。
+  
+  examples:
+    - |
+      ```
+      @let :delayTime, 0.5
+
+      // delay の出力には原音は含まれないため、遅れた音しか出力されない
+      @instrument ^a, (pulseOsc * adsrEnv) | delay(delayTime) { feedback: 0.95 }
+
+      // 原音と遅れた音を混合する
+      @instrument ^a, (pulseOsc * adsrEnv) | delay(delayTime) { feedback: 0.95 }~dryWet(wet: 0.5)
+      ```
+
+  details:
+    - |
+      %func(dryWet) は、エフェクトを引数に取り、エフェクトを返します。
+
+      %func(dryWet) を使うと、任意のエフェクトの入力と出力を任意のバランスで混合することができます。これにより、個々のエフェクトの実装に当たっては、出力に原音を含めたり、そのレベルを調節したりする必要はなく、常に加工後の音だけを出力することに専念できます。

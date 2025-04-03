@@ -48,6 +48,10 @@ toc:
         - waveIsLooped
         - waveLoopLength
     -
+      section: エフェクト
+      items:
+        - dryWet
+    -
       section: 型
       items:
         - type
