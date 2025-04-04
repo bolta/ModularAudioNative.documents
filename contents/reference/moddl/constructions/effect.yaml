@@ -7,7 +7,7 @@ construction:
     -
       name: |
         `tracks`
-      type: TrackSet
+      type: '%type(TrackSet)'
       required: true
       desc: |
         定義する対象のトラックを指定します。
@@ -17,7 +17,7 @@ construction:
     -
       name: |
         `sources`
-      type: TrackSet
+      type: '%type(TrackSet)'
       required: true
       desc: |
         入力となるトラックを指定します。
@@ -25,7 +25,7 @@ construction:
     -
       name: |
         `effect`
-      type: ModuleDef
+      type: '%type(ModuleDef)'
       required: true
       desc: |
         `sources` のトラック群に適用するエフェクトを定義します。

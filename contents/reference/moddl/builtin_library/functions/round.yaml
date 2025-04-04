@@ -6,7 +6,7 @@ function:
   typeParams:
     -
       name: Value
-      type: Number | ModuleDef
+      type: '%type(Number) | %type(ModuleDef)'
 
   params:
     -
@@ -27,4 +27,4 @@ function:
 
   details:
     - |
-      この関数は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。
+      この関数は %type(Number) と %type(ModuleDef) に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。

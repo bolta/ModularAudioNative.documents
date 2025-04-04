@@ -11,7 +11,7 @@ function:
   typeParams:
     -
       name: Value
-      type: Number | ModuleDef
+      type: '%type(Number) | %type(ModuleDef)'
 
   params:
     -
@@ -28,8 +28,8 @@ function:
 
   details:
     - |
-      引数が Number または ModuleDef であることを要求しますが、それ以外の作用はありません。
+      引数が %type(Number) または %type(ModuleDef) であることを要求しますが、それ以外の作用はありません。
 
       単項 %oper(negate) 演算子との対称性のために設けられています。
 
-      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。
+      この演算子は %type(Number) と %type(ModuleDef) に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。

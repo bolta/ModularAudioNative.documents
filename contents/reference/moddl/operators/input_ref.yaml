@@ -9,7 +9,7 @@ function:
   # typeParams:
   #   -
   #     name: (Lhs, Rhs, Result)
-  #     type: (Number, Number, Boolean)<br>| (Number, ModuleDef, ModuleDef)<br>| (ModuleDef, (Number | ModuleDef), ModuleDef)
+  #     type: (%type(Number), %type(Number), Boolean)<br>| (%type(Number), %type(ModuleDef), ModuleDef)<br>| (ModuleDef, (%type(Number) | ModuleDef), ModuleDef)
 
   params:
     -
@@ -21,13 +21,13 @@ function:
 
     -
       name: '`moduleDef`'
-      type: ModuleDef
+      type: '%type(ModuleDef)'
       required: true
       desc: |
         モジュール定義。定義中に `input` を用いることができます。
 
   value:
-    type: ModuleDef
+    type: '%type(ModuleDef)'
     desc: |
       `moduleDef` の値。
 

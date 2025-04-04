@@ -7,7 +7,7 @@ construction:
     -
       name: |
         `vars`
-      type: Assoc
+      type: '%type(Assoc)'
       required: true
       desc: |
         定義する変数の名前と値を記述した連想配列を指定します。

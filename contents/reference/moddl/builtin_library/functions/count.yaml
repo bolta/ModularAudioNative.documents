@@ -6,7 +6,7 @@ function:
   # typeParams:
   #   -
   #     name: Value
-  #     type: Number | ModuleDef
+  #     type: '%type(Number) | %type(ModuleDef)'
 
   params:
     -
@@ -19,7 +19,7 @@ function:
         任意の配列または連想。
 
   value:
-    type: Number
+    type: '%type(Number)'
     desc: |
       `coll` が配列の場合はその要素数、連想の場合はそのエントリ数。
 

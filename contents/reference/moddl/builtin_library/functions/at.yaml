@@ -19,7 +19,7 @@ function:
         任意の配列。
     -
       name: '`index`'
-      type: Number
+      type: '%type(Number)'
       required: true
       # default:
       #   value: 0

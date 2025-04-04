@@ -9,7 +9,7 @@ function:
   typeParams:
     -
       name: (Arg, Result)
-      type: (Number, Boolean)<br>| (ModuleDef, ModuleDef)
+      type: (%type(Number), Boolean)<br>| (ModuleDef, ModuleDef)
 
   params:
     -
@@ -37,4 +37,4 @@ function:
 
   details:
     - |
-      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。
+      この演算子は %type(Number) と %type(ModuleDef) に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。

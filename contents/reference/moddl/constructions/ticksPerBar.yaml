@@ -7,7 +7,7 @@ construction:
     -
       name: |
         `ticks`
-      type: Number
+      type: '%type(Number)'
       required: true
       desc: |
         1 小節（4 拍）あたりの tick 数を指定します。

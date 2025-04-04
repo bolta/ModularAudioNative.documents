@@ -7,7 +7,7 @@ construction:
     -
       name: |
         `name`
-      type: QuotedIdentifier
+      type: '%type(QuotedIdentifier)'
       required: true
       desc: |
         定義する変数の名前を指定します。

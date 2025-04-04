@@ -17,7 +17,7 @@ function:
   params:
     -
       name: '`cond`'
-      type: Number | ModuleDef
+      type: '%type(Number) | %type(ModuleDef)'
       required: true
       desc: |
         条件。真偽値として解釈されます。
@@ -55,4 +55,4 @@ function:
       (if cond then sineOsc else triangleOsc) * 2
       ```
 
-      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。
+      この演算子は %type(Number) と %type(ModuleDef) に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。

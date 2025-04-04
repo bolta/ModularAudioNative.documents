@@ -9,7 +9,7 @@ function:
   typeParams:
     -
       name: (Lhs, Rhs, Result)
-      type: (Number, Number, Boolean)<br>| (Number, ModuleDef, ModuleDef)<br>| (ModuleDef, (Number | ModuleDef), ModuleDef)
+      type: (%type(Number), %type(Number), Boolean)<br>| (%type(Number), %type(ModuleDef), ModuleDef)<br>| (ModuleDef, (%type(Number) | ModuleDef), ModuleDef)
 
   params:
     -
@@ -37,4 +37,4 @@ function:
 
       また、多くの言語では短絡評価が行われ、`lhs` が falsy であれば `rhs` は評価されませんが、ModDL では短絡評価が行われず `rhs` も評価されます。ただし、純粋な言語である ModDL では、短絡評価の有無が意味のある挙動の違いにつながることは（例外的に副作用を持つ %func(print) などの関数が絡む場合を除き）ありません。
 
-      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。
+      この演算子は %type(Number) と %type(ModuleDef) に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。

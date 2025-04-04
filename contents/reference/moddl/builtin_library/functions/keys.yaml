@@ -6,7 +6,7 @@ function:
   params:
     -
       name: '`assoc`'
-      type: Assoc
+      type: '%type(Assoc)'
       required: true
       desc: |
         任意の連想。

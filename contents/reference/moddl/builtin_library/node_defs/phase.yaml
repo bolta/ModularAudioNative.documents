@@ -6,7 +6,7 @@ nodeFactory:
   functionParams:
     -
       name: '`initial`'
-      type: Number
+      type: '%type(Number)'
       default:
         value: 0
       desc: |

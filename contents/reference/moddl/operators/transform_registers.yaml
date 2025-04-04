@@ -14,7 +14,7 @@ function:
   params:
     -
       name: '`moduleDef`'
-      type: 'ModuleDef | Number'
+      type: '%type(ModuleDef) | %type(Number)'
       required: true
       desc: |
         モジュール定義。
@@ -28,7 +28,7 @@ function:
         ルールの書式は「詳細」を参照してください。
 
   value:
-    type: ModuleDef
+    type: '%type(ModuleDef)'
     desc: |
       `moduleDef` に含まれるレジスタ定義を変換した新たなモジュール定義。
 

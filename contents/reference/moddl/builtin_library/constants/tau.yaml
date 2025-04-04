@@ -2,7 +2,7 @@ constant:
   name: 'tau'
   desc: |
     円周率の 2 倍（τ）です。
-  type: Number
+  type: '%type(Number)'
   value: '6.28318530717958647692528676655900577'
   details: |
     誤差を除き、`2 * pi` に等しい値です。

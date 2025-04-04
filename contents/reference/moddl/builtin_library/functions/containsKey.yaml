@@ -6,19 +6,19 @@ function:
   params:
     -
       name: '`assoc`'
-      type: Assoc
+      type: '%type(Assoc)'
       required: true
       desc: |
         任意の連想。
     -
       name: '`key`'
-      type: String
+      type: '%type(String)'
       required: true
       desc: |
         キー名。
 
   value:
-    type: Boolean
+    type: '%type(Boolean)'
     desc: |
       `assoc` がキー `key` を持つかどうか。
 

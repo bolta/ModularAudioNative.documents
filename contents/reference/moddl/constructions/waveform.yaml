@@ -9,7 +9,7 @@ construction:
     -
       name: |
         `name`
-      type: QuotedIdentifier
+      type: '%type(QuotedIdentifier)'
       required: true
       desc: |
         波形を割り当てる変数の名前を指定します。
@@ -48,7 +48,7 @@ construction:
                   `data` と `path` のどちらか一方だけを必ず記述しなければなりません。
               -
                 - "`sampleRate`"
-                - Number
+                - '%type(Number)'
                 - |
                   サンプルレート [Hz] を指定します。
 
@@ -57,28 +57,28 @@ construction:
                   `path` を記述する場合は省略でき、省略した場合は音声ファイルのサンプルレートが使われます。
               -
                 - "`originalFreq`"
-                - Number
+                - '%type(Number)'
                 - |
                   波形を本来の速度で再生した場合に発生する音の周波数 [Hz] を指定します。
 
                   省略した場合、`o4c` の周波数と見なされます。
               -
                 - "`startOffset`"
-                - Number
+                - '%type(Number)'
                 - |
                   波形の再生を開始する位置 [サンプル] を指定します。
 
                   省略した場合、`0` と見なされます。
               -
                 - "`endOffset`"
-                - Number
+                - '%type(Number)'
                 - |
                   波形の再生を終了する位置 [サンプル] を指定します。
 
                   省略した場合、波形の終点と見なされます。
               -
                 - "`loopOffset`"
-                - Number
+                - '%type(Number)'
                 - |
                   波形をループ再生する場合、再生位置が `endOffset` に達した後に戻る位置 [サンプル] を指定します。
 

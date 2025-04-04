@@ -18,7 +18,7 @@ function:
     -
       name: '`predicate`'
       # 1, -1 以外の数値を返してもいいので Boolean ではない
-      type: Elem -> Number
+      type: Elem -> %type(Number)
       required: true
       desc: |
         `source` の各要素に適用する関数。

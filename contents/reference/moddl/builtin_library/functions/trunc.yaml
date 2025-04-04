@@ -6,7 +6,7 @@ function:
   typeParams:
     -
       name: Value
-      type: Number | ModuleDef
+      type: '%type(Number) | %type(ModuleDef)'
 
   params:
     -
@@ -27,4 +27,4 @@ function:
     - |
       %func(floor) と %func(trunc) は、`arg >= 0` のときは同じ結果を返しますが、 `arg < 0` のときは異なる結果を返します。たとえば `floor(-3.5) == -4` に対して `trunc(-3.5) == -3` となります。
 
-      この関数は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。
+      この関数は %type(Number) と %type(ModuleDef) に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。

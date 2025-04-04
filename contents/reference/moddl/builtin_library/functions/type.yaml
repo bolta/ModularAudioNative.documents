@@ -12,7 +12,7 @@ function:
         任意の値。
 
   value:
-    type: String
+    type: '%type(String)'
     desc: |
       `value` の型の文字列表現。
   
@@ -56,7 +56,7 @@ function:
             - '`"Assoc"`'
           -
             - モジュール定義
-            - '`"ModuleDef"`'
+            - '`"%type(ModuleDef)"`'
           -
             - ノード定義
             - '`"NodeDef"`'

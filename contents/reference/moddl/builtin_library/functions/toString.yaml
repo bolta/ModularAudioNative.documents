@@ -12,7 +12,7 @@ function:
         任意の値。
 
   value:
-    type: String
+    type: '%type(String)'
     desc: |
       `value` の文字列表現。
   

@@ -6,7 +6,7 @@ nodeFactory:
   functionParams:
     -
       name: '`maxTime`'
-      type: Number
+      type: '%type(Number)'
       required: true
       desc: |
         ディレイタイムの最大値。単位は秒です。

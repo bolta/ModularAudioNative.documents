@@ -9,7 +9,7 @@ function:
   typeParams:
     -
       name: (Lhs, Rhs, Result)
-      type: (Number, Number, Number)<br>| (Number, ModuleDef, ModuleDef)<br>| (ModuleDef, (Number | ModuleDef), ModuleDef)<br>| (String, \*, String)<br>| (\*, String, String)<br>| (Array, Array, Array)<br>| (Assoc, Assoc, Assoc)
+      type: (%type(Number), %type(Number), %type(Number))<br>| (%type(Number), %type(ModuleDef), ModuleDef)<br>| (ModuleDef, (%type(Number) | ModuleDef), ModuleDef)<br>| (String, \*, String)<br>| (\*, String, String)<br>| (Array, Array, Array)<br>| (Assoc, Assoc, Assoc)
 
   params:
     -
@@ -33,7 +33,7 @@ function:
 
   details:
     - |
-      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。
+      この演算子は %type(Number) と %type(ModuleDef) に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。
 
       その他にも以下のオーバーロードがあります：
 

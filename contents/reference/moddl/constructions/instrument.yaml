@@ -7,7 +7,7 @@ construction:
     -
       name: |
         `tracks`
-      type: TrackSet
+      type: '%type(TrackSet)'
       required: true
       # default:
       #   value:
@@ -19,7 +19,7 @@ construction:
     -
       name: |
         `instrument`
-      type: ModuleDef
+      type: '%type(ModuleDef)'
       required: true
       # default:
       #   value:

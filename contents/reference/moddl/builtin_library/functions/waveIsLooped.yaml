@@ -6,13 +6,13 @@ function:
   params:
     -
       name: '`waveformData`'
-      type: (Number | Number[])[]
+      type: (%type(Number) | %type(Number)[])[]
       required: true
       desc: |
         波形データを表す配列。
 
   value:
-    type: Boolean
+    type: '%type(Boolean)'
     desc: |
       波形にループが存在するかどうか。
 

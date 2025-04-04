@@ -9,7 +9,7 @@ function:
   typeParams:
     -
       name: (Lhs, Rhs, Result)
-      type: (Number, Number, Boolean)<br>| (Number, ModuleDef, ModuleDef)<br>| (ModuleDef, (Number | ModuleDef), ModuleDef)<br>| (String, String, Boolean)
+      type: (%type(Number), %type(Number), Boolean)<br>| (%type(Number), %type(ModuleDef), ModuleDef)<br>| (ModuleDef, (%type(Number) | ModuleDef), ModuleDef)<br>| (String, String, Boolean)
 
   params:
     -
@@ -37,4 +37,4 @@ function:
 
       一部の言語の `!=` 演算子で見られるような、柔軟な比較を行うことはありません（ModDL には `!==` 演算子はありません）。
 
-      この演算子は Number と ModuleDef に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。
+      この演算子は %type(Number) と %type(ModuleDef) に対してオーバーロードされています。詳細は「%link(/reference/moddl/operators/overloaded_calculations)」を参照してください。

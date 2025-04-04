@@ -6,15 +6,15 @@ function:
   typeParams:
     -
       name: Dry
-      type: Number | ModuleDef
+      type: '%type(Number) | %type(ModuleDef)'
     -
       name: Wet
-      type: Number | ModuleDef
+      type: '%type(Number) | %type(ModuleDef)'
 
   params:
     -
       name: '`effect`'
-      type: ModuleDef
+      type: '%type(ModuleDef)'
       required: true
       desc: |
         エフェクトのモジュール定義。
@@ -34,7 +34,7 @@ function:
         ウェットレベル（`effect` を通した波形のレベル）。
 
   value:
-    type: ModuleDef
+    type: '%type(ModuleDef)'
     desc: |
       `effect` を通す前の波形と通した後の波形を混合して出力するエフェクト。
   

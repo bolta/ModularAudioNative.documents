@@ -7,7 +7,7 @@ construction:
     -
       name: |
         `tempo`
-      type: Number
+      type: '%type(Number)'
       required: true
       desc: |
         テンポを bpm 単位で指定します。

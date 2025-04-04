@@ -8,19 +8,19 @@ function:
   params:
     -
       name: '`waveformData`'
-      type: (Number | Number[])[]
+      type: (%type(Number) | %type(Number)[])[]
       required: true
       desc: |
         波形データを表す配列。
     -
       name: '`mapper`'
-      type: Number -> Number
+      type: '%type(Number) -> %type(Number)'
       required: true
       desc: |
         波形データのサンプルを変換する関数。
 
   value:
-    type: (Number | Number[])[]
+    type: (%type(Number) | %type(Number)[])[]
     desc: |
       波形データを変換した配列。
 

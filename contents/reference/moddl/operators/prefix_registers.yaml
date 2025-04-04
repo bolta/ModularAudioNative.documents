@@ -14,7 +14,7 @@ function:
   params:
     -
       name: '`moduleDef`'
-      type: 'ModuleDef | Number'
+      type: '%type(ModuleDef) | %type(Number)'
       required: true
       desc: |
         モジュール定義。
@@ -28,7 +28,7 @@ function:
         プレフィックスには識別子か、2 つ以上の識別子を `.` でつないだもの（たとえば `foo123.bar456.baz789`）を使うことができます。
 
   value:
-    type: ModuleDef
+    type: '%type(ModuleDef)'
     desc: |
       `moduleDef` に含まれるレジスタ定義にプレフィックスを付与した新たなモジュール定義。
 

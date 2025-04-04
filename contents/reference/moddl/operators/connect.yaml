@@ -9,10 +9,10 @@ function:
   typeParams:
     -
       name: Lhs
-      type: ModuleDef | Number
+      type: '%type(ModuleDef) | %type(Number)'
     -
       name: Rhs
-      type: ModuleDef | Number
+      type: '%type(ModuleDef) | %type(Number)'
 
   params:
     -
@@ -30,7 +30,7 @@ function:
         下流となるモジュール定義。
 
   value:
-    type: ModuleDef
+    type: '%type(ModuleDef)'
     desc: |
       `lhs` と `rhs` を接続した新たなモジュール定義。
 
@@ -57,4 +57,4 @@ function:
       440 | adsrEnv
       ```
 
-      この演算子は ModuleDef と Number に対してオーバーロードされています。引数が Number の場合、定数を出力するノードの ModuleDef に暗黙に変換されます。
+      この演算子は %type(ModuleDef) と %type(Number) に対してオーバーロードされています。引数が %type(Number) の場合、定数を出力するノードの %type(ModuleDef) に暗黙に変換されます。

@@ -9,12 +9,12 @@ function:
   # typeParams:
   #   -
   #     name: Value
-  #     type: Number | ModuleDef
+  #     type: '%type(Number) | %type(ModuleDef)'
 
   params:
     -
       name: '`nodeDef`'
-      type: NodeDef
+      type: '%type(NodeDef)'
       required: true
       desc: |
         ノード定義。
@@ -28,7 +28,7 @@ function:
         TODO 詳細記述
 
   value:
-    type: ModuleDef
+    type: '%type(ModuleDef)'
     desc: |
       パラメータ入力が設定されたノードのモジュール定義。
 

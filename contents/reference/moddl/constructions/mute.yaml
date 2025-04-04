@@ -7,7 +7,7 @@ construction:
     -
       name: |
         `tracks`
-      type: TrackSet
+      type: '%type(TrackSet)'
       required: true
       desc: |
         ミュートするトラックを指定します。
