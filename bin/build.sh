@@ -79,7 +79,7 @@ function yamlToJsonCallback {
 			outPath="$outDir/${file%.*}.json"
 			if [ ! "$inPath" -nt "$outPath" ]; then return; fi
 
-			"$YAML_TO_JSON" "$inPath" > "$outPath"
+			"$YAML_TO_JSON" "$inPath" > "$outPath" || echo "an error occurred on transforming $inPath to JSON"
 
 			echo -n $'\a'
 		;;
