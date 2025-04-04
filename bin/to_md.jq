@@ -41,9 +41,16 @@ else
 	$TITLES[.path | toAbsPath + ".json"].title // "*** document not found"
 end;
 
-def link(addAttrs; text): elem("a";
-		{ href: (.path | toRelPath + ".html") } + addAttrs;
-		text);
+def link(addAttrs; text):
+	# 自分自身へのリンクは張らない。ただしソース上はリンクにしてもよい
+	# （むしろ、%type() など論理マークアップの意味があるリンクは書いた方がよい）
+	if .path | toRelPath + ".json" == (input_filename[$JSON_ROOT | length :] | toRelPath) then
+		text
+	else
+		elem("a";
+			{ href: (.path | toRelPath + ".html") } + addAttrs;
+			text)
+	end;
 
 def text(linkAttrs): .
 	# 内部リンクを処理（コマンドライン引数で --argjson TITLES '{ "/abs/path/to/json": "title" }' が与えられている必要がある）
