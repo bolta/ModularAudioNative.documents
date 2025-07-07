@@ -23,10 +23,10 @@ toc:
       items:
         - adsrEnv
         - expEnv
-    # -
-    #   section: ステレオ
-    #   items:
-    #     - pan
+    -
+      section: ステレオ
+      items:
+        - pan
     -
       section: 遷移
       items:
