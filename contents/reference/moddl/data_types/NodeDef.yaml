@@ -10,9 +10,9 @@ dataType:
 
   notations:
     - |
-      %link(/reference/moddl/builtin_library/node_defs/toc, 組み込みライブラリに収録されたノード定義)は、全て %type(NodeDef) 型の値です。
+      %link(/reference/moddl/builtin_library/node_defs/toc, 組み込みライブラリに「ノード定義」として収録された項目)は全て、%type(NodeDef) 型の値か、%type(NodeDef) 型の値を返す関数です。
 
-      これ以外のノード定義を新規に作り出す方法は、現時点ではありません。
+      これら以外でノード定義を新規に作り出す方法は、現時点ではありません。
 
       %type(NodeDef) 型の値に %oper(set_node_params) 演算子を適用した結果は、（%type(ModuleDef) 型の値ではありますが）%type(NodeDef) 型の値ではありません。
 

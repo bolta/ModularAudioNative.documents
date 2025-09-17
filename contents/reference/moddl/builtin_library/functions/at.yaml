@@ -31,6 +31,13 @@ function:
     desc: |
       `index` に対応する `source` の要素。
 
+  examples:
+    - |
+      ```
+      ["foo", "bar", "baz", "qux"]~at(2)
+      // ==> "baz"
+      ```
+
   details:
     - |
       `index` が [0, `source~count()`) に収まらない場合、`IndexOutOfBounds` エラーが発生します。
